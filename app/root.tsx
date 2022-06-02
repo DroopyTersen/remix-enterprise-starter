@@ -1,4 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import globalStyles from "./global.css";
 import {
   Links,
   LiveReload,
@@ -14,6 +15,12 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+export const links: LinksFunction = () => [
+  {
+    rel: "stylesheet",
+    href: globalStyles,
+  },
+];
 export default function App() {
   return (
     <html lang="en">

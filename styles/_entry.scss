@@ -1,0 +1,52 @@
+@import "./theme.scss";
+@import "./utils.scss";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+// @import "../ui-toolkit/components/ImageWithFallback/ImageWithFallback.scss";
+// @import "../ui-toolkit/components/ImageCarousel/ImageCarousel.scss";
+// @import "../ui-toolkit/components//DatePicker/DatePicker.scss";
+// @import "../ui-toolkit/components/forms/forms.scss";
+// @import "../ui-toolkit/components/Modal/Modal.scss";
+// @import "../ui-toolkit/components/Sidebar/Sidebar.scss";
+// @import "../ui-toolkit/components/Table/Table.scss";
+// @import "../ui-toolkit/components/Tabs/Tabs.scss";
+// @import "../features/layout/layout.scss";
+// @import "../features/configurator/components/Configurator.scss";
+// @import "../features/activities/components/Activities.scss";
+// @import "../features/files/fileuploader.scss";
+// @import "../pages/login.scss";
+// @import "../ui-toolkit/components/Card/card.scss";
+
+html * {
+  box-sizing: border-box;
+  position: relative;
+}
+h1 {
+  font-size: 27px;
+  font-weight: bold;
+}
+h2 {
+  font-size: 23px;
+  font-weight: bold;
+}
+h3 {
+  font-size: 21px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 19px;
+  font-weight: bold;
+}
+h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+h6 {
+  font-size: 17px;
+  font-weight: bold;
+}
+p {
+  max-width: 80ch;
+}
+a {
+  color: var(--tan-900);
+}

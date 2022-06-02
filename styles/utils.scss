@@ -1,0 +1,44 @@
+html body {
+  // TYPOGRAPHY
+  .text-spaced {
+    letter-spacing: 0.8px;
+  }
+  .text-small {
+    font-size: 0.92rem;
+  }
+  .text-xs {
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+  }
+  .text-clamp-3-lines {
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-inline-box;
+  }
+
+  .fit-content {
+    height: fit-content;
+  }
+  .pre-line {
+    white-space: pre-line;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .disabled-picker {
+    pointer-events: none;
+  }
+  .fixed-backdrop {
+    position: fixed;
+    inset: 0;
+  }
+  .z-modal-dialog {
+    z-index: 1055;
+  }
+  .z-modal-backdrop {
+    z-index: 1050;
+  }
+}

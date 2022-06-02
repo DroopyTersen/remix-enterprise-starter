@@ -1,0 +1,29 @@
+$primary: #b19b81;
+$secondary: #5f6d79;
+$success: #28a745;
+$body-bg: #f8fafb;
+$body-color: #25292b;
+$light: #fff;
+$input-bg: $light;
+$enable-grid-classes: false;
+$enable-cssgrid: true;
+$enable-negative-margins: true;
+
+// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+$font-family-base: "Open Sans",
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Windows
+  "Segoe UI",
+  // Android
+  Roboto,
+  // Linux
+  "Noto Sans",
+  "Liberation Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
