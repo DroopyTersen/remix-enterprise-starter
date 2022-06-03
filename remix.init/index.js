@@ -50,7 +50,13 @@ async function main({ rootDirectory }) {
     ),
   ]);
 
-  execSync(`npm run setup`, { stdio: "inherit", cwd: rootDirectory });
+  execSync(`npx rimraf .git`, { stdio: "inherit", cwd: rootDirectory });
+  execSync(`git init`, { stdio: "inherit", cwd: rootDirectory });
+  execSync(`git add -A`, { stdio: "inherit", cwd: rootDirectory });
+  execSync(`git commit -m "initial commit"`, {
+    stdio: "inherit",
+    cwd: rootDirectory,
+  });
 
   console.log(
     `Setup is complete. You're now ready to rock and roll 🤘
