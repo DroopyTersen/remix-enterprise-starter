@@ -1,4 +1,5 @@
 import { LoaderFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 import { getConfigEntry } from "~/common/config.server";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { Surface } from "~/ui-toolkit/components/Surface/Surface";
@@ -52,6 +53,11 @@ export default function Index() {
             >
               Test button
             </Button>
+          </li>
+          <li>
+            <Link to="/bookmarks" prefetch="intent">
+              Bookmarks
+            </Link>
           </li>
         </ul>
       </Surface>
