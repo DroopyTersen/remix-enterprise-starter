@@ -10,8 +10,12 @@ function escapeRegExp(string) {
 }
 
 async function main({ rootDirectory }) {
-  const README_PATH = path.join(rootDirectory, "README.md");
-  const REPLACER = "REMIX-ENTERPRISE-STACK";
+  const README_TEMPLATE_PATH = path.join(
+    rootDirectory,
+    "remix.init",
+    "README.template.md"
+  );
+  const APP_NAME_REPLACER = "{REMIX-ENTERPRISE-STACK-APP-NAME}";
   const EXAMPLE_ENV_PATH = path.join(rootDirectory, ".env.example");
   const ENV_PATH = path.join(rootDirectory, ".env");
   const PACKAGE_JSON_PATH = path.join(rootDirectory, "package.json");
@@ -23,13 +27,13 @@ async function main({ rootDirectory }) {
     .replace(/[^a-zA-Z0-9-_]/g, "-");
 
   const [readme, envExample, packageJson] = await Promise.all([
-    fs.readFile(README_PATH, "utf-8"),
+    fs.readFile(README_TEMPLATE_PATH, "utf-8"),
     fs.readFile(EXAMPLE_ENV_PATH, "utf-8"),
     fs.readFile(PACKAGE_JSON_PATH, "utf-8"),
   ]);
 
   const newReadme = readme.replace(
-    new RegExp(escapeRegExp(REPLACER), "g"),
+    new RegExp(escapeRegExp(APP_NAME_REPLACER), "g"),
     APP_NAME
   );
 
@@ -41,7 +45,7 @@ async function main({ rootDirectory }) {
     ) + "\n";
 
   await Promise.all([
-    fs.writeFile(README_PATH, newReadme),
+    fs.writeFile(path.join(rootDirectory, "README.md"), newReadme),
     fs.writeFile(ENV_PATH, envExample),
     fs.writeFile(PACKAGE_JSON_PATH, newPackageJson),
     fs.copyFile(
