@@ -7,6 +7,30 @@ Also known as configurations or environment variables
 
 > 📌 TODO: Make sure this matches your project's setup.
 
+There is a difference between getting values in server code vs clientside code. Only app settings prefixed with `PUBLIC_` will be available in the browser.
+
+_Server code_
+
+```tsx
+import { getConfigEntry } from "~/common/config.server";
+
+// This can be run by server code
+let apiUrl = getConfigEntry("API_URL");
+```
+
+_Clientside code_
+
+```tsx
+import { useConfigEntry } from "~/ui-toolkit/hooks/useConfig";
+
+function EnvMessage() {
+  // This only works in the browser, fallback is optional
+  let message = useConfigEntry("PUBLIC_MESSAGE", "No message setup");
+
+  return <div>{message}</div>;
+}
+```
+
 The app uses a combination of the following to configure each environment:
 
 - `.env` (for Node),
@@ -28,7 +52,7 @@ If App Settings are sensitive (see App Secrets above), they are not stored with 
 - **Non-sensitive** App Settings are managed in **source control**
   - Node (Remix/Next.js)
     - `/env/.env.*`
-    - **IMPORTANT:** Remix/Next.js code can execute on both the server and client. If the app setting needs to be available to the browser, [it must be prefixed with `NEXT_PUBLIC_`](https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser)
+    - **IMPORTANT:** Remix/Next.js code can execute on both the server and client. If the app setting needs to be available to the browser, [it must be prefixed with `PUBLIC_`](https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser)
   - .NET Core
     - `appsettings.*.json`
 - **App Secrets** are managed with **Azure Key Vault**
