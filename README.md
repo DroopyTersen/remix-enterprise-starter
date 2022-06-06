@@ -19,7 +19,7 @@ When you create a Remix app with this template you will get:
 - [x] Styling setup
   - [x] Sass build process
   - [x] Bootstrap with ability to provide custom theme
-- [ ] Setup for environment variables / config
+- [x] Setup for environment variables / config
 - [ ] UI Toolkit
   - Themable React components (Buttons, form inputs, modals etc...)
   - Helpful React hooks (useDebounce, usePersistedState, useUpdateEffect etc...)
