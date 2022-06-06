@@ -57,7 +57,7 @@ npm install
 
 The project won't run correctly until you have setup a few local app settings.
 
-> Check out the [Configuration Docs](docs/configurations.md) for more detail.
+> Check out the [App Settings Docs](docs/app-settings.md) for more detail.
 
 1. Copy [`/env/.env.local.example`](env/.env.local.example) to create a new file, `/env/.env.local`.
 2. Fill in any secrets. This file will not be included in source control (via the `.gitignore`).
@@ -103,9 +103,11 @@ The [environments documentation](docs/configurations.md) contains much more deta
 
 The following are links to more more details documentation
 
-- [Configurations & Environments](docs/configurations.md)
+- [App Settings, Secrets, & Configurations](docs/app-settings.md)
   - Describes how we manage application settings (both public and private) across multiple environments.
-  - Describes the multiple environments (`local`, `test`, `stage`, etc..) and links to important environment resources
+- [Environments](docs/environments.md)
+  - Describes the specific hosted environments
+  - Describes the pipelines (CI/CD) that are setup
 - [Project Structure](docs/project-structure.md)
   - Detailed explanations of the project structure
 - [UI Cheatsheet](docs/ui-cheatsheet.md)

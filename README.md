@@ -34,11 +34,12 @@ When you create a Remix app with this template you will get:
 - [ ] Auth utilities
   - Theoretically you just plug in your own auth provider
 - [ ] Documentation templates
-  - [ ] Project level README
-  - [ ] Environment Variables and Configurations
-  - [ ] Developer Guidelines
-  - [ ] Git Workflow
-  - [ ] Project Structure
+  - [x] Project level README
+  - [x] App Settings, Secrets and Configurations
+  - [x] Hosted envrionments and CI/CD
+  - [x] Developer Guidelines
+  - [x] Git Workflow
+  - [x] Project Structure
   - [ ] UI Cheatsheet
 
 ## Key technologies
