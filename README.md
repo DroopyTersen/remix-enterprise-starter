@@ -33,6 +33,7 @@ When you create a Remix app with this template you will get:
   - Document the app's reusable components to encourage more reuse
 - [ ] Auth utilities
   - Theoretically you just plug in your own auth provider
+- [ ] App Insights Logging
 - [ ] Documentation templates
   - [x] Project level README
   - [x] App Settings, Secrets and Configurations
