@@ -1,20 +1,13 @@
 @import "./theme.scss";
 @import "./utils.scss";
+
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-// @import "../ui-toolkit/components/ImageWithFallback/ImageWithFallback.scss";
-// @import "../ui-toolkit/components/ImageCarousel/ImageCarousel.scss";
-// @import "../ui-toolkit/components//DatePicker/DatePicker.scss";
-// @import "../ui-toolkit/components/forms/forms.scss";
+@import "../app/ui-toolkit/components//DatePicker/DatePicker.scss";
+@import "../app/ui-toolkit/components/forms/forms.scss";
 // @import "../ui-toolkit/components/Modal/Modal.scss";
-// @import "../ui-toolkit/components/Sidebar/Sidebar.scss";
-// @import "../ui-toolkit/components/Table/Table.scss";
-// @import "../ui-toolkit/components/Tabs/Tabs.scss";
-// @import "../features/layout/layout.scss";
-// @import "../features/configurator/components/Configurator.scss";
-// @import "../features/activities/components/Activities.scss";
-// @import "../features/files/fileuploader.scss";
-// @import "../pages/login.scss";
-// @import "../ui-toolkit/components/Card/card.scss";
+@import "../app/ui-toolkit/components/Table/Table.scss";
+@import "../app/ui-toolkit/components/Tabs/Tabs.scss";
+@import "../app/ui-toolkit/components/Card/card.scss";
 
 html * {
   box-sizing: border-box;
