@@ -1,0 +1,63 @@
+{
+  "Basic React component": {
+    "prefix": "comp",
+    "scope": "typescriptreact",
+    "body": [
+      "interface ${TM_FILENAME_BASE}Props {",
+      "    ${1:PROPS}",
+      "}",
+      "",
+      "export function ${TM_FILENAME_BASE}({ }: ${TM_FILENAME_BASE}Props) {",
+      "    return (",
+      "        <div>${TM_FILENAME_BASE}</div>",
+      "    );",
+      "}"
+    ],
+    "description": "Basic React component"
+  },
+  "A Remix route": {
+    "prefix": "route",
+    "body": [
+      "import { ActionFunction, LoaderFunction } from \"@remix-run/node\";",
+      "import { useLoaderData } from \"@remix-run/react\";",
+      "import { ErrorContainer } from \"~/components/errors/ErrorContainer\";",
+      "import {",
+      "  requireAuthenticatedAction,",
+      "  requireAuthenticatedLoader,",
+      "} from \"~/features/auth/auth.server\";",
+      "",
+      "interface LoaderData {",
+      "  ${2:LOADER_DATA}",
+      "}",
+      "",
+      "export const loader: LoaderFunction = async ({ request, params }) => {",
+      "  let { gqlClient, user } = await requireAuthenticatedLoader(request);",
+      "  // Data Access",
+      "",
+      "  return {} as LoaderData;",
+      "};",
+      "",
+      "export default function ${1:NAME}Route() {",
+      "  let data = useLoaderData() as LoaderData;",
+      "",
+      "  return <div className=\"relative\">${1:NAME}</div>;",
+      "}",
+      "",
+      "export const action: ActionFunction = async ({ request, params }) => {",
+      "  let { intent, formData, gqlClient } = await requireAuthenticatedAction(request);",
+      "",
+      "  throw new Error(\"Unknown intent=\" + intent);",
+      "};",
+      "",
+      "export const ErrorBoundary = ({ error }) => {",
+      "  return (",
+      "    <ErrorContainer className=\"mt-4\" title=\"Unable to load Credentials\">",
+      "      <pre>{error.message}</pre>",
+      "    </ErrorContainer>",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "A Remix route"
+  }
+}

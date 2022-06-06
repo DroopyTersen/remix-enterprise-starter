@@ -1,6 +1,52 @@
-# Welcome to Remix!
+# REMIX-ENTERPRISE-STACK
+
+To create a new project using this stack, run the following command.
+
+- When prompted, **make sure to select `Y` to run the `npm install`**.
+  - If you don't, our postinstall scripts won't run for you.
+- You will be prompted to choose between Javascript or Typescript. We recommend Typescript.
+
+```sh
+# When prompted, make sure to select `Y` to run the 'npm install`.
+npx create-remix@latest --template droopytersen/remix-enterprise-starter
+```
+
+## What does it give you?
+
+When you create a Remix app with this template you will get:
+
+- [x] A Remix/React application
+- [x] Styling setup
+  - [x] Sass build process
+  - [x] Bootstrap with ability to provide custom theme
+- [ ] Setup for environment variables / config
+- [ ] UI Toolkit
+  - Themable React components (Buttons, form inputs, modals etc...)
+  - Helpful React hooks (useDebounce, usePersistedState, useUpdateEffect etc...)
+- [ ] Example CRUD screens for a single entity
+  - Shows the patterns for using querying data with a `loader`
+  - Shows the patterns for writing data with an `action`
+    - Pattern for reusing validation on the client and server
+  - Shows the patterns for routing/navigation
+- [ ] Storybook setup
+  - Work on your components in isolation with Storybook
+  - Document the app's reusable components to encourage more reuse
+- [ ] Auth utilities
+  - Theoretically you just plug in your own auth provider
+- [ ] Documentation templates
+  - [ ] Project level README
+  - [ ] Environment Variables and Configurations
+  - [ ] Developer Guidelines
+  - [ ] Git Workflow
+  - [ ] Project Structure
+  - [ ] UI Cheatsheet
+
+## Key technologies
 
 - [Remix Docs](https://remix.run/docs)
+- Bootstrap
+- UI Toolkit
+- React Hook Form
 
 ## Development
 
@@ -11,43 +57,3 @@ npm run dev
 ```
 
 This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
