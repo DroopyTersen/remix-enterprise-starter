@@ -12,6 +12,13 @@ node_modules
 /build
 /public/build
 .env
+env/.env.local
 
 /app/global.css
 /app/global.css.map
+
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,9 +1,18 @@
 node_modules
 
+# build artifacts
 /.cache
 /build
 /public/build
-.env
-
 /app/global.css
 /app/global.css.map
+
+# app secrets
+.env
+env/.env.local
+
+
+# package manager errors
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
