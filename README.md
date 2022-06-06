@@ -39,7 +39,7 @@ When you create a Remix app with this template you will get:
   - [x] Hosted envrionments and CI/CD
   - [x] Developer Guidelines
   - [x] Git Workflow
-  - [ ] Project Structure
+  - [x] Project Structure
   - [ ] UI Cheatsheet
 
 ## Key technologies
