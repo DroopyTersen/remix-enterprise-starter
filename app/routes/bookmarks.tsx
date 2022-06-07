@@ -1,17 +1,15 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
+import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
+import { ErrorView } from "~/features/error/ErrorView";
 
 interface LoaderData {
   bookmarks: any[];
 }
 
-export const loader: LoaderFunction = async ({ request, params }) => {
-  return {
-    bookmarks: [
-      { id: "1", title: "Bookmark 1" },
-      { id: "2", title: "Bookmark 2" },
-    ],
-  } as LoaderData;
+export const loader: LoaderFunction = async () => {
+  const bookmarks = await bookmarkService.getAll();
+  return { bookmarks };
 };
 
 export default function BookmarksLayout() {
@@ -20,6 +18,7 @@ export default function BookmarksLayout() {
   return (
     <div className="grid">
       <div className="g-col-4">
+        <Link to="new">New Bookmark</Link>
         <ul>
           {data.bookmarks.map((b) => (
             <li key={b.id}>
@@ -34,3 +33,7 @@ export default function BookmarksLayout() {
     </div>
   );
 }
+
+export const ErrorBoundary = ({ error }) => {
+  return <ErrorView error={error} />;
+};
