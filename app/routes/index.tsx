@@ -1,5 +1,7 @@
 import { LoaderFunction } from "@remix-run/node";
 import { getConfigEntry } from "~/common/config.server";
+import { Button } from "~/ui-toolkit/components/Button/Button";
+import { Surface } from "~/ui-toolkit/components/Surface/Surface";
 import { useConfigEntry } from "~/ui-toolkit/hooks/useConfig";
 
 export const loader: LoaderFunction = ({ request }) => {
@@ -21,31 +23,38 @@ export default function Index() {
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Welcome to Remix</h1>
       <h2>{envSpecficMessage}</h2>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+      <Surface>
+        <ul>
+          <li>
+            <a
+              target="_blank"
+              href="https://remix.run/tutorials/blog"
+              rel="noreferrer"
+            >
+              15m Quickstart Blog Tutorial
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://remix.run/tutorials/jokes"
+              rel="noreferrer"
+            >
+              Deep Dive Jokes App Tutorial
+            </a>
+          </li>
+          <li>
+            <Button
+              as="a"
+              href="https://remix.run/docs"
+              variant="filled"
+              color="primary"
+            >
+              Test button
+            </Button>
+          </li>
+        </ul>
+      </Surface>
     </div>
   );
 }
