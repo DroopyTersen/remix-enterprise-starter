@@ -101,14 +101,14 @@ function DropdownMenuItem({
   children,
   onClick,
   className = "",
-  href,
+  to,
   as,
   ...rest
 }: DropdownMenuItemProps) {
-  let Element = as || (href ? Link : onClick ? "button" : "div");
+  let Element: any = as || (to ? Link : onClick ? "button" : "div");
   let props = {
     onClick,
-    href,
+    to,
     className: "dropdown-item py-2 px-3" + className,
     ...rest,
   };

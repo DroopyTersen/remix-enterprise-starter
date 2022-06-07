@@ -6,6 +6,7 @@ node_modules
 /public/build
 /app/global.css
 /app/global.css.map
+/public/storybook
 
 # app secrets
 .env

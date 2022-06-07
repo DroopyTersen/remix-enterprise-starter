@@ -11,6 +11,7 @@ node_modules
 /.cache
 /build
 /public/build
+/public/storybook
 .env
 env/.env.local
 

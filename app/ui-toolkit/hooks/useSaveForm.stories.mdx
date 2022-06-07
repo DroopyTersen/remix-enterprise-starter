@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/addon-docs/blocks";
-import { SourceCodeLink } from "../../components/SourceCodeLink";
+import { PropsTable, SourceCodeLink } from "../components/_storybook";
 
 <Meta title="Hooks/useSaveForm" />
 
@@ -9,7 +9,7 @@ A thin wrapper around
 React Hook Form that lets you manage a Save Form (New or Edit).
 
 ```typescript
-import { useSaveForm } from "~ui-toolkit/hooks/useSaveForm";
+import { useSaveForm } from "~/ui-toolkit/hooks/useSaveForm";
 
 const { register, isSaving, errors, onSubmit } = useSaveForm({
   initial,
@@ -42,13 +42,18 @@ npm i react-hook-form
 ## Import
 
 ```js
-import { useSaveForm } from "~ui-toolkit/hooks/useSaveForm";
+import { useSaveForm } from "~/ui-toolkit/hooks/useSaveForm";
 ```
 
 _Real world example_
 
 ```tsx
-export const ClientForm = ({ initial, lookups, onSuccess, onCancel }: Props) => {
+export const ClientForm = ({
+  initial,
+  lookups,
+  onSuccess,
+  onCancel,
+}: Props) => {
   const form = useSaveForm({ onSave: saveClient, initial, onSuccess });
 
   return (
@@ -71,7 +76,11 @@ export const ClientForm = ({ initial, lookups, onSuccess, onCancel }: Props) => 
         />
       </fieldset>
       <div className="form-actions">
-        <button className="btn btn-link mr-2" type="button" onClick={() => onCancel()}>
+        <button
+          className="btn btn-link mr-2"
+          type="button"
+          onClick={() => onCancel()}
+        >
           CANCEL
         </button>
         <button className="btn btn-primary">SAVE</button>
@@ -96,7 +105,12 @@ const saveClient = async (client: Client) => {
   - See React Hook Form form more information
 
 ```tsx
-<input className="form-input" name="id" id="id" ref={form.register({ required: true })} />
+<input
+  className="form-input"
+  name="id"
+  id="id"
+  ref={form.register({ required: true })}
+/>
 ```
 
 ## Saving (Submit)
@@ -119,7 +133,12 @@ const saveClient = async (client: Client) => {
 - Set the FormControl `error` prop to be `form.errors.yourInput`
 
 ```tsx
-<FormControl name="legalName" id="legalName" label="Legal Name" error={form.errors.legalName}>
+<FormControl
+  name="legalName"
+  id="legalName"
+  label="Legal Name"
+  error={form.errors.legalName}
+>
   ...
 </FormControl>
 ```
