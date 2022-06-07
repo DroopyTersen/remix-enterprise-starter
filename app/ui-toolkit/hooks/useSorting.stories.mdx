@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
-import { PropsTable, SourceCodeLink } from "../docs";
+import { PropsTable, SourceCodeLink } from "../components/_storybook";
 
 <Meta title="Hooks/useSorting" />
 
@@ -21,7 +21,7 @@ let { showingItems, onSort, sortKey, sortDir } = useSorting(items, {
 ### Import
 
 ```tsx
-import { useSorting } from "~ui-toolkit/hooks/useSorting";
+import { useSorting } from "~/ui-toolkit/hooks/useSorting";
 ```
 
 ## Params
@@ -43,7 +43,8 @@ import { useSorting } from "~ui-toolkit/hooks/useSorting";
     {
       name: "sortMethod",
       type: `function`,
-      description: "The sort method to use if complex sorting logic is required.",
+      description:
+        "The sort method to use if complex sorting logic is required.",
       isRequired: "Optional",
     },
   ]}

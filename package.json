@@ -7,36 +7,51 @@
     "build": "run-p build:*",
     "build:remix": "remix build",
     "build:css": "sass styles/_entry.scss app/global.css",
+    "build:storybook": "build-storybook --docs -o public/storybook",
     "predev": "npm run build:css",
     "dev": "run-p dev:*",
     "dev:css": "npm run build:css -- --watch",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "dev:remix": "cross-env PUBLIC_ENV=local remix dev",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "@remix-run/node": "*",
     "@remix-run/react": "*",
     "@remix-run/serve": "*",
     "bootstrap": "^5.1.3",
+    "dayjs": "^1.11.3",
     "dotenv": "^16.0.1",
     "match-sorter": "^6.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.31.3",
+    "react-icons": "^4.4.0",
     "react-select": "^5.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
     "@remix-run/dev": "*",
     "@remix-run/eslint-config": "*",
+    "@storybook/addon-actions": "^6.5.7",
+    "@storybook/addon-essentials": "^6.5.7",
+    "@storybook/addon-interactions": "^6.5.7",
+    "@storybook/addon-links": "^6.5.7",
+    "@storybook/builder-vite": "^0.1.36",
+    "@storybook/react": "^6.5.7",
+    "@storybook/testing-library": "^0.0.11",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
     "npm-run-all": "^4.1.5",
+    "react-router-dom": "^6.3.0",
     "rimraf": "^3.0.2",
     "sass": "^1.52.1",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "vite": "^2.9.10"
   },
   "engines": {
     "node": ">=14"

@@ -1,6 +1,5 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
-import { SourceCodeLink } from "../../components/SourceCodeLink";
-import { PropsTable } from "../../components/PropsTable";
+import { PropsTable, SourceCodeLink } from "../components/_storybook";
 
 <Meta title="Hooks/usePersistedState" />
 
@@ -18,7 +17,7 @@ let [tab, setTab] = usePersistedState("myapp:active-tab", "users");
 ## Import
 
 ```tsx
-import { usePersistedState } from "~ui-toolkit/hooks/usePersistedState";
+import { usePersistedState } from "~/ui-toolkit/hooks/usePersistedState";
 ```
 
 ## Params

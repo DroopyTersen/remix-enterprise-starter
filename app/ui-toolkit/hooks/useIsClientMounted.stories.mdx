@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
-import { PropsTable, SourceCodeLink } from "../docs";
+import { PropsTable, SourceCodeLink } from "../components/_storybook";
 
 <Meta title="Hooks/useIsClientMounted" />
 
@@ -11,7 +11,7 @@ If you aren't careful, and render too quickly you'll get an issue where the serv
 match the initial pass of the client render, which will cause Next to throw an error as it tries to rehydrate the app.
 
 ```tsx
-import { useIsClientMounted } from "~ui-toolkit/hooks/useIsClientMounted";
+import { useIsClientMounted } from "~/ui-toolkit/hooks/useIsClientMounted";
 
 // The Right way
 const Demo = () => {

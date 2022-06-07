@@ -14,8 +14,8 @@ export const Basic = () => {
   return (
     <Surface>
       <DropdownMenu label="Menu">
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
       </DropdownMenu>
       <pre className="mt-5">
         {`<DropdownMenu label="Menu">
@@ -31,8 +31,8 @@ export const WithDownCaret = () => {
   return (
     <Surface>
       <DropdownMenu label="Menu" showCaret>
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
       </DropdownMenu>
     </Surface>
   );
@@ -48,7 +48,11 @@ export const Href_or_onclick = () => {
           >
             Show Alert
           </DropdownMenu.Item>
-          <DropdownMenu.Item href="https://www.google.com" target="_blank">
+          <DropdownMenu.Item
+            as="a"
+            href="https://www.google.com"
+            target="_blank"
+          >
             Google it (External Link)
           </DropdownMenu.Item>
         </DropdownMenu>
@@ -66,12 +70,12 @@ export const ItemDivider = () => {
   return (
     <Surface>
       <DropdownMenu label="Menu">
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 3</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 3</DropdownMenu.Item>
         <DropdownMenu.Divider />
-        <DropdownMenu.Item href="#">Action 4</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 5</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 4</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 5</DropdownMenu.Item>
       </DropdownMenu>
     </Surface>
   );
@@ -82,13 +86,13 @@ export const Header = () => {
     <Surface>
       <DropdownMenu label="Menu">
         <DropdownMenu.Header>Export</DropdownMenu.Header>
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 3</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 3</DropdownMenu.Item>
         <DropdownMenu.Divider />
         <DropdownMenu.Header>Preferences</DropdownMenu.Header>
-        <DropdownMenu.Item href="#">Action 4</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 5</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 4</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 5</DropdownMenu.Item>
       </DropdownMenu>
     </Surface>
   );
@@ -111,7 +115,7 @@ export const CustomLabel = () => {
           >
             Show Alert
           </DropdownMenu.Item>
-          <DropdownMenu.Item href="https://www.google.com" target="_blank">
+          <DropdownMenu.Item to="https://www.google.com" target="_blank">
             Google it (External Link)
           </DropdownMenu.Item>
         </DropdownMenu>
@@ -133,8 +137,8 @@ export const CustomClasses = () => {
           menu: "bg-secondary-200",
         }}
       >
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
       </DropdownMenu>
     </Surface>
   );
@@ -151,8 +155,8 @@ export const MoreMenuWithLabel = () => {
           </div>
         }
       >
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
       </DropdownMenu>
     </Surface>
   );
@@ -162,8 +166,8 @@ export const EllipsesMenu = () => {
   return (
     <Surface>
       <DropdownMenu label={<BsThreeDots size={24} />}>
-        <DropdownMenu.Item href="#">Action 1</DropdownMenu.Item>
-        <DropdownMenu.Item href="#">Action 2</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 1</DropdownMenu.Item>
+        <DropdownMenu.Item to="#">Action 2</DropdownMenu.Item>
       </DropdownMenu>
     </Surface>
   );
@@ -196,7 +200,7 @@ export const FormInDropdown = () => {
                 placeholder="User Email"
                 className="w-auto text-small"
               ></Input>
-              <Button color="blue" className="rounded-1">
+              <Button color="primary" className="rounded-1">
                 <FaArrowRight size={16} />
               </Button>
             </div>

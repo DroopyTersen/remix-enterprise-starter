@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
-import { SourceCodeLink } from "../../components/SourceCodeLink";
+import { PropsTable, SourceCodeLink } from "../components/_storybook";
 
 <Meta title="Utils/cache" />
 
@@ -10,7 +10,7 @@ Helpers for synchronously working with browser `Storage` apis (`localStorage` an
 ## Import
 
 ```js
-import { getCache, setCache } from "~ui-toolkit/utils/querystring";
+import { getCache, setCache } from "~/ui-toolkit/utils/querystring";
 ```
 
 ## Usage
@@ -40,7 +40,10 @@ Use this option if you want to override the default storage location.
 - It will attempt to parse the value as JSON
 
 ```ts
-let currentUser = getCache({ key: "myapp:current-user", location: sessionStorage });
+let currentUser = getCache({
+  key: "myapp:current-user",
+  location: sessionStorage,
+});
 // {
 //   id: "123"
 //   name: "Andrew Petersen"

@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
-import { PropsTable, SourceCodeLink } from "../docs";
+import { PropsTable, SourceCodeLink } from "../components/_storybook";
 
 <Meta title="Hooks/usePagedItems" />
 
@@ -22,7 +22,10 @@ return (
       <button disabled={paging.currentPage <= 1} onClick={paging.goBack}>
         Prev
       </button>
-      <button disabled={paging.currentPage >= paging.totalPages} onClick={paging.goForward}>
+      <button
+        disabled={paging.currentPage >= paging.totalPages}
+        onClick={paging.goForward}
+      >
         Next
       </button>
     </div>
@@ -33,7 +36,7 @@ return (
 ### Import
 
 ```tsx
-import { usePagedItems } from "~ui-toolkit/hooks/usePaging";
+import { usePagedItems } from "~/ui-toolkit/hooks/usePaging";
 ```
 
 ## Params
