@@ -2,7 +2,11 @@ import { matchSorter } from "match-sorter";
 import { useMemo, useState } from "react";
 import { useDebouncedValue } from "./useDebounce";
 
-export const useFilteredItemsByText = (allItems, properties, initialFilterText = "") => {
+export const useFilteredItemsByText = (
+  allItems,
+  properties,
+  initialFilterText = ""
+) => {
   const [filterText, setFilterText] = useState(initialFilterText);
 
   const debouncedFilterText = useDebouncedValue(filterText, 250);

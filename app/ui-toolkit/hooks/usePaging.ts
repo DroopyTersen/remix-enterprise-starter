@@ -22,7 +22,9 @@ function validatePageNumber(currentPage: number, totalPages: number): number {
 }
 
 export function usePaging(totalPages: number, { initialPage = 1 } = {}) {
-  const [currentPage, setCurrentPage] = useState(() => validatePageNumber(initialPage, totalPages));
+  const [currentPage, setCurrentPage] = useState(() =>
+    validatePageNumber(initialPage, totalPages)
+  );
   useEffect(() => {
     setCurrentPage(validatePageNumber(initialPage, totalPages));
   }, [initialPage, totalPages]);

@@ -4,7 +4,10 @@ interface useGridProps {
   pageSize?: number;
 }
 
-export function useGrid<T>(allItems: T[], { pageSize = 25 }: useGridProps = {}) {
+export function useGrid<T>(
+  allItems: T[],
+  { pageSize = 25 }: useGridProps = {}
+) {
   pageSize = pageSize || allItems.length;
   const [showingItems, paging] = usePagedItems(allItems, pageSize);
 

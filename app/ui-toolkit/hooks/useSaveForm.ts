@@ -38,14 +38,18 @@ export const useSaveForm = <TFormValues = any>({
 };
 
 export interface SaveFormParams<TFormValues = any> {
-  onSave: (formValues: TFormValues, event: BaseSyntheticEvent) => Promise<TFormValues>;
+  onSave: (
+    formValues: TFormValues,
+    event: BaseSyntheticEvent
+  ) => Promise<TFormValues>;
   onSuccess: (result: TFormValues, event: BaseSyntheticEvent) => void;
   onError?: (error) => void;
   initial: TFormValues;
   shouldUnregister?: boolean;
 }
 
-export interface UseSaveFormReturn<TFormValues> extends UseFormReturn<TFormValues> {
+export interface UseSaveFormReturn<TFormValues>
+  extends UseFormReturn<TFormValues> {
   isSaving: boolean;
   onSubmit: (event: any) => void;
 }

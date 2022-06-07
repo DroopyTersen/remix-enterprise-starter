@@ -5,7 +5,11 @@ import { getValidationClass } from "./FormField";
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   // eslint-disable-next-line
   function Select({ validationStatus, className, children, ...rest }, ref) {
-    const cssClass = getClassName(["form-select", getValidationClass(validationStatus), className]);
+    const cssClass = getClassName([
+      "form-select",
+      getValidationClass(validationStatus),
+      className,
+    ]);
     return (
       <div className={"input-group " + getValidationClass(validationStatus)}>
         <select className={cssClass} ref={ref} {...rest}>

@@ -5,7 +5,10 @@ import { getValidationClass } from "./FormField";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   // eslint-disable-next-line
-  function Input({ validationStatus, prefix, suffix, className, ...rest }, ref) {
+  function Input(
+    { validationStatus, prefix, suffix, className, ...rest },
+    ref
+  ) {
     const cssClass = getClassName([
       "form-control",
       getValidationClass(validationStatus),
@@ -14,13 +17,21 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={"input-group " + getValidationClass(validationStatus)}>
         {prefix && (
-          <span className={"input-group-text " + getValidationClass(validationStatus)}>
+          <span
+            className={
+              "input-group-text " + getValidationClass(validationStatus)
+            }
+          >
             {prefix}
           </span>
         )}
         <input className={cssClass} ref={ref} {...rest} />
         {suffix && (
-          <span className={"input-group-text " + getValidationClass(validationStatus)}>
+          <span
+            className={
+              "input-group-text " + getValidationClass(validationStatus)
+            }
+          >
             {suffix}
           </span>
         )}

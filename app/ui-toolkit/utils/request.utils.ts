@@ -46,6 +46,8 @@ export async function jsonRequest<T = any>(
     return resp.json() as Promise<T>;
   } else {
     let respBody = await resp.text();
-    throw new Error(`Req Error: ${resp.status} - ${resp.statusText} - ${respBody}`);
+    throw new Error(
+      `Req Error: ${resp.status} - ${resp.statusText} - ${respBody}`
+    );
   }
 }

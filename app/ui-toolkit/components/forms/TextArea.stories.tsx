@@ -33,7 +33,8 @@ export const Disabled = createStory({
 
 export const Valid = createStory({
   ...Basic.args,
-  value: "This is a valid value for the text area and should show a green checkmark.",
+  value:
+    "This is a valid value for the text area and should show a green checkmark.",
   validationStatus: "valid",
 });
 

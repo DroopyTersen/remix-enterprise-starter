@@ -61,7 +61,9 @@ function exportData(data: string, fileName: string) {
     link.click();
     URL.revokeObjectURL(link.href);
   } else {
-    alert("This feature is not available on this device. Please use another device.");
+    alert(
+      "This feature is not available on this device. Please use another device."
+    );
   }
 }
 

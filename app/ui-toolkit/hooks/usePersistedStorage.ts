@@ -28,7 +28,8 @@ export const usePersistedStorage = <T>(
 
   const setValue = useCallback(
     (value: T) => {
-      const valueStr = typeof value === "string" ? value : JSON.stringify(value);
+      const valueStr =
+        typeof value === "string" ? value : JSON.stringify(value);
       storage.setItem(key, valueStr);
 
       setLastReadTime(new Date());

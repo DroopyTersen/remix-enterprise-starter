@@ -48,7 +48,6 @@ export const Valid = createStory({
   hint: "This is some helper text to describe the field.",
 });
 
-
 export const ExtraClasses = createStory({
   ...Basic.args,
   rows: 4,
@@ -56,5 +55,5 @@ export const ExtraClasses = createStory({
   
 ...of his own fiction.`,
   className: "form-control-lg my-custom-class",
-  hint: "This example uses the Bootstrap class to make it larger."
+  hint: "This example uses the Bootstrap class to make it larger.",
 });

@@ -17,13 +17,19 @@ export const Basic = createStory({
 
 export const WithDetailsMessage = createStory({
   title: "Unable to save item",
-  children: <p className="font-monospace">The request to the server responded with 500.</p>,
+  children: (
+    <p className="font-monospace">
+      The request to the server responded with 500.
+    </p>
+  ),
 });
 export const WithCustomErrorBody = createStory({
   title: "Unable to save item",
   children: (
     <>
-      <p className="font-monospace">The request to the server responded with 500.</p>
+      <p className="font-monospace">
+        The request to the server responded with 500.
+      </p>
       <button className="btn btn-primary">Try again</button>
     </>
   ),

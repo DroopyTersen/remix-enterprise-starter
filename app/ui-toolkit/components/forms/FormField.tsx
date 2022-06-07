@@ -20,14 +20,20 @@ export const FormField = ({
     <div className={cssClass} {...rest}>
       {label && (
         <div className="d-flex">
-          <label className="form-label" htmlFor={name} style={{ position: "relative" }}>
+          <label
+            className="form-label"
+            htmlFor={name}
+            style={{ position: "relative" }}
+          >
             {label}
             {required && <span className="text-danger required">*</span>}
           </label>
         </div>
       )}
       <span className={getValidationClass(status)}>{children}</span>
-      {errorMsg && status === "invalid" && <div className="invalid-feedback">{errorMsg}</div>}
+      {errorMsg && status === "invalid" && (
+        <div className="invalid-feedback">{errorMsg}</div>
+      )}
       {status !== "invalid" && hint && (
         <div
           className={getClassName([
@@ -63,8 +69,16 @@ export interface FormFieldProps {
 }
 
 export const pluckFormFieldProps = (props: any) => {
-  const { name, label, validationStatus, error, required, hint, className, ...formControlProps } =
-    props;
+  const {
+    name,
+    label,
+    validationStatus,
+    error,
+    required,
+    hint,
+    className,
+    ...formControlProps
+  } = props;
 
   return {
     formFieldProps: {

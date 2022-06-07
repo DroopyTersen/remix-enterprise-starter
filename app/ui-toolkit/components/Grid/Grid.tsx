@@ -1,6 +1,11 @@
 import React from "react";
 
-export const Grid = ({ width = "250px", gap = "10px", children, ...rest }: GridProps) => (
+export const Grid = ({
+  width = "250px",
+  gap = "10px",
+  children,
+  ...rest
+}: GridProps) => (
   <div
     {...rest}
     style={{

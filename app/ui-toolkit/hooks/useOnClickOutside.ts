@@ -8,7 +8,11 @@ export default function useOnClickOutside(ref, handler) {
   useEffect(() => {
     const listener = (event) => {
       // Do nothing if clicking ref's element or descendent elements
-      if (!handlerRef.current || !ref.current || ref.current.contains(event.target)) {
+      if (
+        !handlerRef.current ||
+        !ref.current ||
+        ref.current.contains(event.target)
+      ) {
         return;
       }
 

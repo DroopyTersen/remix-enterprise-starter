@@ -49,10 +49,14 @@ export const FontWeight = () => {
   return (
     <Surface>
       <p className="fw-bold">fw-bold - Bold text.</p>
-      <p className="fw-bolder">fw-bolder Bolder weight text (relative to the parent element).</p>
+      <p className="fw-bolder">
+        fw-bolder Bolder weight text (relative to the parent element).
+      </p>
       <p className="fw-normal">fw-normal Normal weight text.</p>
       <p className="fw-light">fw-light Light weight text.</p>
-      <p className="fw-lighter">fw-lighter Lighter weight text (relative to the parent element).</p>
+      <p className="fw-lighter">
+        fw-lighter Lighter weight text (relative to the parent element).
+      </p>
       <p className="fst-italic">fst-italic Italic text.</p>
       <p className="fst-normal">fst-normal Text with normal font style</p>
     </Surface>
