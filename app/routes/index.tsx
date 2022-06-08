@@ -1,7 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import { getConfigEntry } from "~/common/config.server";
-import { ErrorView } from "~/features/error/ErrorView";
+import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { Surface } from "~/ui-toolkit/components/Surface/Surface";
 import { useConfigEntry } from "~/ui-toolkit/hooks/useConfig";
@@ -66,6 +66,4 @@ export default function Index() {
   );
 }
 
-export const ErrorBoundary = ({ error }) => {
-  return <ErrorView error={error} />;
-};
+export const ErrorBoundary = AppErrorBoundary;

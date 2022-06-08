@@ -1,6 +1,6 @@
 import { ErrorContainer } from "~/ui-toolkit/components/ErrorContainer/ErrorContainer";
 
-export const ErrorView = ({ error }) => {
+export const AppErrorBoundary = ({ error }) => {
   return (
     <ErrorContainer>
       <pre>{error?.message}</pre>

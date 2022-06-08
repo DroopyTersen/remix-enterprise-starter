@@ -2,7 +2,7 @@ import type { ActionFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";
-import { ErrorView } from "~/features/error/ErrorView";
+import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
 
 export default function NewBookmarkRoute() {
   return <BookmarkForm />;
@@ -17,6 +17,4 @@ export const action: ActionFunction = async ({ request }) => {
   return redirect(`/bookmarks/${bookmark.id}`);
 };
 
-export const ErrorBoundary = ({ error }) => {
-  return <ErrorView error={error} />;
-};
+export const ErrorBoundary = AppErrorBoundary;

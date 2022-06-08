@@ -1,7 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
-import { ErrorView } from "~/features/error/ErrorView";
+import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
 
 interface LoaderData {
   bookmarks: any[];
@@ -34,6 +34,4 @@ export default function BookmarksLayout() {
   );
 }
 
-export const ErrorBoundary = ({ error }) => {
-  return <ErrorView error={error} />;
-};
+export const ErrorBoundary = AppErrorBoundary;

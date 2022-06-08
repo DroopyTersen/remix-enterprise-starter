@@ -1,59 +1,30 @@
 import { getConfigEntry } from "~/common/config.server";
-import { jsonRequest } from "~/ui-toolkit/utils/request.utils";
+import { request } from "~/common/request.server";
 import type { Bookmark } from "./bookmark.types";
 
-const baseUrl = getConfigEntry("API_URL");
-const getFullUrl = (path: string) => `${baseUrl}/${path}`;
-
-const apiRoutes = {
-  getBookmark: (id: string) => {
-    return `/bookmarks/${id}`;
-  },
-  deleteBookmark: (id: string) => {
-    return `/bookmarks/${id}`;
-  },
-  getBookmarks: () => {
-    return `/bookmarks`;
-  },
-  createBookmark: () => {
-    return `/bookmarks`;
-  },
-  updateBookmark: (id: string) => {
-    return `/bookmarks/${id}`;
-  },
-};
+const apiRequest = request(getConfigEntry("API_URL"));
 
 const getAll = async (): Promise<Bookmark[]> => {
-  const bookmarks = await jsonRequest(getFullUrl(apiRoutes.getBookmarks()));
-
-  return bookmarks;
+  return await apiRequest.get("/bookmarks");
 };
 
 const get = async (id: string): Promise<Bookmark> => {
-  const bookmark = await jsonRequest(getFullUrl(apiRoutes.getBookmark(id)));
-
-  return bookmark;
+  return await apiRequest.get(`/bookmarks/${id}`);
 };
 
-const remove = async (id: string) => {
-  await jsonRequest(getFullUrl(apiRoutes.deleteBookmark(id)), {
-    method: "DELETE",
-  });
+const remove = async (id: string): Promise<any> => {
+  return await apiRequest.remove(`/bookmarks/${id}`);
 };
 
 const save = async (bookmark: Bookmark): Promise<Bookmark> => {
-  const isNew = bookmark.id ? false : true;
-  const path = isNew
-    ? apiRoutes.createBookmark()
-    : apiRoutes.updateBookmark(bookmark.id);
-  const method = isNew ? "POST" : "PUT";
-
-  const updatedBookmark = await jsonRequest(getFullUrl(path), {
-    method,
-    body: JSON.stringify(bookmark),
-  });
-
-  return updatedBookmark;
+  if (!bookmark.id) {
+    return await apiRequest.post("/bookmarks", JSON.stringify(bookmark));
+  } else {
+    return await apiRequest.put(
+      `/bookmarks/${bookmark.id}`,
+      JSON.stringify(bookmark)
+    );
+  }
 };
 
 export const bookmarkService = {

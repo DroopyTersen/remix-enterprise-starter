@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";
-import { ErrorView } from "~/features/error/ErrorView";
+import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
 
 interface LoaderData {
   bookmark: Bookmark;
@@ -30,6 +30,4 @@ export const action: ActionFunction = async ({ request, params }) => {
   return redirect(`/bookmarks/${params.bookmarkId}`);
 };
 
-export const ErrorBoundary = ({ error }) => {
-  return <ErrorView error={error} />;
-};
+export const ErrorBoundary = AppErrorBoundary;
