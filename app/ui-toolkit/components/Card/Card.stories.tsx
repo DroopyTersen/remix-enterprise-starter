@@ -1,5 +1,6 @@
 import { setupStories } from "../_storybook/storybook.utils";
-import { Card, CardProps } from "./Card";
+import type { CardProps } from "./Card";
+import { Card } from "./Card";
 
 export default {
   title: "Surfaces/Card",

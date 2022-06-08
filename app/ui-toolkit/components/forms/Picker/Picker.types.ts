@@ -1,4 +1,4 @@
-import Select from "react-select";
+import type Select from "react-select";
 export interface PickerOption {
   value: string;
   label: string;

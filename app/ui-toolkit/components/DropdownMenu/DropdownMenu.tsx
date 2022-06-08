@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { Link } from "@remix-run/react";
 import React from "react";
 

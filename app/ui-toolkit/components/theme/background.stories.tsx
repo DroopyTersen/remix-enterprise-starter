@@ -1,5 +1,6 @@
 import { setupStories } from "../_storybook/storybook.utils";
-import { ColorConfig, ColorPalette, ColorPaletteProps } from "./ColorPalette";
+import type { ColorConfig, ColorPaletteProps } from "./ColorPalette";
+import { ColorPalette } from "./ColorPalette";
 
 const storyConfig = {
   title: "Design System",

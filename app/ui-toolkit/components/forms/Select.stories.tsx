@@ -1,7 +1,8 @@
 import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
-import { Select, SelectProps } from "./Select";
+import type { SelectProps } from "./Select";
+import { Select } from "./Select";
 
 export default {
   title: "Forms & Inputs/Select",

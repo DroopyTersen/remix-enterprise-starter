@@ -1,7 +1,8 @@
 import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
-import { Button, ButtonProps } from "./Button";
+import type { ButtonProps } from "./Button";
+import { Button } from "./Button";
 
 export default {
   title: "Forms & Inputs/Button",

@@ -1,7 +1,8 @@
 import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
-import { Check, CheckProps } from "./Check";
+import type { CheckProps } from "./Check";
+import { Check } from "./Check";
 
 export default {
   title: "Forms & Inputs/Check",

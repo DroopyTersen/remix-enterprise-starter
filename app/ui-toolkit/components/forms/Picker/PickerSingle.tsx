@@ -3,7 +3,7 @@ import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { useDebouncedUpdateEffect } from "../../../hooks/useDebounce";
 import { pickerStyles } from "./Picker.styles";
-import { PickerOption, PickerSingleProps } from "./Picker.types";
+import type { PickerOption, PickerSingleProps } from "./Picker.types";
 import { useAutocompleteOptions } from "./useAutocompleteOptions";
 
 const parseSelectedOption = (value: string, options?: PickerOption[]) => {

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { InputSuffixButton } from ".";
-
-import { Button } from "../Button/Button";
-
 import {
   FormField,
   getValidationStatus,
   pluckFormFieldProps,
 } from "./FormField";
 import { Input } from "./Input";
-import { InputFieldProps } from "./InputField";
+import type { InputFieldProps } from "./InputField";
 
 export const PeekableInputField = React.forwardRef<
   HTMLInputElement,

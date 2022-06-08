@@ -1,6 +1,6 @@
 import React from "react";
 import { getClassName } from "../../utils";
-import { ButtonProps } from "../Button/Button";
+import type { ButtonProps } from "../Button/Button";
 import { getValidationClass } from "./FormField";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(

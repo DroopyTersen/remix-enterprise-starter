@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDebouncedEffect } from "../../../hooks/useDebounce";
-import { PickerOption, PickerOptions } from "./Picker.types";
+import type { PickerOption, PickerOptions } from "./Picker.types";
 
 export function useAutocompleteOptions(
   inputValue: string,
@@ -13,6 +13,7 @@ export function useAutocompleteOptions(
   const getOptionsRef = useRef(getOptions);
   useEffect(() => {
     if (typeof getOptions === "function") {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       getOptionsRef.current === getOptions;
     } else if (Array.isArray(getOptions)) {
       setOptions(getOptions);

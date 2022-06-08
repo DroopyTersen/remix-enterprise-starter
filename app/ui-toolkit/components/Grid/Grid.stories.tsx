@@ -2,7 +2,8 @@ import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
 import { Card } from "../Card/Card";
-import { Grid, GridProps } from "./Grid";
+import type { GridProps } from "./Grid";
+import { Grid } from "./Grid";
 
 export default {
   title: "Surfaces/Grid",

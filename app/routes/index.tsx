@@ -1,5 +1,7 @@
-import { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 import { getConfigEntry } from "~/common/config.server";
+import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { Surface } from "~/ui-toolkit/components/Surface/Surface";
 import { useConfigEntry } from "~/ui-toolkit/hooks/useConfig";
@@ -53,8 +55,15 @@ export default function Index() {
               Test button
             </Button>
           </li>
+          <li>
+            <Link to="/bookmarks" prefetch="intent">
+              Bookmarks
+            </Link>
+          </li>
         </ul>
       </Surface>
     </div>
   );
 }
+
+export const ErrorBoundary = AppErrorBoundary;

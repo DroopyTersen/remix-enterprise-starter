@@ -1,5 +1,5 @@
 import * as dateUtils from "../../utils/dateUtils";
-import { DateUnit } from "../../utils/dateUtils";
+import type { DateUnit } from "../../utils/dateUtils";
 
 export const VALUE_FORMAT = "YYYY-MM-DD";
 

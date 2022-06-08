@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Link } from "@remix-run/react";
 import React from "react";
 import "./Card.scss";

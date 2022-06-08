@@ -4,7 +4,7 @@ import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import { useDebouncedEffect } from "../../../hooks/useDebounce";
 import { pickerStyles } from "./Picker.styles";
-import { PickerMultiProps, PickerOption } from "./Picker.types";
+import type { PickerMultiProps, PickerOption } from "./Picker.types";
 import { useAutocompleteOptions } from "./useAutocompleteOptions";
 
 const parseSelectedOptions = (
