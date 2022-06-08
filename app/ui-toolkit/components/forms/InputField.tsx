@@ -1,7 +1,5 @@
 import React from "react";
-
-import type {
-  FormFieldProps} from "./FormField";
+import type { FormFieldProps } from "./FormField";
 import {
   FormField,
   getValidationStatus,
