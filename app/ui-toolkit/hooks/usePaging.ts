@@ -63,7 +63,7 @@ export const usePagedItems = function <T = any>(
   let paging = usePaging(totalPages, { initialPage });
   let startIndex = (paging.currentPage - 1) * itemsPerPage;
   let endIndex = startIndex + itemsPerPage;
-  let isWrapping = endIndex > allItems.length;
+  // let isWrapping = endIndex > allItems.length;
 
   let items = allItems.slice(startIndex, endIndex);
   // if (isWrapping) {

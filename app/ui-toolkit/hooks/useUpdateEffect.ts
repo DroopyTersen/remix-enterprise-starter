@@ -9,5 +9,6 @@ export function useUpdateEffect(effectFn, dependencies: any[]) {
     } else {
       hasMountedRef.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 }

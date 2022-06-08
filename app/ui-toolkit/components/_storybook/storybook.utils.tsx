@@ -1,5 +1,6 @@
-import { Story } from "@storybook/react";
-import React, { ComponentProps } from "react";
+import type { Story } from "@storybook/react";
+import type { ComponentProps } from "react";
+import React from "react";
 
 export const setupStories = function <Props>(Component) {
   const Template: Story<ComponentProps<typeof Component>> = (args) => (

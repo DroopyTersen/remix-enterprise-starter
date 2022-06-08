@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { PickerMulti, PickerOption, PickerSingle } from ".";
+import React, { useState } from "react";
+import type { PickerOption } from ".";
+import { PickerMulti, PickerSingle } from ".";
 import { useAsyncData } from "../../../hooks/useAsyncData";
 import { Surface } from "../../Surface/Surface";
 
@@ -107,7 +107,7 @@ const fetchAllFruitOptions = async () => {
 
 export const SingleWithPreLoadOptions = () => {
   let [fruit, setFruit] = useState("");
-  let { data, error, isLoading } = useAsyncData(fetchAllFruitOptions, [], []);
+  let { data, isLoading } = useAsyncData(fetchAllFruitOptions, [], []);
 
   return (
     <Surface style={{ maxWidth: "400px" }}>

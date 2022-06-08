@@ -2,7 +2,8 @@ import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
 import { Check } from "./Check";
-import { FormField, FormFieldProps } from "./FormField";
+import type { FormFieldProps } from "./FormField";
+import { FormField } from "./FormField";
 import { Radio } from "./Radio";
 
 export default {

@@ -1,5 +1,7 @@
-import { BaseSyntheticEvent, useState } from "react";
-import { SubmitHandler, useForm, UseFormReturn } from "react-hook-form";
+import type { BaseSyntheticEvent} from "react";
+import { useState } from "react";
+import type { SubmitHandler, UseFormReturn } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export const useSaveForm = <TFormValues = any>({
   onSave,

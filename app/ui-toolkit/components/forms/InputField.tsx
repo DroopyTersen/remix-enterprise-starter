@@ -1,12 +1,14 @@
 import React from "react";
 
+import type {
+  FormFieldProps} from "./FormField";
 import {
   FormField,
-  FormFieldProps,
   getValidationStatus,
   pluckFormFieldProps,
 } from "./FormField";
-import { Input, InputProps } from "./Input";
+import type { InputProps } from "./Input";
+import { Input } from "./Input";
 
 export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   // eslint-disable-next-line

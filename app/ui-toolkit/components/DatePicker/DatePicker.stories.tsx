@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { setupStories } from "../_storybook/storybook.utils";
-import { DatePicker, DatePickerProps } from "./DatePicker";
+import { DatePicker } from "./DatePicker";
 
 export default {
   title: "Forms & Inputs/DatePicker",

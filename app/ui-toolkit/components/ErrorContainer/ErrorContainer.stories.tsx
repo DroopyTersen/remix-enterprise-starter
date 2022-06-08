@@ -1,7 +1,8 @@
 import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
-import { ErrorContainer, ErrorContainerProps } from "./ErrorContainer";
+import type { ErrorContainerProps } from "./ErrorContainer";
+import { ErrorContainer } from "./ErrorContainer";
 
 export default {
   title: "Surfaces/ErrorContainer",

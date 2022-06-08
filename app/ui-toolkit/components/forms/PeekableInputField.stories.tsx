@@ -1,6 +1,6 @@
 import { setupStories } from "../_storybook/storybook.utils";
 import { PeekableInputField } from "./PeekableInputField";
-import { InputFieldProps } from "./InputField";
+import type { InputFieldProps } from "./InputField";
 
 export default {
   title: "Forms & Inputs/PeekableInputField",

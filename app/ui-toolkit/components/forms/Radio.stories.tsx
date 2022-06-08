@@ -1,7 +1,8 @@
 import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
-import { Radio, RadioProps } from "./Radio";
+import type { RadioProps } from "./Radio";
+import { Radio } from "./Radio";
 
 export default {
   title: "Forms & Inputs/Radio",

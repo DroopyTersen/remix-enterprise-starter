@@ -1,11 +1,13 @@
 import React from "react";
+import type {
+  FormFieldProps} from "./FormField";
 import {
   FormField,
-  FormFieldProps,
   getValidationStatus,
   pluckFormFieldProps,
 } from "./FormField";
-import { TextArea, TextAreaProps } from "./TextArea";
+import type { TextAreaProps } from "./TextArea";
+import { TextArea } from "./TextArea";
 
 export const TextAreaField = React.forwardRef<
   HTMLTextAreaElement,

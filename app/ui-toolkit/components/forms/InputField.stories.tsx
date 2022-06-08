@@ -1,5 +1,6 @@
 import { setupStories } from "../_storybook/storybook.utils";
-import { InputField, InputFieldProps } from "./InputField";
+import type { InputFieldProps } from "./InputField";
+import { InputField } from "./InputField";
 
 export default {
   title: "Forms & Inputs/InputField",

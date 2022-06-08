@@ -1,6 +1,3 @@
-import { ReactNode } from "react";
-import { setupStories } from "../_storybook/storybook.utils";
-
 const storyConfig = {
   title: "Design System",
   component: Block,
@@ -13,10 +10,6 @@ const storyConfig = {
 
 export default storyConfig;
 
-interface Props {
-  className: string;
-  children?: ReactNode;
-}
 function Block({ className, children = null }) {
   return (
     <div
@@ -30,7 +23,6 @@ function Block({ className, children = null }) {
     </div>
   );
 }
-const { createStory } = setupStories<Props>(Block);
 
 export const Borders = () => {
   return (

@@ -1,11 +1,12 @@
 import React from "react";
+import type {
+  FormFieldProps} from "../FormField";
 import {
   FormField,
-  FormFieldProps,
   getValidationStatus,
   pluckFormFieldProps,
 } from "../FormField";
-import { PickerMultiProps } from "./Picker.types";
+import type { PickerMultiProps } from "./Picker.types";
 import { PickerMulti } from "./PickerMulti";
 
 export const PickerMultiField = React.forwardRef<

@@ -1,7 +1,8 @@
 import React from "react";
 
 import { setupStories } from "../_storybook/storybook.utils";
-import { Input, InputProps } from "./Input";
+import type { InputProps } from "./Input";
+import { Input } from "./Input";
 
 export default {
   title: "Forms & Inputs/Input",

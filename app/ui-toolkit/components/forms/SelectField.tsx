@@ -1,11 +1,13 @@
 import React from "react";
+import type {
+  FormFieldProps} from "./FormField";
 import {
   FormField,
-  FormFieldProps,
   getValidationStatus,
   pluckFormFieldProps,
 } from "./FormField";
-import { Select, SelectProps } from "./Select";
+import type { SelectProps } from "./Select";
+import { Select } from "./Select";
 
 export const SelectField = React.forwardRef<
   HTMLSelectElement,

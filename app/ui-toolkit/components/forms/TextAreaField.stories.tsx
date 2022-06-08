@@ -1,5 +1,6 @@
 import { setupStories } from "../_storybook/storybook.utils";
-import { TextAreaField, TextAreaFieldProps } from "./TextAreaField";
+import type { TextAreaFieldProps } from "./TextAreaField";
+import { TextAreaField } from "./TextAreaField";
 
 export default {
   title: "Forms & Inputs/TextAreaField",
