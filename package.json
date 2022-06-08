@@ -7,7 +7,7 @@
     "build": "run-p build:*",
     "build:remix": "remix build",
     "build:css": "sass styles/_entry.scss app/global.css",
-    "build:storybook": "build-storybook --docs -o public/storybook",
+    "buildzzz:storybook": "build-storybook --docs -o public/storybook",
     "predev": "npm run build:css",
     "dev": "run-p dev:*",
     "dev:css": "npm run build:css -- --watch",
