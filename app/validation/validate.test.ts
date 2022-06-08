@@ -17,7 +17,7 @@ describe("validate", () => {
         title: { required: true },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.url).toBeUndefined();
       expect(errors?.title).toBeNull();
     });
@@ -27,7 +27,7 @@ describe("validate", () => {
         title: { required: { message: "Title is required", value: true } },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.url).toBeUndefined();
       expect(errors?.title).toBeNull();
     });
@@ -37,7 +37,7 @@ describe("validate", () => {
         title: { required: true },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.url).toBeUndefined();
       expect(errors?.title?.message).toBe(DEFAULT_ERROR_MESSAGES.required());
     });
@@ -48,7 +48,7 @@ describe("validate", () => {
         title: { required: errorMessage },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.url).toBeUndefined();
       expect(errors?.title?.message).toBe(errorMessage);
     });
@@ -60,7 +60,7 @@ describe("validate", () => {
         title: { required: { message: errorMessage, value: true } },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.url).toBeUndefined();
       expect(errors?.title?.message).toBe(errorMessage);
     });
@@ -74,7 +74,7 @@ describe("validate", () => {
       validators = {
         title: { minLength: 3 },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors?.title?.message).toBe(DEFAULT_ERROR_MESSAGES.minLength(3));
     });
@@ -83,7 +83,7 @@ describe("validate", () => {
       validators = {
         title: { minLength: 3 },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors.title).toBeNull();
     });
@@ -93,7 +93,7 @@ describe("validate", () => {
       validators = {
         title: { minLength: { message, value: 3 } },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors?.title?.message).toBe(message);
     });
@@ -102,7 +102,7 @@ describe("validate", () => {
       validators = {
         title: { minLength: { message: "Enter more chars", value: 3 } },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors.title).toBeNull();
     });
@@ -116,7 +116,7 @@ describe("validate", () => {
       validators = {
         title: { maxLength: 10 },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors?.title?.message).toBe(DEFAULT_ERROR_MESSAGES.maxLength(10));
     });
@@ -125,7 +125,7 @@ describe("validate", () => {
       validators = {
         title: { maxLength: 10 },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors.title).toBeNull();
     });
@@ -135,7 +135,7 @@ describe("validate", () => {
       validators = {
         title: { maxLength: { message, value: 10 } },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors?.title?.message).toBe(message);
     });
@@ -145,7 +145,7 @@ describe("validate", () => {
       validators = {
         title: { maxLength: { message, value: 10 } },
       };
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors.url).toBeUndefined();
       expect(errors.title).toBeNull();
     });
@@ -161,7 +161,7 @@ describe("validate", () => {
         },
       };
       formData.set("title", "blah");
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.title).toBeNull();
     });
     test("returning empty string should result in no error", async () => {
@@ -171,7 +171,7 @@ describe("validate", () => {
         },
       };
       formData.set("title", "blah");
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.title).toBeNull();
     });
     test("returning false should return default error message", async () => {
@@ -181,10 +181,8 @@ describe("validate", () => {
         },
       };
       formData.set("title", "blah");
-      let errors = await validate(formData, validators);
-      expect(errors?.title?.message).toBe(
-        DEFAULT_ERROR_MESSAGES.validate("blah")
-      );
+      let [errors] = await validate(formData, validators);
+      expect(errors?.title?.message).toBe(DEFAULT_ERROR_MESSAGES.validate("blah"));
     });
     test("a returned string value should be treated as the error message", async () => {
       validators = {
@@ -193,7 +191,7 @@ describe("validate", () => {
         },
       };
       formData.set("title", "blah");
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.title?.message).toBe("beep boop");
     });
   });
@@ -206,7 +204,7 @@ describe("validate", () => {
         url: { required: true },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.title.message).toBe(DEFAULT_ERROR_MESSAGES.required());
       expect(errors?.url.message).toBe(DEFAULT_ERROR_MESSAGES.required());
     });
@@ -218,7 +216,7 @@ describe("validate", () => {
         url: { required: true },
       };
 
-      let errors = await validate(formData, validators);
+      let [errors] = await validate(formData, validators);
       expect(errors?.title.message).toBe(DEFAULT_ERROR_MESSAGES.minLength(3));
       expect(errors?.url.message).toBe(DEFAULT_ERROR_MESSAGES.required());
     });

@@ -19,7 +19,11 @@ export const validate = async <TFieldValues = FieldValues>(
     return acc;
   }, {} as { [key in keyof typeof validators]: FieldError });
 
-  return errors as { [key in keyof typeof validators]: FieldError };
+  let hasErrors = fieldErrors.some((fieldError) => fieldError.error);
+  return [errors, hasErrors] as [
+    errors: { [key in keyof typeof validators]: FieldError },
+    hasErrors: boolean
+  ];
 };
 
 const validateField = async <T>(formData: FormData, field: T, rules: ValidationRules) => {

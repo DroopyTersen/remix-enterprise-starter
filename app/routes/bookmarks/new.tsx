@@ -12,8 +12,8 @@ export default function NewBookmarkRoute() {
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  let errors = await validate(formData, bookmarkValidators);
-  if (Object.values(errors).some((e) => e)) {
+  let [errors, hasErrors] = await validate(formData, bookmarkValidators);
+  if (hasErrors) {
     return {
       errors,
     };
