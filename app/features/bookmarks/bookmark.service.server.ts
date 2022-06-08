@@ -1,8 +1,8 @@
 import { getConfigEntry } from "~/common/config.server";
-import { request } from "~/common/request.server";
+import { createApiRequest } from "~/common/request.server";
 import type { Bookmark } from "./bookmark.types";
 
-const apiRequest = request(getConfigEntry("API_URL"));
+const apiRequest = createApiRequest(getConfigEntry("API_URL"));
 
 const getAll = async (): Promise<Bookmark[]> => {
   return await apiRequest.get("/bookmarks");

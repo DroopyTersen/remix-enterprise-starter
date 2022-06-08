@@ -1,6 +1,6 @@
 import { jsonRequest } from "~/ui-toolkit/utils/request.utils";
 
-export const request = (baseUrl: string) => {
+export const createApiRequest = (baseUrl: string) => {
   const getFullUrl = (path: string): string => {
     return `${baseUrl}${path}`;
   };
