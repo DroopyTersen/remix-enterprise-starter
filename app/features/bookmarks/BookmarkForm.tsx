@@ -1,4 +1,3 @@
-import { useActionData } from "@remix-run/react";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { InputField, TextAreaField } from "~/ui-toolkit/components/forms";
 import { useValidatedForm } from "~/validation/useValidatedForm";
@@ -11,21 +10,19 @@ interface BookmarkFormProps {
 
 export function BookmarkForm({ initial }: BookmarkFormProps) {
   let form = useValidatedForm(initial);
-  let serverErrors = useActionData()?.errors || {};
-  let clientErrors = form?.formState?.errors || {};
 
   return (
     <form.Form method="post" style={{ maxWidth: "500px" }}>
       <fieldset>
         <input name="id" type="hidden" value={initial?.id}></input>
         <InputField
-          error={serverErrors.title || clientErrors.title}
+          error={form.errors.title}
           label="Title"
           {...form.register("title", { ...bookmarkValidators.title })}
           defaultValue={initial?.title || ""}
         />
         <InputField
-          error={serverErrors.url || clientErrors.url}
+          error={form.errors.url}
           label="URL"
           name="url"
           {...form.register("url", { ...bookmarkValidators.url })}

@@ -1,6 +1,6 @@
-import { Form, FormProps, SubmitFunction, useSubmit } from "@remix-run/react";
+import { Form, FormProps, SubmitFunction, useActionData, useSubmit } from "@remix-run/react";
 import { forwardRef, useState } from "react";
-import { useForm, UseFormReturn } from "react-hook-form";
+import { FieldError, useForm, UseFormReturn } from "react-hook-form";
 
 function createForm(form: UseFormReturn, submit: SubmitFunction) {
   let SnapshottedForm = forwardRef<HTMLFormElement, FormProps>((props, ref) => {
@@ -27,17 +27,23 @@ export function useValidatedForm<TFormValues = any>(
   initial: TFormValues
 ): UseValidateFormReturn<TFormValues> {
   let submit = useSubmit();
+  let serverErrors = useActionData()?.errors || {};
   let form = useForm({
     defaultValues: initial || {},
   });
   let [Form] = useState(() => createForm(form, submit));
-
+  let errors = {
+    ...form?.formState?.errors,
+    ...serverErrors,
+  };
   return {
     ...form,
+    errors,
     Form,
   } as any;
 }
 
 export interface UseValidateFormReturn<TFormValues> extends UseFormReturn<TFormValues> {
   Form?: ReturnType<typeof createForm>;
+  errors: { [key in keyof TFormValues]?: FieldError };
 }
