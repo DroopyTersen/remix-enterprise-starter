@@ -19,7 +19,7 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
       />
     );
   });
-  SnapshottedForm.displayName = "fetcher.Form";
+  SnapshottedForm.displayName = "validatedForm.Form";
   return SnapshottedForm;
 }
 
