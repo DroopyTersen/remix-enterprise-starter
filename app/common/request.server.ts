@@ -5,18 +5,11 @@ export const createApiRequest = (baseUrl: string) => {
     return `${baseUrl}${path}`;
   };
 
-  const get = async (
-    path: string,
-    options?: Partial<RequestInit>
-  ): Promise<any> => {
+  const get = async (path: string, options?: Partial<RequestInit>): Promise<any> => {
     return await jsonRequest(getFullUrl(path), options);
   };
 
-  const post = async (
-    path: string,
-    body: string,
-    options?: Partial<RequestInit>
-  ): Promise<any> => {
+  const post = async (path: string, body: string, options?: Partial<RequestInit>): Promise<any> => {
     return await jsonRequest(getFullUrl(path), {
       method: "POST",
       body,
@@ -24,11 +17,7 @@ export const createApiRequest = (baseUrl: string) => {
     });
   };
 
-  const put = async (
-    path: string,
-    body: string,
-    options?: Partial<RequestInit>
-  ): Promise<any> => {
+  const put = async (path: string, body: string, options?: Partial<RequestInit>): Promise<any> => {
     return await jsonRequest(getFullUrl(path), {
       method: "PUT",
       body,
@@ -36,10 +25,7 @@ export const createApiRequest = (baseUrl: string) => {
     });
   };
 
-  const remove = async (
-    path: string,
-    options?: Partial<RequestInit>
-  ): Promise<any> => {
+  const remove = async (path: string, options?: Partial<RequestInit>): Promise<any> => {
     return await jsonRequest(getFullUrl(path), {
       method: "DELETE",
       ...options,

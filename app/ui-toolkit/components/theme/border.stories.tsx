@@ -14,10 +14,7 @@ function Block({ className, children = null }) {
   return (
     <div
       style={{ width: "120px", height: "120px", fontSize: "12px" }}
-      className={
-        "d-flex justify-content-center align-items-center font-monospace " +
-        className
-      }
+      className={"d-flex justify-content-center align-items-center font-monospace " + className}
     >
       {children}
     </div>
@@ -46,15 +43,9 @@ export const BorderRadius = () => {
       <Block className="bg-primary text-light rounded-3">rounded-3</Block>
       <Block className="bg-primary text-light rounded-top">rounded-top</Block>
       <Block className="bg-primary text-light rounded-end">rounded-end</Block>
-      <Block className="bg-primary text-light rounded-bottom">
-        rounded-bottom
-      </Block>
-      <Block className="bg-primary text-light rounded-start">
-        rounded-start
-      </Block>
-      <Block className="bg-primary text-light rounded-circle">
-        rounded-circle
-      </Block>
+      <Block className="bg-primary text-light rounded-bottom">rounded-bottom</Block>
+      <Block className="bg-primary text-light rounded-start">rounded-start</Block>
+      <Block className="bg-primary text-light rounded-circle">rounded-circle</Block>
       <Block className="bg-primary text-light rounded-pill">rounded-pill</Block>
     </div>
   );

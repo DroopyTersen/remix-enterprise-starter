@@ -5,15 +5,7 @@ import { getClassName } from "../../utils";
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   // eslint-disable-next-line
   function Radio(
-    {
-      children,
-      value,
-      className,
-      id,
-      style,
-      orientation = "horizontal",
-      ...rest
-    },
+    { children, value, className, id, style, orientation = "horizontal", ...rest },
     ref
   ) {
     const cssClass = getClassName([

@@ -42,11 +42,7 @@ export const Calendar = ({
 
   const days = React.useMemo(() => getDaysInMonth(activeDate), [activeDate]);
   return (
-    <div
-      className={`datepicker__theme calendar ${
-        displayActive ? "calendar--displayActive" : ""
-      }`}
-    >
+    <div className={`datepicker__theme calendar ${displayActive ? "calendar--displayActive" : ""}`}>
       <div className="calendar__header">
         {prevMonth && (
           <Button variant="link" type="button" onClick={prevMonth}>
@@ -54,23 +50,14 @@ export const Calendar = ({
           </Button>
         )}
         <div style={{ flex: "1" }}>
-          <div className="calendar__header-label">
-            {dayjs(activeDate).format("MMMM YYYY")}
-          </div>
+          <div className="calendar__header-label">{dayjs(activeDate).format("MMMM YYYY")}</div>
 
           <div className="calendar__active-date">
-            {activeDate
-              ? dayjs(activeDate).toDate().toLocaleDateString()
-              : "No active date"}
+            {activeDate ? dayjs(activeDate).toDate().toLocaleDateString() : "No active date"}
           </div>
         </div>
         {nextMonth && (
-          <Button
-            variant="link"
-            type="button"
-            onClick={nextMonth}
-            id="datepicker__last-focusable"
-          >
+          <Button variant="link" type="button" onClick={nextMonth} id="datepicker__last-focusable">
             <span>›</span>
           </Button>
         )}

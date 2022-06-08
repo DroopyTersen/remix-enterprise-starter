@@ -12,9 +12,7 @@ export const useCalendarNavigation = (
   onSelect: (date: string) => void = () => {},
   checkEnabled: (date) => boolean = () => true
 ) => {
-  const [activeDate, setActiveDate] = React.useState(
-    formatValue(activeDateProp || new Date())
-  );
+  const [activeDate, setActiveDate] = React.useState(formatValue(activeDateProp || new Date()));
   React.useEffect(() => {
     setActiveDate(activeDateProp);
   }, [activeDateProp]);
@@ -90,12 +88,7 @@ export const useDatePickerDropdown = (value, dropdownMode) => {
   };
 };
 
-export const useDatePickerEvents = ({
-  activeDate,
-  actions,
-  setIsOpen,
-  containerRef,
-}) => {
+export const useDatePickerEvents = ({ activeDate, actions, setIsOpen, containerRef }) => {
   const [isKeyboarding, setIsKeyboarding] = React.useState(false);
   const events = React.useMemo(() => {
     const codes = {

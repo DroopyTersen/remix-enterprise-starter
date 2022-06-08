@@ -10,13 +10,7 @@ const Table = ({ children, className = null }) => {
   );
 };
 
-const Header = ({
-  children,
-  sortKey = null,
-  sortDir = null,
-  onSort = null,
-  ...rest
-}) => {
+const Header = ({ children, sortKey = null, sortDir = null, onSort = null, ...rest }) => {
   const hasSorting = onSort;
   const headers = !hasSorting
     ? children

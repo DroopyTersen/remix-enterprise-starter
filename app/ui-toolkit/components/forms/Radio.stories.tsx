@@ -73,18 +73,10 @@ export const VerticalTiles = () => {
       <Radio className="p-2 border rounded" name="martialStatus" value="single">
         <span>Single</span>
       </Radio>
-      <Radio
-        className="p-2 border rounded"
-        name="martialStatus"
-        value="married"
-      >
+      <Radio className="p-2 border rounded" name="martialStatus" value="married">
         Married
       </Radio>
-      <Radio
-        className="p-2 border rounded"
-        name="martialStatus"
-        value="divorced"
-      >
+      <Radio className="p-2 border rounded" name="martialStatus" value="divorced">
         Divorced
       </Radio>
     </div>

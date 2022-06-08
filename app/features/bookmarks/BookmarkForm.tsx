@@ -12,28 +12,14 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
     <form method="post" style={{ maxWidth: "500px" }}>
       <fieldset>
         <input name="id" type="hidden" value={initial?.id}></input>
-        <InputField
-          label="Title"
-          name="title"
-          required
-          defaultValue={initial?.title || ""}
-        />
-        <InputField
-          label="URL"
-          name="url"
-          required
-          defaultValue={initial?.url || ""}
-        />
+        <InputField label="Title" name="title" required defaultValue={initial?.title || ""} />
+        <InputField label="URL" name="url" required defaultValue={initial?.url || ""} />
         <TextAreaField
           label="Description"
           name="description"
           defaultValue={initial?.description || ""}
         />
-        <InputField
-          label="Image"
-          name="image"
-          defaultValue={initial?.image || ""}
-        />
+        <InputField label="Image" name="image" defaultValue={initial?.image || ""} />
         <Button>Submit</Button>
       </fieldset>
     </form>

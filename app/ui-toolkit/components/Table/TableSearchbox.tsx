@@ -3,12 +3,7 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { Input } from "../forms";
 
-const TableSearchbox = ({
-  onChange,
-  value,
-  placeholder = "Search...",
-  className = null,
-}) => {
+const TableSearchbox = ({ onChange, value, placeholder = "Search...", className = null }) => {
   return (
     <div className={`search-bar ${className}`}>
       <Input

@@ -67,13 +67,7 @@ const Tab = ({
   );
 };
 
-const TabPanel = ({
-  id,
-  children = null,
-  className = null,
-  activeTabId = null,
-  ...rest
-}) => {
+const TabPanel = ({ id, children = null, className = null, activeTabId = null, ...rest }) => {
   return (
     <div role="tabpanel" className={className}>
       {activeTabId === id && children}

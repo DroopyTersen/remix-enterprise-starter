@@ -20,10 +20,7 @@ const save = async (bookmark: Bookmark): Promise<Bookmark> => {
   if (!bookmark.id) {
     return await apiRequest.post("/bookmarks", JSON.stringify(bookmark));
   } else {
-    return await apiRequest.put(
-      `/bookmarks/${bookmark.id}`,
-      JSON.stringify(bookmark)
-    );
+    return await apiRequest.put(`/bookmarks/${bookmark.id}`, JSON.stringify(bookmark));
   }
 };
 

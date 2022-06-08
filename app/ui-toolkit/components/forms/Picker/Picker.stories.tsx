@@ -71,14 +71,10 @@ export const SingleWithStaticOptions = () => {
   return (
     <Surface style={{ maxWidth: "400px" }}>
       <p>
-        If you have a static array of options you can use the Single value
-        picker in a similar fashion to a <code>select</code>.
+        If you have a static array of options you can use the Single value picker in a similar
+        fashion to a <code>select</code>.
       </p>
-      <PickerSingle
-        initialValue={fruit}
-        options={options}
-        onChange={setFruit}
-      />
+      <PickerSingle initialValue={fruit} options={options} onChange={setFruit} />
       <h2 className="mt-4">Fruit ID: {fruit}</h2>
     </Surface>
   );
@@ -89,8 +85,8 @@ export const SingleCreatableWithStaticOptions = () => {
   return (
     <Surface style={{ maxWidth: "400px" }}>
       <p>
-        You can pass a <code>creatable</code> flag as a prop to allow users to
-        enter their own values.
+        You can pass a <code>creatable</code> flag as a prop to allow users to enter their own
+        values.
       </p>
       <PickerSingle options={options} creatable onChange={setFruit} />
       <h2 className="mt-4">Fruit ID: {fruit}</h2>
@@ -111,13 +107,10 @@ export const SingleWithPreLoadOptions = () => {
 
   return (
     <Surface style={{ maxWidth: "400px" }}>
+      <p>The picker options are preloaded via useAsyncData. Refresh the page to see it refetch.</p>
       <p>
-        The picker options are preloaded via useAsyncData. Refresh the page to
-        see it refetch.
-      </p>
-      <p>
-        Use this technique if you can pull back all the options at once and let
-        the Picker filter clientside.
+        Use this technique if you can pull back all the options at once and let the Picker filter
+        clientside.
       </p>
       <PickerSingle
         options={data}
@@ -152,12 +145,10 @@ export const SingleDynamicOptions = () => {
   return (
     <Surface style={{ maxWidth: "400px" }}>
       <p>
-        Sometimes there are too many options to preload them all and you need to
-        re-fetch options based on what the user has typed.
+        Sometimes there are too many options to preload them all and you need to re-fetch options
+        based on what the user has typed.
       </p>
-      <p>
-        Start typing below and it will query the server for options as you type.
-      </p>
+      <p>Start typing below and it will query the server for options as you type.</p>
       <PickerSingle
         options={searchRickAndMorty}
         onChange={(value, option) => setCharacter(option?.character)}
@@ -176,15 +167,13 @@ export const MultiWithStaticOptions = () => {
   return (
     <Surface style={{ maxWidth: "400px" }}>
       <p>
-        If you have a static array of options you can use the Single value
-        picker in a similar fashion to a <code>select</code>.
+        If you have a static array of options you can use the Single value picker in a similar
+        fashion to a <code>select</code>.
       </p>
       <PickerMulti
         initialValue={chosen}
         options={options}
-        onChange={(chosenOptions) =>
-          setChosen(chosenOptions.map((o) => o.value))
-        }
+        onChange={(chosenOptions) => setChosen(chosenOptions.map((o) => o.value))}
       />
       <h2 className="mt-4">Fruit IDs: </h2>
       <ul>
@@ -208,12 +197,10 @@ export const MultiDynamicOptions = () => {
   return (
     <Surface style={{ maxWidth: "400px" }}>
       <p>
-        Sometimes there are too many options to preload them all and you need to
-        re-fetch options based on what the user has typed.
+        Sometimes there are too many options to preload them all and you need to re-fetch options
+        based on what the user has typed.
       </p>
-      <p>
-        Start typing below and it will query the server for options as you type.
-      </p>
+      <p>Start typing below and it will query the server for options as you type.</p>
       <PickerMulti
         options={searchRickAndMorty}
         onChange={(options) => setCharacters(options.map((o) => o.character))}
@@ -239,15 +226,10 @@ export const SingleWithOnChangeCounter = () => {
   return (
     <Surface style={{ maxWidth: "400px" }}>
       <p>
-        Even though this has a default value, the change counter should be at 0
-        when the component is first rendered. It should only increment with user
-        interaction.
+        Even though this has a default value, the change counter should be at 0 when the component
+        is first rendered. It should only increment with user interaction.
       </p>
-      <PickerSingle
-        initialValue={fruit}
-        options={options}
-        onChange={onChange}
-      />
+      <PickerSingle initialValue={fruit} options={options} onChange={onChange} />
       <h2 className="mt-4">Fruit ID: {fruit}</h2>
       <h2>Change Count: {count}</h2>
     </Surface>

@@ -20,9 +20,7 @@ export interface ComponentSizeData {
 }
 
 export function useComponentSize(ref) {
-  const [componentSize, setComponentSize] = useState(
-    getSize(ref ? ref.current : {})
-  );
+  const [componentSize, setComponentSize] = useState(getSize(ref ? ref.current : {}));
 
   const handleResize = useCallback(() => {
     if (ref.current) {

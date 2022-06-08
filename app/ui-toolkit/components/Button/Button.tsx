@@ -1,36 +1,21 @@
 import { Link } from "@remix-run/react";
 import React from "react";
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
-    {
-      color = "primary",
-      variant,
-      scale = "normal",
-      className = "",
-      children,
-      to,
-      ...rest
-    },
-    ref
-  ) {
-    const cssClass = [
-      className,
-      "btn",
-      getColorVariantClass(color, variant),
-      `btn-${scale}`,
-    ]
-      .filter(Boolean)
-      .join(" ");
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  { color = "primary", variant, scale = "normal", className = "", children, to, ...rest },
+  ref
+) {
+  const cssClass = [className, "btn", getColorVariantClass(color, variant), `btn-${scale}`]
+    .filter(Boolean)
+    .join(" ");
 
-    const Element: any = to ? Link : "button";
-    return (
-      <Element className={cssClass} {...rest} to={to} ref={ref}>
-        {children}
-      </Element>
-    );
-  }
-);
+  const Element: any = to ? Link : "button";
+  return (
+    <Element className={cssClass} {...rest} to={to} ref={ref}>
+      {children}
+    </Element>
+  );
+});
 
 const getColorVariantClass = (color: ThemeColor, variant: ButtonVariant) => {
   if (variant === "filled") variant = null;

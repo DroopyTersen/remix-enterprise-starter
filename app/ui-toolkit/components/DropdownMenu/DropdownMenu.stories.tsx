@@ -43,24 +43,18 @@ export const Href_or_onclick = () => {
       <div className="d-flex justify-content-between">
         <h2>Dropdown Menu Example</h2>
         <DropdownMenu label="Menu" showCaret>
-          <DropdownMenu.Item
-            onClick={() => alert("You clicked the menu item.")}
-          >
+          <DropdownMenu.Item onClick={() => alert("You clicked the menu item.")}>
             Show Alert
           </DropdownMenu.Item>
-          <DropdownMenu.Item
-            as="a"
-            href="https://www.google.com"
-            target="_blank"
-          >
+          <DropdownMenu.Item as="a" href="https://www.google.com" target="_blank">
             Google it (External Link)
           </DropdownMenu.Item>
         </DropdownMenu>
       </div>
       <p>
-        If you pass an <code>href</code> the menu item will be rendered as a{" "}
-        <code>Link</code>. Otherwise if you passed an <code>onClick</code>, the
-        menu item will be rendered as a <code>button</code>.
+        If you pass an <code>href</code> the menu item will be rendered as a <code>Link</code>.
+        Otherwise if you passed an <code>onClick</code>, the menu item will be rendered as a{" "}
+        <code>button</code>.
       </p>
     </Surface>
   );
@@ -110,9 +104,7 @@ export const CustomLabel = () => {
             </div>
           }
         >
-          <DropdownMenu.Item
-            onClick={() => alert("You clicked the menu item.")}
-          >
+          <DropdownMenu.Item onClick={() => alert("You clicked the menu item.")}>
             Show Alert
           </DropdownMenu.Item>
           <DropdownMenu.Item to="https://www.google.com" target="_blank">
@@ -174,18 +166,11 @@ export const EllipsesMenu = () => {
 };
 
 export const FormInDropdown = () => {
-  let buttonClasses =
-    "bg-transparent border-0 d-flex align-items-center text-white text-small";
+  let buttonClasses = "bg-transparent border-0 d-flex align-items-center text-white text-small";
   return (
     <div className="p-4 bg-secondary-800">
-      <DropdownMenu
-        classNames={{ button: buttonClasses }}
-        showCaret={true}
-        label="Andrew Petersen"
-      >
-        <DropdownMenu.Item onClick={() => alert("Fake logging you out")}>
-          Log out
-        </DropdownMenu.Item>
+      <DropdownMenu classNames={{ button: buttonClasses }} showCaret={true} label="Andrew Petersen">
+        <DropdownMenu.Item onClick={() => alert("Fake logging you out")}>Log out</DropdownMenu.Item>
         <DropdownMenu.Divider />
         <DropdownMenu.Header>Impersonating</DropdownMenu.Header>
         <li>
@@ -196,10 +181,7 @@ export const FormInDropdown = () => {
             }}
           >
             <div className="d-flex align-items-center gap-1 px-3 mb-2">
-              <Input
-                placeholder="User Email"
-                className="w-auto text-small"
-              ></Input>
+              <Input placeholder="User Email" className="w-auto text-small"></Input>
               <Button color="primary" className="rounded-1">
                 <FaArrowRight size={16} />
               </Button>

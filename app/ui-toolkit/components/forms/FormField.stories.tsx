@@ -21,13 +21,7 @@ const { createStory } = setupStories<FormFieldProps>(FormField);
 export const Basic = createStory({
   label: "Legal Name",
   name: "legalName",
-  children: (
-    <input
-      className="form-control form-input"
-      name="legalName"
-      id="legalName"
-    />
-  ),
+  children: <input className="form-control form-input" name="legalName" id="legalName" />,
 });
 
 export const Hint = createStory({
@@ -38,11 +32,7 @@ export const Hint = createStory({
 export const Invalid = createStory({
   ...Basic.args,
   children: (
-    <input
-      className="form-control form-input is-invalid"
-      name="legalName"
-      id="legalName"
-    />
+    <input className="form-control form-input is-invalid" name="legalName" id="legalName" />
   ),
   error: { message: "There is a problem with this input", type: "custom" },
 });
@@ -55,9 +45,7 @@ export const Required = createStory({
 
 export const RequiredError = createStory({
   ...Basic.args,
-  children: (
-    <input className="form-control form-input is-invalid" name="legalName" />
-  ),
+  children: <input className="form-control form-input is-invalid" name="legalName" />,
   required: true,
   // This would come from React Hook Form
   error: { type: "required" },

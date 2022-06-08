@@ -6,11 +6,7 @@ export interface ClearablePillProps {
   className?: string;
 }
 
-export function ClearablePill({
-  children,
-  onClear,
-  className = "",
-}: ClearablePillProps) {
+export function ClearablePill({ children, onClear, className = "" }: ClearablePillProps) {
   return (
     <div
       className={`d-flex align-items-center bg-primary bg-opacity-10 rounded-pill text-small text-spaced text-uppercase ${className}`}
