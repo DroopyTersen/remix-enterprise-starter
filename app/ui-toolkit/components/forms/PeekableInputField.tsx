@@ -1,25 +1,15 @@
 import React, { useState } from "react";
 import { InputSuffixButton } from ".";
-import {
-  FormField,
-  getValidationStatus,
-  pluckFormFieldProps,
-} from "./FormField";
+import { FormField, getValidationStatus, pluckFormFieldProps } from "./FormField";
 import { Input } from "./Input";
 import type { InputFieldProps } from "./InputField";
 
-export const PeekableInputField = React.forwardRef<
-  HTMLInputElement,
-  InputFieldProps
->(
+export const PeekableInputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
   // eslint-disable-next-line
   function InputField(props, ref) {
     const { formControlProps, formFieldProps } = pluckFormFieldProps(props);
     const inputPeeking = useInputPeeking();
-    const status = getValidationStatus(
-      formFieldProps.validationStatus,
-      formFieldProps.error
-    );
+    const status = getValidationStatus(formFieldProps.validationStatus, formFieldProps.error);
     return (
       <FormField {...formFieldProps}>
         <Input

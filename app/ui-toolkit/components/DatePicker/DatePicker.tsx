@@ -43,14 +43,13 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     );
 
     // TEXT INPUT
-    const [inputValue, setInputValue] = useDatePickerInput(
-      value,
-      actions.setActiveDate
-    );
+    const [inputValue, setInputValue] = useDatePickerInput(value, actions.setActiveDate);
 
     // Dropdown Management
-    const { setIsOpen, isDropdownShowing, containerProps } =
-      useDatePickerDropdown(value, opts.dropdownMode);
+    const { setIsOpen, isDropdownShowing, containerProps } = useDatePickerDropdown(
+      value,
+      opts.dropdownMode
+    );
 
     // Keyboard and Focus management
     const { events, isKeyboarding } = useDatePickerEvents({

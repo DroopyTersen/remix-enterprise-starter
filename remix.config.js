@@ -1,9 +1,5 @@
 const path = require("path");
-let envPath = path.join(
-  __dirname,
-  "env",
-  ".env." + (process.env.PUBLIC_ENV || "local")
-);
+let envPath = path.join(__dirname, "env", ".env." + (process.env.PUBLIC_ENV || "local"));
 
 require("dotenv").config({ path: envPath });
 

@@ -13,14 +13,7 @@ export default {
 };
 
 export const Basic = () => {
-  let [items, setItems] = useState([
-    "One",
-    "Two",
-    "Three",
-    "Four",
-    "Five",
-    "Six",
-  ]);
+  let [items, setItems] = useState(["One", "Two", "Three", "Four", "Five", "Six"]);
   let clearItem = useCallback(
     (item: string) => {
       setItems((prev) => prev.filter((i) => i !== item));

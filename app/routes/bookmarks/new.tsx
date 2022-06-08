@@ -10,9 +10,7 @@ export default function NewBookmarkRoute() {
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  const bookmark = await bookmarkService.save(
-    Object.fromEntries(formData) as any
-  );
+  const bookmark = await bookmarkService.save(Object.fromEntries(formData) as any);
 
   return redirect(`/bookmarks/${bookmark.id}`);
 };

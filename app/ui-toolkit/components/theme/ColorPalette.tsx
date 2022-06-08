@@ -23,12 +23,6 @@ interface ColorSwatchProps extends ColorConfig {
   className?: string;
 }
 
-export function ColorSwatch({
-  color,
-  text = "dark",
-  className = "",
-}: ColorSwatchProps) {
-  return (
-    <div className={`p-4 ${color} text-${text} ${className}`}>{color}</div>
-  );
+export function ColorSwatch({ color, text = "dark", className = "" }: ColorSwatchProps) {
+  return <div className={`p-4 ${color} text-${text} ${className}`}>{color}</div>;
 }

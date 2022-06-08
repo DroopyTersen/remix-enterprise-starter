@@ -28,30 +28,17 @@ export default function Index() {
       <Surface>
         <ul>
           <li>
-            <a
-              target="_blank"
-              href="https://remix.run/tutorials/blog"
-              rel="noreferrer"
-            >
+            <a target="_blank" href="https://remix.run/tutorials/blog" rel="noreferrer">
               15m Quickstart Blog Tutorial
             </a>
           </li>
           <li>
-            <a
-              target="_blank"
-              href="https://remix.run/tutorials/jokes"
-              rel="noreferrer"
-            >
+            <a target="_blank" href="https://remix.run/tutorials/jokes" rel="noreferrer">
               Deep Dive Jokes App Tutorial
             </a>
           </li>
           <li>
-            <Button
-              as="a"
-              href="https://remix.run/docs"
-              variant="filled"
-              color="primary"
-            >
+            <Button as="a" href="https://remix.run/docs" variant="filled" color="primary">
               Test button
             </Button>
           </li>

@@ -33,13 +33,9 @@ export function DropdownMenu({
   classNames = {},
   disabled = false,
 }: DropdownMenuProps) {
-  let containerCssClass = ["dropdown", classNames.container]
-    .filter(Boolean)
-    .join(" ");
+  let containerCssClass = ["dropdown", classNames.container].filter(Boolean).join(" ");
   let buttonCssClass = [
-    !classNames.buttonOverride
-      ? "btn btn-sm bg-transparent border-0 rounded-1"
-      : "",
+    !classNames.buttonOverride ? "btn btn-sm bg-transparent border-0 rounded-1" : "",
     showCaret ? "dropdown-toggle" : "",
     classNames.button,
   ]

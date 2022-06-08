@@ -31,8 +31,7 @@ export function useAutocompleteOptions(
   useDebouncedEffect(
     (debouncedInputValue) => {
       let isMounted = true;
-      const shouldSkipGetOptions =
-        isInitialMountRef.current && !config?.getOptionsOnMount;
+      const shouldSkipGetOptions = isInitialMountRef.current && !config?.getOptionsOnMount;
       // If it's the initial mount, skip getting Options?
       if (
         !shouldSkipGetOptions &&
@@ -41,9 +40,7 @@ export function useAutocompleteOptions(
       ) {
         (async () => {
           setIsLoading(true);
-          const newOptions = await (getOptionsRef?.current as any)?.(
-            debouncedInputValue
-          );
+          const newOptions = await (getOptionsRef?.current as any)?.(debouncedInputValue);
           if (isMounted) {
             setOptions(newOptions);
             setIsLoading(false);

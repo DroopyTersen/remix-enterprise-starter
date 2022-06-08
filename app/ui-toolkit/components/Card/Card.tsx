@@ -30,9 +30,7 @@ export const Card = ({
         <LinkWrapper to={url} className="link-primary text-decoration-none">
           <h5 className="card-title">{title}</h5>
         </LinkWrapper>
-        {subtitle && (
-          <div className="card-subtitle mb-2 text-muted">{subtitle}</div>
-        )}
+        {subtitle && <div className="card-subtitle mb-2 text-muted">{subtitle}</div>}
         {children}
       </div>
     </div>

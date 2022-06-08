@@ -24,15 +24,16 @@ export const BackButton = () => {
   );
 };
 
-export const SaveAndExit = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function SaveAndExit(props, ref) {
-    return (
-      <Button color="dark" {...props} ref={ref}>
-        {`Save & Exit`}
-      </Button>
-    );
-  }
-);
+export const SaveAndExit = React.forwardRef<HTMLButtonElement, ButtonProps>(function SaveAndExit(
+  props,
+  ref
+) {
+  return (
+    <Button color="dark" {...props} ref={ref}>
+      {`Save & Exit`}
+    </Button>
+  );
+});
 
 export const SaveAndReturn = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function SaveAndReturn(props, ref) {
@@ -44,15 +45,16 @@ export const SaveAndReturn = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-export const NextButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function NextButton(props, ref) {
-    return (
-      <Button color="success" {...props} ref={ref}>
-        Next
-      </Button>
-    );
-  }
-);
+export const NextButton = React.forwardRef<HTMLButtonElement, ButtonProps>(function NextButton(
+  props,
+  ref
+) {
+  return (
+    <Button color="success" {...props} ref={ref}>
+      Next
+    </Button>
+  );
+});
 
 FormActions.SaveAndExitButton = SaveAndExit;
 FormActions.SaveAndReturn = SaveAndReturn;
