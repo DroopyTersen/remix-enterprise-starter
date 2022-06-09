@@ -14,7 +14,6 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
   let form = useValidatedForm(initial);
   let navigate = useNavigate();
   let [image, setImage] = useState(initial?.image || IMAGE_PLACEHOLDER);
-  console.log("🚀 | BookmarkForm | image", image);
   return (
     <div className="grid">
       <form.Form method="post" className="g-col-12 g-col-lg-6">

@@ -9,11 +9,10 @@ import { validate } from "~/validation/validate";
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   let intent = formData.get("intent");
-  console.log("🚀 | constaction:ActionFunction= | intent", intent);
 
   if (intent === "save") {
     let errors = await validate(formData, bookmarkValidators);
-    console.log(errors);
+    console.error(errors);
     if (Object.values(errors).some((e) => e)) {
       return {
         errors,
