@@ -1,7 +1,4 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs";
 import { PropsTable, SourceCodeLink } from "../components/_storybook";
-
-<Meta title="Hooks/usePagedItems" />
 
 # usePagedItems
 
@@ -22,10 +19,7 @@ return (
       <button disabled={paging.currentPage <= 1} onClick={paging.goBack}>
         Prev
       </button>
-      <button
-        disabled={paging.currentPage >= paging.totalPages}
-        onClick={paging.goForward}
-      >
+      <button disabled={paging.currentPage >= paging.totalPages} onClick={paging.goForward}>
         Next
       </button>
     </div>
