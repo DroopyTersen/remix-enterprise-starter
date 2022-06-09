@@ -1,6 +1,6 @@
-import { FieldError, FieldValues } from "react-hook-form";
+import type { FieldError, FieldValues } from "react-hook-form";
 import { coreValidators } from "./coreValidators";
-import { CoreValidator, FormValidators, ValidationRules } from "./validation.types";
+import type { CoreValidator, FormValidators, ValidationRules } from "./validation.types";
 
 export const validate = async <TFieldValues = FieldValues>(
   formData: FormData,

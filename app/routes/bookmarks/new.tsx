@@ -20,7 +20,6 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   const bookmark = await bookmarkService.save(Object.fromEntries(formData) as any);
-
   return redirect(`/bookmarks/${bookmark.id}`);
 };
 

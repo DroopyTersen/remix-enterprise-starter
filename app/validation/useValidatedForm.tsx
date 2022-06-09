@@ -1,13 +1,18 @@
-import { Form, FormProps, SubmitFunction, useActionData, useSubmit } from "@remix-run/react";
+import type { FormProps, SubmitFunction} from "@remix-run/react";
+import { Form, useActionData, useSubmit } from "@remix-run/react";
 import { forwardRef, useState } from "react";
-import { FieldError, useForm, UseFormReturn } from "react-hook-form";
+import type { FieldError, UseFormReturn } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 function createForm(form: UseFormReturn, submit: SubmitFunction) {
   let SnapshottedForm = forwardRef<HTMLFormElement, FormProps>((props, ref) => {
     return (
       <Form
+        // use the form from the closure
         onSubmit={form.handleSubmit((_, event) => {
+          // use the submit function from the closure
           submit(event?.target, {
+            // use instance props for the submit options
             action: props?.action,
             method: props?.method,
             encType: props?.encType,

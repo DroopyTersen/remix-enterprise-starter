@@ -1,5 +1,5 @@
-import { FormValidators } from "~/validation/validation.types";
-import { BookmarkFormValues } from "./bookmark.types";
+import type { FormValidators } from "~/validation/validation.types";
+import type { BookmarkFormValues } from "./bookmark.types";
 
 export const bookmarkValidators: FormValidators<BookmarkFormValues> = {
   title: {

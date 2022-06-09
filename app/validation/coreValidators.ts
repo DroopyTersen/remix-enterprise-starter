@@ -1,5 +1,5 @@
-import { Validate } from "react-hook-form";
-import { CoreValidators, ValidationRules } from "./validation.types";
+import type { Validate } from "react-hook-form";
+import type { CoreValidators, ValidationRules } from "./validation.types";
 
 export const DEFAULT_ERROR_MESSAGES = {
   required: () => "This field is required",

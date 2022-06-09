@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { DEFAULT_ERROR_MESSAGES } from "./coreValidators";
 import { validate } from "./validate";
-import { FormValidators } from "./validation.types";
+import type { FormValidators } from "./validation.types";
 
 interface BookmarkFormValues {
   title: string;

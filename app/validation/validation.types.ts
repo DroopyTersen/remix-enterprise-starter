@@ -1,10 +1,4 @@
-import {
-  FieldError,
-  FieldErrors,
-  FieldValues,
-  RegisterOptions,
-  useForm,
-} from "react-hook-form";
+import type { FieldError, FieldErrors, FieldValues, RegisterOptions } from "react-hook-form";
 
 export type ValidationRules = Pick<
   RegisterOptions,
@@ -14,9 +8,6 @@ export type ValidationRules = Pick<
 export type FormValidators<TFieldValues = FieldValues> = Partial<{
   [K in keyof TFieldValues]: ValidationRules;
 }>;
-
-let form = useForm();
-form.register("name");
 
 export type ValidateFn = <TFieldValues = FieldValues>(
   formData: FormData,
