@@ -1,5 +1,5 @@
 import { Link, useParams } from "@remix-run/react";
-import { Bookmark } from "./bookmark.types";
+import type { Bookmark } from "./bookmark.types";
 
 interface BookmarksLeftNavProps {
   bookmarks: Bookmark[];

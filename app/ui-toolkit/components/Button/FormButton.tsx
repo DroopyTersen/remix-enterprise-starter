@@ -1,5 +1,7 @@
-import { Form, FormMethod } from "@remix-run/react";
-import { Button, ButtonProps } from "./Button";
+import type { FormMethod } from "@remix-run/react";
+import { Form } from "@remix-run/react";
+import type { ButtonProps } from "./Button";
+import { Button } from "./Button";
 
 // "btn btn-secondary" or "btn-outline-primary"
 interface ExtraProps {
