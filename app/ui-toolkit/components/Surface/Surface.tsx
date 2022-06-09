@@ -9,5 +9,5 @@ export const Surface = React.forwardRef<HTMLDivElement, SurfaceProps>(function S
 ) {
   const Elem: any = as;
 
-  return <Elem className={"bg-light p-4 shadow-sm rounded " + className} {...rest} ref={ref} />;
+  return <Elem className={"bg-white p-4 shadow-sm rounded " + className} {...rest} ref={ref} />;
 });

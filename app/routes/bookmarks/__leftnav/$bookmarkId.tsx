@@ -3,7 +3,9 @@ import { redirect } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
-import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
+import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
+import { FormButton } from "~/ui-toolkit/components/Button/FormButton";
+import Card from "~/ui-toolkit/components/Card/Card";
 
 interface LoaderData {
   bookmark: Bookmark;
@@ -15,31 +17,25 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function BookmarkDetailsRoute() {
-  let data = useLoaderData() as LoaderData;
+  let { bookmark } = useLoaderData() as LoaderData;
 
   return (
-    <>
-      <Link to="edit">Edit</Link>
-      <form method="post">
-        <input type="hidden" name="intent" value="delete" />
-        <button>Delete</button>
-      </form>
-      <div>
-        <label>Id: {data.bookmark.id}</label>
+    <Card
+      title={bookmark.title}
+      url={bookmark.url}
+      image={bookmark?.image}
+      style={{ maxWidth: "500px" }}
+    >
+      <p>{bookmark.description}</p>
+      <div className="d-flex justify-content-center gap-2">
+        <FormButton name="intent" value="delete" color="danger" style={{ width: "100px" }}>
+          Delete
+        </FormButton>
+        <Link to="edit" className="btn btn-secondary" style={{ width: "100px" }}>
+          Edit
+        </Link>
       </div>
-      <div>
-        <label>Title: {data.bookmark.title}</label>
-      </div>
-      <div>
-        <label>URL: {data.bookmark.url}</label>
-      </div>
-      <div>
-        <label>Description: {data.bookmark.description}</label>
-      </div>
-      <div>
-        <label>Image: {data.bookmark.image}</label>
-      </div>
-    </>
+    </Card>
   );
 }
 

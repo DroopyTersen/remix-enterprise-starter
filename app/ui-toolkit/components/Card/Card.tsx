@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Link } from "@remix-run/react";
 import React from "react";
-import "./Card.scss";
+
+let linkWrappers = {
+  internal: Link,
+  external: "a",
+  none: "span",
+};
+type UrlType = keyof typeof linkWrappers;
 
 export const Card = ({
   title,
@@ -13,11 +19,21 @@ export const Card = ({
   className = "",
   ...rest
 }: CardProps) => {
-  const LinkWrapper = url ? Link : "span";
+  let urlType: UrlType = !url ? "none" : url.startsWith("http") ? "external" : "internal";
+
+  const LinkWrapper: any = linkWrappers[urlType];
+  let urlProps: any = {};
+  if (urlType === "internal") {
+    urlProps.to = url;
+  } else if (urlType === "external") {
+    urlProps.href = url;
+    urlProps.target = "_blank";
+  }
+
   return (
     <div className={"card " + className} {...rest}>
       {image && (
-        <LinkWrapper to={url}>
+        <LinkWrapper {...urlProps}>
           <img
             style={{ height: imageSize, width: "100%" }}
             className="card-img-top"
@@ -27,7 +43,7 @@ export const Card = ({
         </LinkWrapper>
       )}
       <div className="card-body">
-        <LinkWrapper to={url} className="link-primary text-decoration-none">
+        <LinkWrapper {...urlProps} className="link-primary text-decoration-none">
           <h5 className="card-title">{title}</h5>
         </LinkWrapper>
         {subtitle && <div className="card-subtitle mb-2 text-muted">{subtitle}</div>}

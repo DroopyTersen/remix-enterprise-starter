@@ -24,11 +24,17 @@ When you create a Remix app with this template you will get:
   - Themable React components (Buttons, form inputs, modals etc...)
   - Helpful React hooks (useDebounce, usePersistedState, useUpdateEffect etc...)
 - [ ] Example CRUD screens for a single entity
-  - Shows the patterns for using querying data with a `loader`
-  - Shows the patterns for writing data with an `action`
-    - Pattern for reusing validation on the client and server
-  - Shows the patterns for routing/navigation
+  - [x] Shows the patterns for using querying data with a `loader`
+  - [x] Shows the patterns for writing data with an `action`
+  - [x] Pattern for reusing validation on the client and server
+  - [ ] Shows the patterns for routing/navigation
+    - [x] Relative links
+    - [ ] Form Cancel buttons and `returnTo` pattern
+  - [ ] Add UI progessive enhancement to indicate form submissions
+    - [ ] Show a "Deleting..." text on delete
+    - [ ] Disable inputs while submitting
 - [ ] Storybook setup
+  - [ ] Look into Ladle
   - Work on your components in isolation with Storybook
   - Document the app's reusable components to encourage more reuse
 - [ ] Auth utilities

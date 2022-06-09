@@ -3,8 +3,10 @@ import { redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
+import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";
-import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
+import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
+import { validate } from "~/validation/validate";
 
 interface LoaderData {
   bookmark: Bookmark;
@@ -20,11 +22,23 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function EditBookmarkRoute() {
   const data = useLoaderData() as LoaderData;
-  return <BookmarkForm initial={data.bookmark} />;
+  return (
+    <>
+      <h1 className="mb-5">Edit Bookmark</h1>
+      <BookmarkForm initial={data.bookmark} />
+    </>
+  );
 }
 
 export const action: ActionFunction = async ({ request, params }) => {
   const formData = await request.formData();
+  let [errors, hasErrors] = await validate(formData, bookmarkValidators);
+  if (hasErrors) {
+    return {
+      errors,
+    };
+  }
+
   await bookmarkService.save(Object.fromEntries(formData) as any);
 
   return redirect(`/bookmarks/${params.bookmarkId}`);
