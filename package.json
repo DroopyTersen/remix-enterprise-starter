@@ -15,9 +15,9 @@
     "dev:remix": "cross-env PUBLIC_ENV=local remix dev",
     "lint": "npx eslint '*/**/*.{js,ts,jsx,tsx}' --fix",
     "ladle": "ladle serve",
+    "storybook": "ladle serve",
     "prebuild": "npm run lint",
     "start": "remix-serve build",
-    "storybook": "start-storybook -p 6006",
     "test": "vitest --reporter verbose --environment jsdom"
   },
   "dependencies": {
