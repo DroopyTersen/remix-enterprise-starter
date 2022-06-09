@@ -4,7 +4,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "run-p build:*",
+    "build": "run-s build:css build:remix",
     "build:remix": "remix build",
     "build:css": "sass styles/_entry.scss app/global.css",
     "buildzzz:storybook": "build-storybook --docs -o public/storybook",

@@ -1,5 +1,5 @@
 import { Outlet, useMatches } from "@remix-run/react";
-import { Bookmark } from "~/features/bookmarks/bookmark.types";
+import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { BookmarksLeftNav } from "~/features/bookmarks/BookmarksLeftNav";
 import { useRouteData } from "~/ui-toolkit/hooks/useRouteData";
 

@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { Bookmark } from "~/features/bookmarks/bookmark.types";
+import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { BookmarkCard } from "~/features/bookmarks/BookmarkCard";
 import Card from "~/ui-toolkit/components/Card/Card";
 import { Input } from "~/ui-toolkit/components/forms";

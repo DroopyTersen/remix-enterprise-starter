@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link } from "@remix-run/react";
 import { FormButton } from "~/ui-toolkit/components/Button/FormButton";
 import Card from "~/ui-toolkit/components/Card/Card";
-import { Bookmark } from "./bookmark.types";
+import type { Bookmark } from "./bookmark.types";
 
 interface BookmarkCardProps {
   bookmark: Bookmark;

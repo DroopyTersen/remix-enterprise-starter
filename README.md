@@ -33,6 +33,7 @@ When you create a Remix app with this template you will get:
   - [ ] Add UI progessive enhancement to indicate form submissions
     - [ ] Show a "Deleting..." text on delete
     - [ ] Disable inputs while submitting
+- [ ] Document title & meta tags example
 - [ ] Storybook setup
   - [ ] Look into Ladle
   - Work on your components in isolation with Storybook

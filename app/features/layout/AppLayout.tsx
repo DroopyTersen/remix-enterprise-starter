@@ -33,13 +33,13 @@ export function AppLayout({ children }) {
       <footer className="p-4 border-top d-flex justify-content-between align-items-center">
         <div>Remix Enterprise Starter</div>
         <nav className="d-flex gap-4">
-          <a href="https://github.com/DroopyTersen/remix-enterprise-starter" target="_blank">
+          <a href="https://github.com/DroopyTersen/remix-enterprise-starter" target="_blank" rel="noreferrer">
             Source Code
           </a>
-          <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank">
+          <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank" rel="noreferrer">
             Bootstrap Docs
           </a>
-          <a href="https://remix.run/docs/en/v1" target="_blank">
+          <a href="https://remix.run/docs/en/v1" target="_blank" rel="noreferrer">
             Remix Docs
           </a>
         </nav>

@@ -1,6 +1,6 @@
-import { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
 import { unfurl } from "unfurl.js";
-import { Metadata } from "unfurl.js/dist/types";
+import type { Metadata } from "unfurl.js/dist/types";
 
 export const loader: LoaderFunction = async ({ request }) => {
   let targetUrl = new URL(request.url).searchParams.get("url");
