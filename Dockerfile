@@ -20,11 +20,11 @@ RUN npm prune --production
 
 # Build the app
 FROM base as build
-
 WORKDIR /myapp
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 ADD . .
 RUN npm run build
+RUN npm run build:ladle
 
 # Finally, build the production image with minimal footprint
 FROM base
