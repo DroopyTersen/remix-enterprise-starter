@@ -21,15 +21,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 const parseMetadataSummary = (result: Metadata, targetUrl: string) => {
   let url = new URL(targetUrl);
-  url.hostname;
   return {
     title: result?.title || "",
     description: result?.description || "",
     author: result?.author || "",
-    siteName:
-      result?.open_graph?.site_name ||
-      result?.twitter_card?.site ||
-      url.hostname,
+    siteName: result?.open_graph?.site_name || result?.twitter_card?.site || url.hostname,
     image:
       result.open_graph?.images?.[0]?.url ||
       result.twitter_card?.images?.[0]?.url ||

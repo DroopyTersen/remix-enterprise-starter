@@ -64,7 +64,7 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
         </fieldset>
       </form.Form>
       <div className="g-col-12 g-col-lg-6">
-        <img src={image} className="w-100 rounded" />
+        <img src={image} className="w-100 rounded" alt="Bookmark preview" />
       </div>
     </div>
   );

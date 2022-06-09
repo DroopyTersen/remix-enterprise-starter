@@ -7,7 +7,7 @@ import { Surface } from "../../Surface/Surface";
 interface Fruit {
   title: string;
 }
-export const fruits: Fruit[] = [
+const fruits: Fruit[] = [
   {
     title: "Apple",
   },
