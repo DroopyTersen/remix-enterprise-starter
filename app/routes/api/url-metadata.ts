@@ -3,13 +3,13 @@ import { unfurl } from "unfurl.js";
 import type { Metadata } from "unfurl.js/dist/types";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  let targetUrl = new URL(request.url).searchParams.get("url");
+  const targetUrl = new URL(request.url).searchParams.get("url");
   if (!targetUrl) {
     return new Response("Missing url query param", { status: 400 });
   }
 
   try {
-    let result = await unfurl(targetUrl);
+    const result = await unfurl(targetUrl);
     return parseMetadataSummary(result, targetUrl);
   } catch (err) {
     console.error("Unable to unfurl link", err);
@@ -20,7 +20,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 const parseMetadataSummary = (result: Metadata, targetUrl: string) => {
-  let url = new URL(targetUrl);
+  const url = new URL(targetUrl);
   return {
     title: result?.title || "",
     description: result?.description || "",

@@ -55,7 +55,7 @@ export default function App() {
 }
 
 const getPublicEnvVars = () => {
-  let publicEnv = Object.entries(process.env).reduce((acc, [key, value]) => {
+  const publicEnv = Object.entries(process.env).reduce((acc, [key, value]) => {
     if (key.startsWith("PUBLIC_")) {
       acc[key] = value;
     }

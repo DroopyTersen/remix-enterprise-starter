@@ -1,3 +1,4 @@
+import type { MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { BookmarkCard } from "~/features/bookmarks/BookmarkCard";
@@ -8,9 +9,18 @@ import { useFilteredItemsByText } from "~/ui-toolkit/hooks/useFilteredItems";
 import { useRouteData } from "~/ui-toolkit/hooks/useRouteData";
 
 const FILTER_KEYS = ["title", "url", "description"];
+
+export const meta: MetaFunction = () => ({
+  title: "Remix Enterprise Starter - Bookmarks",
+  description: "List of all of the bookmarks in the Remix Enterprise Starter App!",
+});
+
 export default function BookmarksIndexRoute() {
-  let bookmarks = (useRouteData((r) => r?.data?.bookmarks) || []) as Bookmark[];
-  let { filterText, setFilterText, filteredItems } = useFilteredItemsByText(bookmarks, FILTER_KEYS);
+  const bookmarks = (useRouteData((r) => r?.data?.bookmarks) || []) as Bookmark[];
+  const { filterText, setFilterText, filteredItems } = useFilteredItemsByText(
+    bookmarks,
+    FILTER_KEYS
+  );
 
   if (!bookmarks.length) {
     return (

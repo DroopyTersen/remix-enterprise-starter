@@ -1,4 +1,4 @@
-import { useNavigate } from "@remix-run/react";
+import { useNavigate, useTransition } from "@remix-run/react";
 import { useState } from "react";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { InputField, TextAreaField } from "~/ui-toolkit/components/forms";
@@ -11,13 +11,16 @@ interface BookmarkFormProps {
 }
 const IMAGE_PLACEHOLDER = "https://via.placeholder.com/450?text=Enter+an+image+url";
 export function BookmarkForm({ initial }: BookmarkFormProps) {
-  let form = useValidatedForm(initial);
-  let navigate = useNavigate();
-  let [image, setImage] = useState(initial?.image || IMAGE_PLACEHOLDER);
+  const form = useValidatedForm(initial);
+  const transition = useTransition();
+  const navigate = useNavigate();
+  const [image, setImage] = useState(initial?.image || IMAGE_PLACEHOLDER);
+  const isProcessing = transition.state === "submitting";
+
   return (
     <div className="grid">
       <form.Form method="post" className="g-col-12 g-col-lg-6">
-        <fieldset>
+        <fieldset disabled={isProcessing}>
           <input name="id" type="hidden" value={initial?.id}></input>
           <InputField
             error={form.errors.title}
@@ -58,7 +61,9 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
             >
               Cancel
             </button>
-            <Button scale="lg">Save</Button>
+            <Button scale="lg" disabled={isProcessing}>
+              {isProcessing ? "Saving..." : "Save"}
+            </Button>
           </div>
         </fieldset>
       </form.Form>
