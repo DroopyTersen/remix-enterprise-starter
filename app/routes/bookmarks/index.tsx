@@ -26,7 +26,12 @@ export default function BookmarksIndexRoute() {
   return (
     <div className="p-4 py-5">
       <div className="d-flex justify-content-between align-items-center gap-5 mb-3">
-        <h1>Bookmarks</h1>
+        <div className="d-flex align-items-center gap-4">
+          <h1 className="m-0">Bookmarks</h1>
+          <Link to="new" className="btn btn-primary">
+            New
+          </Link>
+        </div>
         <div style={{ flexGrow: "1", maxWidth: "500px" }}>
           <Input
             placeholder="Search bookmarks..."

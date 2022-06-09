@@ -12,7 +12,13 @@ export function BookmarkCard({ bookmark }: BookmarkCardProps) {
     <Card title={bookmark.title} url={bookmark.url} image={bookmark?.image}>
       <p>{bookmark.description}</p>
       <div className="d-flex justify-content-center gap-2">
-        <FormButton name="intent" value="delete" color="danger" style={{ width: "100px" }}>
+        <FormButton
+          action={`/bookmarks/${bookmark.id}`}
+          name="intent"
+          value="delete"
+          color="danger"
+          style={{ width: "100px" }}
+        >
           Delete
         </FormButton>
         <Link
