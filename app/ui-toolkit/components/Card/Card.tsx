@@ -33,7 +33,7 @@ export const Card = ({
   return (
     <div className={"card " + className} {...rest}>
       {image && (
-        <LinkWrapper to={url}>
+        <LinkWrapper {...urlProps}>
           <img
             style={{ height: imageSize, width: "100%" }}
             className="card-img-top"

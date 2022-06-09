@@ -16,7 +16,7 @@ export function BookmarkCard({ bookmark }: BookmarkCardProps) {
           Delete
         </FormButton>
         <Link
-          to={`/bookmarks/${bookmark.id}/edit`}
+          to={`/bookmarks/${bookmark.id}/edit?`}
           className="btn btn-secondary"
           style={{ width: "100px" }}
         >

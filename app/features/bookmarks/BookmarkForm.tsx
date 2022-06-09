@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 import { useState } from "react";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { InputField, TextAreaField } from "~/ui-toolkit/components/forms";
@@ -12,6 +12,7 @@ interface BookmarkFormProps {
 const IMAGE_PLACEHOLDER = "https://via.placeholder.com/450?text=Enter+an+image+url";
 export function BookmarkForm({ initial }: BookmarkFormProps) {
   let form = useValidatedForm(initial);
+  let navigate = useNavigate();
   let [image, setImage] = useState(initial?.image || IMAGE_PLACEHOLDER);
   console.log("🚀 | BookmarkForm | image", image);
   return (
@@ -51,9 +52,13 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
             defaultValue={initial?.image || ""}
           />
           <div className="d-flex justify-content-end gap-4">
-            <Link to=".." className="btn-link btn btn-lg text-dark text-decoration-none">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="btn-link btn btn-lg text-dark text-decoration-none"
+            >
               Cancel
-            </Link>
+            </button>
             <Button scale="lg">Save</Button>
           </div>
         </fieldset>
