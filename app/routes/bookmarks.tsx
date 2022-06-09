@@ -1,9 +1,9 @@
-import type { ActionFunction, LoaderFunction} from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
-import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
+import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { validate } from "~/validation/validate";
 
 interface LoaderData {
@@ -40,18 +40,23 @@ export default function BookmarksLayout() {
   let data = useLoaderData() as LoaderData;
 
   return (
-    <div className="grid">
-      <div className="g-col-4">
-        <Link to="new">New Bookmark</Link>
-        <ul>
+    <div className="d-grid h-100" style={{ gridTemplateColumns: "minmax(200px, 400px) 1fr" }}>
+      <div className="border-end">
+        <div className="d-flex justify-content-between align-items-center p-5 pb-3 flex-wrap">
+          <h2 className="m-0">Bookmarks</h2>
+          <Link to="new" className="btn btn-primary">
+            New
+          </Link>
+        </div>
+        <div className="d-flex flex-column">
           {data.bookmarks.map((b) => (
-            <li key={b.id}>
-              <Link to={b.id}>{b.title}</Link>
-            </li>
+            <Link key={b.id} prefetch="intent" to={b.id} className="w-100 px-5 py-4">
+              {b.title || "Missing Title"}
+            </Link>
           ))}
-        </ul>
+        </div>
       </div>
-      <div className="g-col-8">
+      <div className="p-5">
         <Outlet></Outlet>
       </div>
     </div>

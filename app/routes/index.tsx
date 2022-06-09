@@ -1,7 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import { getConfigEntry } from "~/common/config.server";
-import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
+import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { Surface } from "~/ui-toolkit/components/Surface/Surface";
 import { useConfigEntry } from "~/ui-toolkit/hooks/useConfig";

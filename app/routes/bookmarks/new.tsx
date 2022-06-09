@@ -3,11 +3,16 @@ import { redirect } from "@remix-run/node";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";
-import { AppErrorBoundary } from "~/features/error/AppErrorBoundary";
+import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { validate } from "~/validation/validate";
 
 export default function NewBookmarkRoute() {
-  return <BookmarkForm />;
+  return (
+    <>
+      <h1 className="mb-5">New Bookmark</h1>
+      <BookmarkForm />
+    </>
+  );
 }
 
 export const action: ActionFunction = async ({ request }) => {

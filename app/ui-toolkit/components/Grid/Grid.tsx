@@ -6,7 +6,7 @@ export const Grid = ({ width = "250px", gap = "10px", children, ...rest }: GridP
     style={{
       display: "grid",
       gap,
-      gridTemplateColumns: `repeat(auto-fill, minmax(min(${width}, 100%), 1fr)`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(min(${width}, 100%), 1fr))`,
       maxWidth: "100%",
     }}
   >
