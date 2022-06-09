@@ -6,10 +6,6 @@ import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { validate } from "~/validation/validate";
 
-interface LoaderData {
-  bookmarks: any[];
-}
-
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   let intent = formData.get("intent");
