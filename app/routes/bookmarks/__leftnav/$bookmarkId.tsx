@@ -5,7 +5,7 @@ import {
   requireAuthenticatedAction,
   requireAuthenticatedLoader,
 } from "~/features/auth/auth.server";
-import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
+import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { FormButton } from "~/ui-toolkit/components/Button/FormButton";
@@ -16,7 +16,8 @@ interface LoaderData {
 }
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  await requireAuthenticatedLoader(request);
+  let { access_token } = await requireAuthenticatedLoader(request);
+  let bookmarkService = createBookmarkService(access_token);
   const bookmark = await bookmarkService.get(params.bookmarkId);
   return { bookmark } as LoaderData;
 };
@@ -45,7 +46,8 @@ export default function BookmarkDetailsRoute() {
 }
 
 export const action: ActionFunction = async ({ request, params }) => {
-  let { intent } = await requireAuthenticatedAction(request);
+  let { intent, access_token } = await requireAuthenticatedAction(request);
+  let bookmarkService = createBookmarkService(access_token);
 
   if (intent === "delete") {
     await bookmarkService.remove(params.bookmarkId);

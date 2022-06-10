@@ -74,33 +74,41 @@ export async function logout(request: Request) {
 export const requireAuthenticatedLoader = async (request: Request) => {
   let userSession = await requireUserSession(request);
   return {
-    user: userSession.user,
+    ...userSession,
   };
 };
 
 export interface AuthenticatedAction {
   intent?: string;
-  user: AppUser;
-  formData: FormData;
+  formData?: FormData;
+  jsonData?: any;
   returnTo?: string;
+  access_token: string;
+  user: AppUser;
 }
+
 export const requireAuthenticatedAction = async (
   request: Request
 ): Promise<AuthenticatedAction> => {
   let userSession = await requireUserSession(request);
-  let formData: any = {};
+  let formData: FormData;
+  let intent = "";
+  let jsonData = null;
   if (request.headers.get("Content-Type") === "application/json") {
-    formData = await request.json();
+    jsonData = await request.json();
   } else {
     formData = await request.formData();
   }
-  let returnTo = new URL(request.url)?.searchParams.get("returnTo") || formData.returnTo;
-  let intent = typeof formData?.intent === "string" ? formData.intent : "";
+  let returnTo = new URL(request.url)?.searchParams.get("returnTo") || formData?.get("returnTo");
+  if (formData && typeof formData?.get("intent") === "string") {
+    intent = formData.get("intent") + "";
+  }
 
   return {
     intent,
-    user: userSession.user,
+    jsonData,
     formData,
-    returnTo,
+    returnTo: returnTo as string,
+    ...userSession,
   };
 };

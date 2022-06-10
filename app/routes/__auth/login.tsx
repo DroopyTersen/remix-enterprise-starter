@@ -56,18 +56,16 @@ export default function LoginRoute() {
   );
 }
 
-export const action = async ({ request, params }) => {
+export const action = async ({ request }) => {
   const formData = await request.formData();
-  console.log("🚀 | action | formData", Object.fromEntries(formData));
   let [errors, hasErrors] = await validate(formData, loginValidators);
   if (hasErrors) return { errors };
   let returnTo = formData.get("returnTo") || "/";
-  console.log("🚀 | action | returnTo", returnTo, request.url);
 
   // replace this with your own login code
-  let { user, token } = await fakeLogin(formData.get("email"), formData.get("password"));
+  let result = await fakeLogin(formData.get("email"), formData.get("password"));
 
-  return createUserSession(user, token, returnTo);
+  return createUserSession(result.user, result.token, returnTo);
 };
 
 const fakeLogin = async (
@@ -80,7 +78,8 @@ const fakeLogin = async (
     role: "user",
   };
   if (email.includes("admin")) user.role = "admin";
-  let token: "this_is_a_fake_token_for_an_api_service";
+
+  let token = "this_is_a_fake_token_for_an_api_service";
 
   return {
     token,

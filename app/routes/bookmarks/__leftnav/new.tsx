@@ -1,7 +1,7 @@
 import type { ActionFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { requireAuthenticatedAction } from "~/features/auth/auth.server";
-import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
+import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
@@ -17,7 +17,8 @@ export default function NewBookmarkRoute() {
 }
 
 export const action: ActionFunction = async ({ request }) => {
-  let { formData } = await requireAuthenticatedAction(request);
+  let { formData, access_token } = await requireAuthenticatedAction(request);
+  let bookmarkService = createBookmarkService(access_token);
 
   let [errors, hasErrors] = await validate(formData, bookmarkValidators);
   if (hasErrors) {

@@ -5,7 +5,7 @@ import {
   requireAuthenticatedAction,
   requireAuthenticatedLoader,
 } from "~/features/auth/auth.server";
-import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
+import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";
@@ -17,7 +17,8 @@ interface LoaderData {
 }
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  await requireAuthenticatedLoader(request);
+  let { access_token } = await requireAuthenticatedLoader(request);
+  let bookmarkService = createBookmarkService(access_token);
   const bookmark = await bookmarkService.get(params.bookmarkId);
 
   return {
@@ -36,7 +37,8 @@ export default function EditBookmarkRoute() {
 }
 
 export const action: ActionFunction = async ({ request, params }) => {
-  let { formData } = await requireAuthenticatedAction(request);
+  let { formData, access_token } = await requireAuthenticatedAction(request);
+  let bookmarkService = createBookmarkService(access_token);
   let [errors, hasErrors] = await validate(formData, bookmarkValidators);
   if (hasErrors) {
     return {
