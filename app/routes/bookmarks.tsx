@@ -11,11 +11,11 @@ import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { validate } from "~/validation/validate";
 
 export const action: ActionFunction = async ({ request }) => {
-  let { intent, formData, access_token } = await requireAuthenticatedAction(request);
-  let bookmarkService = createBookmarkService(access_token);
+  const { intent, formData, access_token } = await requireAuthenticatedAction(request);
+  const bookmarkService = createBookmarkService(access_token);
 
   if (intent === "save") {
-    let errors = await validate(formData, bookmarkValidators);
+    const errors = await validate(formData, bookmarkValidators);
     console.error(errors);
     if (Object.values(errors).some((e) => e)) {
       return {

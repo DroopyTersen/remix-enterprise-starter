@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import * as path from "node:path";
 import { renderToString } from "react-dom/server";
 
-let envPath = path.join(__dirname, "../env", ".env." + (process.env.PUBLIC_ENV || "local"));
+const envPath = path.join(__dirname, "../env", ".env." + (process.env.PUBLIC_ENV || "local"));
 dotenv.config({ path: envPath });
 
 export default function handleRequest(
@@ -13,7 +13,7 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  let markup = renderToString(<RemixServer context={remixContext} url={request.url} />);
+  const markup = renderToString(<RemixServer context={remixContext} url={request.url} />);
 
   responseHeaders.set("Content-Type", "text/html");
 

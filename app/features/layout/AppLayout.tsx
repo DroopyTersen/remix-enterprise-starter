@@ -3,8 +3,8 @@ import { FormButton } from "~/ui-toolkit/components/Button/FormButton";
 import { useCurrentUser } from "../auth/useCurrentUser";
 
 export function AppLayout({ children }) {
-  let { pathname } = useLocation();
-  let currentUser = useCurrentUser();
+  const { pathname } = useLocation();
+  const currentUser = useCurrentUser();
   return (
     <div className="d-grid h-100" style={{ gridTemplateRows: "auto 1fr auto" }}>
       <header className="border-bottom d-flex px-4 py-2 justify-content-between align-items-center">
