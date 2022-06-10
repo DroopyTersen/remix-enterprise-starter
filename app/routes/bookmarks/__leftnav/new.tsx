@@ -29,3 +29,4 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export const ErrorBoundary = AppErrorBoundary;
+export const CatchBoundary = AppErrorBoundary;

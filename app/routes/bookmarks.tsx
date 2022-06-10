@@ -36,3 +36,4 @@ export default function BookmarksLayout() {
 }
 
 export const ErrorBoundary = AppErrorBoundary;
+export const CatchBoundary = AppErrorBoundary;

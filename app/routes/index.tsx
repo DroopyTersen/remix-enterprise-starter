@@ -20,3 +20,4 @@ export default function Index() {
 }
 
 export const ErrorBoundary = AppErrorBoundary;
+export const CatchBoundary = AppErrorBoundary;
