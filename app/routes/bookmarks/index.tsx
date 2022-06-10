@@ -14,7 +14,7 @@ export default function BookmarksIndexRoute() {
 
   if (!bookmarks.length) {
     return (
-      <Card title="No bookmarks" className="text-center bg-light">
+      <Card title="No bookmarks" className="text-center bg-light mx-4 my-5">
         <div className="my-3">No bookmarks have been created yet!</div>
         <Link className="btn btn-primary" to="new">
           Create the first bookmark

@@ -51,3 +51,4 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 export const ErrorBoundary = AppErrorBoundary;
+export const CatchBoundary = AppErrorBoundary;
