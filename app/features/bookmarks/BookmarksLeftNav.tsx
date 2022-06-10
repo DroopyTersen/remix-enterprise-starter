@@ -6,7 +6,7 @@ interface BookmarksLeftNavProps {
 }
 
 export function BookmarksLeftNav({ bookmarks }: BookmarksLeftNavProps) {
-  let { bookmarkId } = useParams();
+  const { bookmarkId } = useParams();
   return (
     <>
       <div className="d-flex justify-content-between align-items-center p-5 pb-3 flex-wrap">

@@ -1,9 +1,15 @@
+import type { MetaFunction } from "@remix-run/node";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { Button } from "~/ui-toolkit/components/Button/Button";
 import { useConfigEntry } from "~/ui-toolkit/hooks/useConfig";
 
+export const meta: MetaFunction = () => ({
+  title: "Remix Enterprise Starter - Welcome",
+  description: "Welcome to the Remix Enterprise Starter App!",
+});
+
 export default function Index() {
-  let envSpecficMessage = useConfigEntry(
+  const envSpecficMessage = useConfigEntry(
     "PUBLIC_MESSAGE",
     "Uh oh. Couldn't pull in the message from env variables."
   );

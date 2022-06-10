@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type { ActionFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
@@ -11,6 +11,11 @@ import { validate } from "~/validation/validate";
 interface LoaderData {
   bookmark: Bookmark;
 }
+
+export const meta: MetaFunction = () => ({
+  title: "Remix Enterprise Starter - Edit Bookmark",
+  description: "Let's edit an existing bookmark in the Remix Enterprise Starter App!",
+});
 
 export const loader: LoaderFunction = async ({ params }) => {
   const bookmark = await bookmarkService.get(params.bookmarkId);
@@ -32,7 +37,7 @@ export default function EditBookmarkRoute() {
 
 export const action: ActionFunction = async ({ request, params }) => {
   const formData = await request.formData();
-  let [errors, hasErrors] = await validate(formData, bookmarkValidators);
+  const [errors, hasErrors] = await validate(formData, bookmarkValidators);
   if (hasErrors) {
     return {
       errors,
