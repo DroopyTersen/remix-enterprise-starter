@@ -74,7 +74,7 @@ export function CatchBoundary() {
   let title = caught?.status === 404 ? "There's nothing here!" : "Error";
   let message =
     caught?.status === 404
-      ? "The page your looking for doesn't exist."
+      ? "The page you're looking for doesn't exist."
       : "Uh oh. Something went wrong.";
   return (
     <html className="h-100">
