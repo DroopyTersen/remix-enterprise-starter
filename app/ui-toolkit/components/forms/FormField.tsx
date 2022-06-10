@@ -59,7 +59,6 @@ export interface FormFieldProps {
   required?: boolean;
   /** Additional CSS classes to add */
   className?: string;
-  [key: string]: any;
 }
 
 export const pluckFormFieldProps = (props: any) => {

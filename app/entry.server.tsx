@@ -4,9 +4,7 @@ import dotenv from "dotenv";
 import * as path from "node:path";
 import { renderToString } from "react-dom/server";
 
-console.log("🚀 | __dirname", __dirname);
 let envPath = path.join(__dirname, "../env", ".env." + (process.env.PUBLIC_ENV || "local"));
-console.log("🚀 | envPath", envPath);
 dotenv.config({ path: envPath });
 
 export default function handleRequest(

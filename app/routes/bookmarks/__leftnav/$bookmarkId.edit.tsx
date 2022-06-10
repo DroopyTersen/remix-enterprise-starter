@@ -1,6 +1,10 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import {
+  requireAuthenticatedAction,
+  requireAuthenticatedLoader,
+} from "~/features/auth/auth.server";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
@@ -12,7 +16,8 @@ interface LoaderData {
   bookmark: Bookmark;
 }
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ request, params }) => {
+  await requireAuthenticatedLoader(request);
   const bookmark = await bookmarkService.get(params.bookmarkId);
 
   return {
@@ -31,7 +36,7 @@ export default function EditBookmarkRoute() {
 }
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const formData = await request.formData();
+  let { formData } = await requireAuthenticatedAction(request);
   let [errors, hasErrors] = await validate(formData, bookmarkValidators);
   if (hasErrors) {
     return {

@@ -81,9 +81,7 @@ export const requireAuthenticatedLoader = async (request: Request) => {
 export interface AuthenticatedAction {
   intent?: string;
   user: AppUser;
-  formData: {
-    [k: string]: FormDataEntryValue;
-  };
+  formData: FormData;
   returnTo?: string;
 }
 export const requireAuthenticatedAction = async (
@@ -94,7 +92,7 @@ export const requireAuthenticatedAction = async (
   if (request.headers.get("Content-Type") === "application/json") {
     formData = await request.json();
   } else {
-    formData = Object.fromEntries(await request.formData());
+    formData = await request.formData();
   }
   let returnTo = new URL(request.url)?.searchParams.get("returnTo") || formData.returnTo;
   let intent = typeof formData?.intent === "string" ? formData.intent : "";

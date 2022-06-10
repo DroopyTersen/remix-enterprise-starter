@@ -1,6 +1,7 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
+import { requireAuthenticatedLoader } from "~/features/auth/auth.server";
 import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
@@ -26,7 +27,8 @@ export const action: ActionFunction = async ({ request }) => {
   throw new Error("Inavlid Intent:" + intent);
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  await requireAuthenticatedLoader(request);
   const bookmarks = await bookmarkService.getAll();
   return { bookmarks };
 };

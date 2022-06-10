@@ -1,4 +1,4 @@
-import type { FormProps, SubmitFunction} from "@remix-run/react";
+import type { FormProps, SubmitFunction } from "@remix-run/react";
 import { Form, useActionData, useSubmit } from "@remix-run/react";
 import { forwardRef, useState } from "react";
 import type { FieldError, UseFormReturn } from "react-hook-form";
@@ -10,6 +10,13 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
       <Form
         // use the form from the closure
         onSubmit={form.handleSubmit((_, event) => {
+          // let formElem = (ref as any)?.current;
+
+          // if (formElem) {
+          //   let formData = new FormData(formElem);
+          //   console.log("🚀 | createForm | formData", Object.fromEntries(formData));
+          //   console.log("🚀 | createForm | form", formElem);
+          // }
           // use the submit function from the closure
           submit(event?.target, {
             // use instance props for the submit options
@@ -29,7 +36,7 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
 }
 
 export function useValidatedForm<TFormValues = any>(
-  initial: TFormValues
+  initial?: TFormValues
 ): UseValidateFormReturn<TFormValues> {
   let submit = useSubmit();
   let serverErrors = useActionData()?.errors || {};
