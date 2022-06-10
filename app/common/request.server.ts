@@ -34,10 +34,10 @@ export const createApiRequest = (baseUrl: string, defaultOptions?: Partial<Reque
     return handleApiResponse<Data>(resp);
   };
 
-  const get = async <T = any>(
+  const get = async <Data = any>(
     path: string,
     options?: Partial<RequestInit>
-  ): Promise<ApiResult<T>> => {
+  ): Promise<ApiResult<Data>> => {
     return _request(path, mergeRequestOptions({ method: "GET" }, options));
   };
 
@@ -59,10 +59,10 @@ export const createApiRequest = (baseUrl: string, defaultOptions?: Partial<Reque
     return _request<Data>(path, mergeRequestOptions({ method: "PUT", body: postBody }, options));
   };
 
-  const remove = async <T = any>(
+  const remove = async <Data = any>(
     path: string,
     options?: Partial<RequestInit>
-  ): Promise<ApiResult<T>> => {
+  ): Promise<ApiResult<Data>> => {
     return _request(path, mergeRequestOptions({ method: "DELETE" }, options));
   };
 
