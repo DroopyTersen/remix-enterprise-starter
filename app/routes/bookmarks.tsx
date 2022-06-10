@@ -1,14 +1,18 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
-import { bookmarkService } from "~/features/bookmarks/bookmark.service.server";
+import {
+  requireAuthenticatedAction,
+  requireAuthenticatedLoader,
+} from "~/features/auth/auth.server";
+import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { validate } from "~/validation/validate";
 
 export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const intent = formData.get("intent");
+  const { intent, formData, access_token } = await requireAuthenticatedAction(request);
+  const bookmarkService = createBookmarkService(access_token);
 
   if (intent === "save") {
     const errors = await validate(formData, bookmarkValidators);
@@ -26,7 +30,9 @@ export const action: ActionFunction = async ({ request }) => {
   throw new Error("Inavlid Intent:" + intent);
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  let { access_token } = await requireAuthenticatedLoader(request);
+  let bookmarkService = createBookmarkService(access_token);
   const bookmarks = await bookmarkService.getAll();
   return { bookmarks };
 };

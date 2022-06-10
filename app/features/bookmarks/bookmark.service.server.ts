@@ -2,34 +2,38 @@ import { getConfigEntry } from "~/common/config.server";
 import { createApiRequest } from "~/common/request.server";
 import type { Bookmark } from "./bookmark.types";
 
-const apiRequest = createApiRequest(getConfigEntry("API_URL"));
+export const createBookmarkService = (token: string) => {
+  const apiRequest = createApiRequest(getConfigEntry("API_URL"), {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
-const getAll = async () => {
-  let result = await apiRequest.get<Bookmark[]>("/bookmarks");
-  return result?.data;
-};
+  const getAll = async () => {
+    let result = await apiRequest.get<Bookmark[]>("/bookmarks");
+    return result?.data;
+  };
 
-const get = async (id: string) => {
-  let result = await apiRequest.get<Bookmark>(`/bookmarks/${id}`);
+  const get = async (id: string) => {
+    let result = await apiRequest.get<Bookmark>(`/bookmarks/${id}`);
 
-  return result.data;
-};
+    return result.data;
+  };
 
-const remove = async (id: string) => {
-  return apiRequest.remove(`/bookmarks/${id}`);
-};
+  const remove = async (id: string) => {
+    return apiRequest.remove(`/bookmarks/${id}`);
+  };
 
-const save = async (bookmark: Bookmark) => {
-  let result = bookmark.id
-    ? await apiRequest.put<Bookmark>(`/bookmarks/${bookmark.id}`, bookmark)
-    : await apiRequest.post<Bookmark>("/bookmarks", bookmark);
+  const save = async (bookmark: Bookmark) => {
+    let result = bookmark.id
+      ? await apiRequest.put<Bookmark>(`/bookmarks/${bookmark.id}`, bookmark)
+      : await apiRequest.post<Bookmark>("/bookmarks", bookmark);
 
-  return result?.data;
-};
+    return result?.data;
+  };
 
-export const bookmarkService = {
-  getAll,
-  get,
-  save,
-  remove,
+  return {
+    getAll,
+    get,
+    save,
+    remove,
+  };
 };

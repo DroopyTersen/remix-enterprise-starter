@@ -1,7 +1,10 @@
 import { Link, useLocation } from "@remix-run/react";
+import { FormButton } from "~/ui-toolkit/components/Button/FormButton";
+import { useCurrentUser } from "../auth/useCurrentUser";
 
 export function AppLayout({ children }) {
   const { pathname } = useLocation();
+  const currentUser = useCurrentUser();
   return (
     <div className="d-grid h-100" style={{ gridTemplateRows: "auto 1fr auto" }}>
       <header className="border-bottom d-flex px-4 py-2 justify-content-between align-items-center">
@@ -24,9 +27,18 @@ export function AppLayout({ children }) {
           </div>
         </div>
         <div>
-          <Link to="login" className="btn btn-secondary">
-            Login
-          </Link>
+          {currentUser ? (
+            <>
+              <div>Hello, {currentUser?.email}</div>
+              <FormButton action="/logout" color="secondary">
+                Log out
+              </FormButton>
+            </>
+          ) : (
+            <Link to="/login" className="btn btn-secondary">
+              Login
+            </Link>
+          )}
         </div>
       </header>
       <main style={{ overflowY: "auto" }}>{children}</main>
