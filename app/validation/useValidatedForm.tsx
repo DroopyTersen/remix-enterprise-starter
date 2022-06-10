@@ -10,13 +10,6 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
       <Form
         // use the form from the closure
         onSubmit={form.handleSubmit((_, event) => {
-          // let formElem = (ref as any)?.current;
-
-          // if (formElem) {
-          //   let formData = new FormData(formElem);
-          //   console.log("🚀 | createForm | formData", Object.fromEntries(formData));
-          //   console.log("🚀 | createForm | form", formElem);
-          // }
           // use the submit function from the closure
           submit(event?.target, {
             // use instance props for the submit options
