@@ -15,7 +15,7 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
   const transition = useTransition();
   const navigate = useNavigate();
   const [image, setImage] = useState(initial?.image || IMAGE_PLACEHOLDER);
-  const isProcessing = transition.state === "submitting";
+  const isProcessing = transition.state !== "idle";
 
   return (
     <div className="grid">

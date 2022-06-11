@@ -2,6 +2,10 @@ import type { FieldError, FieldValues } from "react-hook-form";
 import { coreValidators } from "./coreValidators";
 import type { CoreValidator, FormValidators, ValidationRules } from "./validation.types";
 
+/**
+ * Validates a form and returns an error object with
+ * each field and its error. Returns null if there are no errors,
+ */
 export const validate = async <TFieldValues = FieldValues>(
   formData: FormData,
   validators: FormValidators<TFieldValues>
@@ -20,10 +24,7 @@ export const validate = async <TFieldValues = FieldValues>(
   }, {} as { [key in keyof typeof validators]: FieldError });
 
   let hasErrors = fieldErrors.some((fieldError) => fieldError.error);
-  return [errors, hasErrors] as [
-    errors: { [key in keyof typeof validators]: FieldError },
-    hasErrors: boolean
-  ];
+  return hasErrors ? errors : null;
 };
 
 const validateField = async <T>(formData: FormData, field: T, rules: ValidationRules) => {
