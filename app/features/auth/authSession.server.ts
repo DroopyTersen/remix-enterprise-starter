@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, json, redirect } from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import { getConfigEntry } from "~/common/config.server";
 import type { SessionData } from "./auth.types";
 
@@ -24,8 +24,7 @@ export const authSession = {
   /** Create a session cookie for the user who as just logged in */
   create: async (sessionData: SessionData, redirectTo: string) => {
     // If no session secret has been configured throw an error and prevent login
-    if (!SESSION_SECRET)
-      throw json({ message: "Unable to login: Missing SESSION_SECRET env variable" }, 500);
+    if (!SESSION_SECRET) throw Error("Unable to login: Missing SESSION_SECRET env variable");
 
     const session = await storage.getSession();
     session.set("data", sessionData);

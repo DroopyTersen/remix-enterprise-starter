@@ -1,5 +1,6 @@
 import type { AppUser } from "~/features/auth/auth.types";
 import { authSession } from "~/features/auth/authSession.server";
+import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
 import { InputField } from "~/ui-toolkit/components/forms";
 import { Surface } from "~/ui-toolkit/components/Surface/Surface";
 import { useQueryParam } from "~/ui-toolkit/hooks/useQueryParam";
@@ -86,3 +87,6 @@ const fakeLogin = async (
     user,
   };
 };
+
+export const ErrorBoundary = AppErrorBoundary;
+export const CatchBoundary = AppErrorBoundary;
