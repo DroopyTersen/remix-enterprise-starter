@@ -1,6 +1,6 @@
 import type { ActionFunction, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { requireAuthenticatedAction } from "~/features/auth/auth.server";
+import { requireAuthenticatedAction } from "~/features/auth/auth.remixUtils.server";
 import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { BookmarkForm } from "~/features/bookmarks/BookmarkForm";

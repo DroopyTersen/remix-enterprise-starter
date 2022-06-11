@@ -1,5 +1,5 @@
-import { createUserSession } from "~/features/auth/auth.server";
 import type { AppUser } from "~/features/auth/auth.types";
+import { authSession } from "~/features/auth/authSession.server";
 import { InputField } from "~/ui-toolkit/components/forms";
 import { Surface } from "~/ui-toolkit/components/Surface/Surface";
 import { useQueryParam } from "~/ui-toolkit/hooks/useQueryParam";
@@ -65,7 +65,7 @@ export const action = async ({ request }) => {
   // replace this with your own login code
   let result = await fakeLogin(formData.get("email"), formData.get("password"));
 
-  return createUserSession(result.user, result.token, returnTo);
+  return authSession.create({ user: result.user, access_token: result.token }, returnTo);
 };
 
 const fakeLogin = async (
