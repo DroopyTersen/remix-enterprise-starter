@@ -1,3 +1,4 @@
+import { useTransition } from "@remix-run/react";
 import type { AppUser } from "~/features/auth/auth.types";
 import { authSession } from "~/features/auth/authSession.server";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";
@@ -26,13 +27,14 @@ let loginValidators: FormValidators<LoginFormValues> = {
 export default function LoginRoute() {
   let form = useValidatedForm<LoginFormValues>();
   let [returnTo] = useQueryParam("returnTo");
+  let transition = useTransition();
   return (
     <div className="p-5 bg-light h-100">
       <Surface className="w-100 mx-auto" style={{ maxWidth: "500px" }}>
         {/* <h1 className="text-primary text-center">Login</h1> */}
         <h1 className="text-primary fs-3 mb-4">Welcome to App Logo!</h1>
         <form.Form method="post">
-          <fieldset>
+          <fieldset disabled={transition.state !== "idle"}>
             <input type="hidden" name="returnTo" value={returnTo} />
             <InputField
               autoFocus
@@ -48,7 +50,7 @@ export default function LoginRoute() {
               {...form.register("password", loginValidators.password)}
             />
             <button className="btn btn-primary btn-lg w-100" type="submit">
-              Login
+              {transition.state !== "idle" ? "On it..." : "Login"}
             </button>
           </fieldset>
         </form.Form>
@@ -59,8 +61,9 @@ export default function LoginRoute() {
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
-  let [errors, hasErrors] = await validate(formData, loginValidators);
-  if (hasErrors) return { errors };
+  const errors = await validate(formData, loginValidators);
+  if (errors) return { errors };
+
   let returnTo = formData.get("returnTo") || "/";
 
   // replace this with your own login code
@@ -68,7 +71,6 @@ export const action = async ({ request }) => {
 
   return authSession.create({ user: result.user, access_token: result.token }, returnTo);
 };
-
 const fakeLogin = async (
   email: string,
   password: string

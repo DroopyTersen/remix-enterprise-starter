@@ -44,12 +44,8 @@ export default function EditBookmarkRoute() {
 export const action: ActionFunction = async ({ request, params }) => {
   const { formData, access_token } = await requireAuthenticatedAction(request);
   const bookmarkService = createBookmarkService(access_token);
-  const [errors, hasErrors] = await validate(formData, bookmarkValidators);
-  if (hasErrors) {
-    return {
-      errors,
-    };
-  }
+  const errors = await validate(formData, bookmarkValidators);
+  if (errors) return { errors };
 
   await bookmarkService.save(Object.fromEntries(formData) as any);
 
