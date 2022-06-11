@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import {
   requireAuthenticatedAction,
   requireAuthenticatedLoader,
-} from "~/features/auth/auth.server";
+} from "~/features/auth/auth.remixUtils.server";
 import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";

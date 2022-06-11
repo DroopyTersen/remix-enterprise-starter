@@ -4,7 +4,7 @@ import { Outlet } from "@remix-run/react";
 import {
   requireAuthenticatedAction,
   requireAuthenticatedLoader,
-} from "~/features/auth/auth.server";
+} from "~/features/auth/auth.remixUtils.server";
 import { createBookmarkService } from "~/features/bookmarks/bookmark.service.server";
 import { bookmarkValidators } from "~/features/bookmarks/bookmark.validators";
 import { AppErrorBoundary } from "~/features/layout/AppErrorBoundary";

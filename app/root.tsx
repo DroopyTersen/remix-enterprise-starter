@@ -8,7 +8,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
-import { getUserFromSession } from "./features/auth/auth.server";
+import { authSession } from "./features/auth/authSession.server";
 import { AppLayout } from "./features/layout/AppLayout";
 import globalStyles from "./global.css";
 import { ErrorContainer } from "./ui-toolkit/components/ErrorContainer/ErrorContainer";
@@ -20,12 +20,11 @@ export const meta: MetaFunction = () => ({
 });
 
 export const loader = async ({ request }) => {
-  let userSession = await getUserFromSession(request);
-  console.log("🚀 | loader | userSession", userSession);
+  let sessionData = await authSession.get(request);
 
   return {
     config: getPublicEnvVars(),
-    user: userSession?.user,
+    user: sessionData?.user,
   };
 };
 
