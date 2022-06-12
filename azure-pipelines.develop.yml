@@ -8,10 +8,11 @@ jobs:
       vmImage: ubuntu-latest
     steps:
       - task: NodeTool@0
-        displayName: Build
+        displayName: Install Node 16
         inputs:
           versionSpec: "16.x"
       - task: Cache@2
+        displayName: Try get node_modules cache
         inputs:
           key: '"node_modules" | "$(Agent.OS)" | package.json'
           path: 'node_modules'
