@@ -51,6 +51,6 @@ stages:
         - task: Docker@2
           displayName: "Push docker images"
           inputs:
-            containerRegistry: '${dockerRegistryServiceConnection}'
+            containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
             repository: '${imageRepository}'
             command: 'push'
