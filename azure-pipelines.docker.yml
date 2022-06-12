@@ -24,47 +24,19 @@ stages:
   - stage: Build
     displayName: Build and push
     jobs:
-        
+      
       - job: build_and_push
-        displayName: Build
+        displayName: Build and push custom docker image
         pool:
           vmImage: $(vmImageName)
         steps:
-        - task: Docker@2
-          displayName: "login to container registry"
-          inputs:
-            containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
-            command: 'login'
-
-        - script: "docker pull $(latestImage) || true"
-          displayName: Pull latest for layer caching
-          continueOnError: true # for first build, no cache
-
-
-        - script: |
-            docker build . --cache-from $(latestImage) -t $(imageRepository):$(Build.BuildNumber) -t $(imageRepository):latest
-          displayName: "Docker build"
-
-
-        # - task: Docker@2
-        #   displayName: "build dockerfile"
-        #   inputs:
-        #     containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
-        #     repository: '$(imageRepository)'
-        #     command: 'build'
-        #     buildContext: '$(System.DefaultWorkingDirectory)'
-        #     Dockerfile: '**/Dockerfile'
-        #     arguments: '--cache-from=$(latestImage)'
-        #     tags: |
-        #       $(Build.BuildNumber)
-        #       latest
 
         - task: Docker@2
-          displayName: "Push docker images"
           inputs:
-            containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
-            repository: '$(imageRepository)'
-            command: 'push'
+            containerRegistry: 'droopycontainers'
+            repository: 'remixenterprisestarter'
+            command: 'buildAndPush'
+            Dockerfile: '**/Dockerfile'
             tags: |
-              $(Build.BuildNumber)
+              $(Build.BuildId)
               latest
