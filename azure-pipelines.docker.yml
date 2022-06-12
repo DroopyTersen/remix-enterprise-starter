@@ -22,7 +22,7 @@ variables:
 
 stages:
   - stage: Build
-    displayName: Build and push stage
+    displayName: Build and push
     jobs:
         
       - job: build_and_push
@@ -45,6 +45,7 @@ stages:
             containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
             repository: '$(imageRepository)'
             command: 'build'
+            buildContext: '$(BUILDCONTEXT)'
             Dockerfile: '**/Dockerfile'
             arguments: '--cache-from=$(latestImage)'
             tags: |
