@@ -24,7 +24,7 @@ stages:
   - stage: Build
     displayName: Build and push stage
     jobs:
-      - job: load-docker-cache
+      - job: load_cache
         displayName: Load cached docker layers
         pool:
           vmImage: $(vmImageName)
@@ -38,7 +38,7 @@ stages:
             displayName: Pull latest for layer caching
             continueOnError: true # for first build, no cache
         
-      - job: Build
+      - job: build_and_push
         displayName: Build
         pool:
           vmImage: $(vmImageName)
