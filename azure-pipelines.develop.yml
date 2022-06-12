@@ -32,6 +32,8 @@ jobs:
         displayName: "Lint and build"
 
       - script: |
+          echo "HERE I AM"
+          ls $(Build.SourcesDirectory)
           rm -rf node_modules
           npm install @remix-run/serve 
         displayName: "Delete all node_modules except remix-serve"
