@@ -1,0 +1,41 @@
+trigger:
+  - devops
+
+variables:
+  - group: Test-KeyVault
+
+jobs:
+  - job:
+    displayName: Build and Archive and Publish Artifacts
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - task: NodeTool@0
+        displayName: Build
+        inputs:
+          versionSpec: "15.x"
+
+      - script: |
+          npm install
+          npm run lint
+          npm run build
+          npm run build:ladle
+        env:
+          PUBLIC_ENV: "test"
+        displayName: "npm install, lint, and build"
+
+      - task: ArchiveFiles@2
+        displayName: Archive
+        inputs:
+          rootFolderOrFile: "$(Build.SourcesDirectory)"
+          includeRootFolder: false
+          archiveType: "zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/web-$(Build.BuildNumber).zip"
+          replaceExistingArchive: true
+
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Artifacts
+        inputs:
+          PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+          ArtifactName: "drop"
+          publishLocation: "Container"
