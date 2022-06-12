@@ -32,8 +32,9 @@ jobs:
         displayName: "Lint and build"
 
       - script: |
-          npm prune --production
-        displayName: Prune to production only dependencies
+          rm -rf node_modules
+          npm install @remix-run/serve 
+        displayName: "Delete all node_modules except remix-serve"
 
       - task: ArchiveFiles@2
         displayName: Archive
