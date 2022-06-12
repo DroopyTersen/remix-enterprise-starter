@@ -64,6 +64,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
           file: ./Dockerfile
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   # deploy:
   #   permissions:
