@@ -10,16 +10,32 @@ jobs:
       - task: NodeTool@0
         displayName: Build
         inputs:
-          versionSpec: "15.x"
+          versionSpec: "16.x"
+      - task: Cache@2
+        inputs:
+          key: '"node_modules" | "$(Agent.OS)" | package.json'
+          path: 'node_modules'
+          cacheHitVar: NODE_MODULES_CACHE_HIT
+      
+      - script: |
+          npm ci
+        condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
+        displayName: Install dependencies
 
       - script: |
-          npm install
           npm run lint
           npm run build
           npm run build:ladle
-        env:
-          PUBLIC_ENV: "test"
-        displayName: "npm install, lint, and build"
+        displayName: "Lint and build"
+      
+      - script: |
+          mv node_modules node_modules2
+          mkdir node_modules
+          mkdir node_modules/@remix-run
+          mkdir node_modules/@remix-run/serve
+          mv node_modules2/@remix-run/serve/* node_modules/@remix-run/serve/
+          rm -rf node_modules2
+        displayName: "Delete all node_modules except remix-serve"
 
       - task: ArchiveFiles@2
         displayName: Archive
