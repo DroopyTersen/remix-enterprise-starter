@@ -1,6 +1,9 @@
 trigger:
   - devops
 
+variables:
+  npmCacheDir: "/home/vsts/.npm"
+
 jobs:
   - job:
     displayName: Build and Archive and Publish Artifacts
@@ -11,16 +14,16 @@ jobs:
         displayName: Install Node 16
         inputs:
           versionSpec: "16.x"
-      - task: Cache@2
-        displayName: Try get node_modules cache
-        inputs:
-          key: '"node_modules" | "$(Agent.OS)" | package.json'
-          path: 'node_modules'
-          cacheHitVar: NODE_MODULES_CACHE_HIT
+          
+    - task: Cache@2
+      inputs:
+        key: 'npm_v1 | "$(Agent.OS)" | $(spaDir)/package-lock.json'
+        path: $(npmCacheDir)
+        cacheHitVar: NPM_CACHE_RESTORED
+      displayName: "Cache ~/.npm directory"
       
       - script: |
           npm install
-        condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
         displayName: Install dependencies
 
       - script: |
