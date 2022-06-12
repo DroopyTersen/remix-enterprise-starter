@@ -31,7 +31,7 @@ stages:
         steps: 
           - task: Docker@2
             inputs:
-              containerRegistry: '${dockerRegistryServiceConnection}'
+              containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
               command: 'login'
 
           - script: "docker pull ${latestImage}"
