@@ -24,12 +24,6 @@ stages:
   - stage: Build
     displayName: Build and push stage
     jobs:
-      - job: load_cache
-        displayName: Load cached docker layers
-        pool:
-          vmImage: $(vmImageName)
-        steps: 
-
         
       - job: build_and_push
         displayName: Build
