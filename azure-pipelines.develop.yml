@@ -18,7 +18,7 @@ jobs:
           cacheHitVar: NODE_MODULES_CACHE_HIT
       
       - script: |
-          npm ci
+          npm install
         condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
         displayName: Install dependencies
 
