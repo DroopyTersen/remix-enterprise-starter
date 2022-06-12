@@ -47,6 +47,9 @@ stages:
             command: 'build'
             Dockerfile: '**/Dockerfile'
             arguments: '--cache-from=$(latestImage)'
+            tags: |
+              $(Build.BuildNumber)
+              latest
 
         - task: Docker@2
           displayName: "Push docker images"
@@ -54,3 +57,6 @@ stages:
             containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
             repository: '$(imageRepository)'
             command: 'push'
+            tags: |
+              $(Build.BuildNumber)
+              latest
