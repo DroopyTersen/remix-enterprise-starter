@@ -1,9 +1,6 @@
 trigger:
   - devops
 
-variables:
-  - group: Test-KeyVault
-
 jobs:
   - job:
     displayName: Build and Archive and Publish Artifacts
