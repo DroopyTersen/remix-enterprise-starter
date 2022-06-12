@@ -1,5 +1,5 @@
 trigger:
-  - devops
+  - manual
 
 variables:
   npmCacheDir: "/home/vsts/.npm"
