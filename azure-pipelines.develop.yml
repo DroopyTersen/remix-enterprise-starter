@@ -14,7 +14,7 @@ jobs:
         displayName: Install Node 16
         inputs:
           versionSpec: "16.x"
-          
+
       - task: Cache@2
         inputs:
           key: '"npm" | "$(Agent.OS)" | package.json'
@@ -30,6 +30,10 @@ jobs:
           npm run build
           npm run build:ladle
         displayName: "Lint and build"
+
+      - script: |
+          npm prune --production
+        displayName: Prune to production only dependencies
 
       - task: ArchiveFiles@2
         displayName: Archive
