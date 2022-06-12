@@ -30,15 +30,6 @@ jobs:
           npm run build
           npm run build:ladle
         displayName: "Lint and build"
-      
-      - script: |
-          mv node_modules node_modules2
-          mkdir node_modules
-          mkdir node_modules/@remix-run
-          mkdir node_modules/@remix-run/serve
-          mv node_modules2/@remix-run/serve/* node_modules/@remix-run/serve/
-          rm -rf node_modules2
-        displayName: "Delete all node_modules except remix-serve"
 
       - task: ArchiveFiles@2
         displayName: Archive
