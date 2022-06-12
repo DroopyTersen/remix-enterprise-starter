@@ -15,13 +15,12 @@ jobs:
         inputs:
           versionSpec: "16.x"
           
-    - task: Cache@2
-      inputs:
-        key: '"npm_cache" | "$(Agent.OS)" | package.json'
-        path: $(npmCacheDir)
-        cacheHitVar: NPM_CACHE_RESTORED
-      displayName: "Cache ~/.npm directory"
-      
+      - task: Cache@2
+        inputs:
+          key: '"npm" | "$(Agent.OS)" | package.json'
+          path: $(npmCacheDir)
+        displayName: Cache NPM packages
+
       - script: |
           npm install
         displayName: Install dependencies
