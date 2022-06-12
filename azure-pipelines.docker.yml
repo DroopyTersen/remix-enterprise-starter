@@ -29,14 +29,7 @@ stages:
         pool:
           vmImage: $(vmImageName)
         steps: 
-          - task: Docker@2
-            inputs:
-              containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
-              command: 'login'
 
-          - script: "docker pull ${latestImage}"
-            displayName: Pull latest for layer caching
-            continueOnError: true # for first build, no cache
         
       - job: build_and_push
         displayName: Build
@@ -44,14 +37,25 @@ stages:
           vmImage: $(vmImageName)
         steps:
         - task: Docker@2
+          displayName: "login to container registry"
           inputs:
-            containerRegistry: '${dockerRegistryServiceConnection}'
+            containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
+            command: 'login'
+
+        - script: "docker pull ${latestImage}"
+          displayName: Pull latest for layer caching
+          continueOnError: true # for first build, no cache
+        - task: Docker@2
+          displayName: "build dockerfile"
+          inputs:
+            containerRegistry: b65fed88-5f25-4ab6-9242-0a6e22864dab
             repository: '${imageRepository}'
             command: 'build'
             Dockerfile: '**/Dockerfile'
             arguments: '--cache-from=${latestImage}'
 
         - task: Docker@2
+          displayName: "Push docker images"
           inputs:
             containerRegistry: '${dockerRegistryServiceConnection}'
             repository: '${imageRepository}'
