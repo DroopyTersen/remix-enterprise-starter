@@ -68,14 +68,23 @@ jobs:
           key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
           path: public/build
           cacheHitVar: BROWSER_BUILD_CACHE_HIT
+      - task: Cache@2
+        displayName: Cache node_modules
+        inputs:
+          key: '"dependencies" | "$(Agent.OS)" | package.json'
+          path: node_modules
+          cacheHitVar: NODE_MODULES_CACHE_HIT
 
+      # - script: |
+      #     mv package.json package.json2
+      #     npm init -y
+      #     npm install @remix-run/serve
+      #     rm package.json
+      #     mv package.json2 package.json
+      #   displayName: Install @remix-run/serve
       - script: |
-          mv package.json package.json2
-          npm init -y
-          npm install @remix-run/serve
-          rm package.json
-          mv package.json2 package.json
-        displayName: Install @remix-run/serve
+          npm prune --production
+        displayName: Prune dependencies
       
       - task: ArchiveFiles@2
         displayName: Archive
