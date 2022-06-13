@@ -47,4 +47,39 @@ jobs:
           npm run build
         condition:  or(eq(variables.SERVER_BUILD_CACHE_HIT, 'false'), eq(variables.BROWSER_BUILD_CACHE_HIT, 'false'))
         displayName: "Lint and build"
+
+  - job: createartifact
+    displayName: Create artifact
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+
+      - task: Cache@2
+        displayName: "Cache server build"
+        inputs:
+          key: '"server-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: build
+          cacheHitVar: SERVER_BUILD_CACHE_HIT
+
+      - task: Cache@2
+        displayName: "Cache browser build"
+        inputs:
+          key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: public/build
+          cacheHitVar: BROWSER_BUILD_CACHE_HIT
       
+      - task: ArchiveFiles@2
+        displayName: Archive
+        inputs:
+          rootFolderOrFile: "$(Build.SourcesDirectory)"
+          includeRootFolder: false
+          archiveType: "zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/web-$(Build.BuildNumber).zip"
+          replaceExistingArchive: true
+
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Artifacts
+        inputs:
+          PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+          ArtifactName: "drop"
+          publishLocation: "Container"
