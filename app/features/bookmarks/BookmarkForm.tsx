@@ -15,7 +15,7 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
   const transition = useTransition();
   const navigate = useNavigate();
   const [image, setImage] = useState(initial?.image || IMAGE_PLACEHOLDER);
-  const isProcessing = transition.state !== "idle";
+  const isProcessing = !!transition.submission;
 
   return (
     <div className="grid">
@@ -37,7 +37,6 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
             required
             defaultValue={initial?.url || ""}
           />
-
           <TextAreaField
             label="Description"
             name="description"
