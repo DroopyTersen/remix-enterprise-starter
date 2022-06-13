@@ -1,12 +1,13 @@
 trigger:
-  - manual
+  - devops
 
 variables:
   npmCacheDir: "/home/vsts/.npm"
+  buildFiles: "app/**, !app/global.css, !app/global.css.map, env/**, styles/**, public/**, !public/build/**, !public/ui-toolkit/**, package.json"
 
 jobs:
-  - job:
-    displayName: Build and Archive and Publish Artifacts
+  - job: buildandcache
+    displayName: Build and Cache
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -14,27 +15,66 @@ jobs:
         displayName: Install Node 16
         inputs:
           versionSpec: "16.x"
+      
+      - task: Cache@2
+        displayName: Cache node_modules
+        inputs:
+          key: '"dependencies" | "$(Agent.OS)" | package.json'
+          path: node_modules
+          cacheHitVar: NODE_MODULES_CACHE_HIT
+          
+      - task: Cache@2
+        displayName: "Cache server build"
+        inputs:
+          key: '"server-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: build
+          cacheHitVar: SERVER_BUILD_CACHE_HIT
 
       - task: Cache@2
+        displayName: "Cache browser build"
         inputs:
-          key: '"npm" | "$(Agent.OS)" | package.json'
-          path: $(npmCacheDir)
-        displayName: Cache NPM packages
+          key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: public/build
+          cacheHitVar: BROWSER_BUILD_CACHE_HIT
 
       - script: |
           npm install
+        condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
         displayName: Install dependencies
-
+      
       - script: |
           npm run lint
           npm run build
-          npm run build:ladle
+        condition:  or(eq(variables.SERVER_BUILD_CACHE_HIT, 'false'), eq(variables.BROWSER_BUILD_CACHE_HIT, 'false'))
         displayName: "Lint and build"
 
-      - script: |
-          npm prune --production
-        displayName: Prune to production only dependencies
+  - job: createartifact
+    dependsOn: buildandcache
+    displayName: Create artifact
+    pool:
+      vmImage: ubuntu-latest
+    steps:
 
+      - task: Cache@2
+        displayName: "Cache server build"
+        inputs:
+          key: '"server-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: build
+          cacheHitVar: SERVER_BUILD_CACHE_HIT
+
+      - task: Cache@2
+        displayName: "Cache browser build"
+        inputs:
+          key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: public/build
+          cacheHitVar: BROWSER_BUILD_CACHE_HIT
+      
+      - script: |
+          ls
+          npm install @remix-run/serve
+          ls
+        displayName: Install @remix-run/serve
+      
       - task: ArchiveFiles@2
         displayName: Archive
         inputs:
