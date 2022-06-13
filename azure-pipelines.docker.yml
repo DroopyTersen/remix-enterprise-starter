@@ -24,11 +24,7 @@ stages:
         steps:
 
         - task: Docker@2
+          displayName: "login to container registry"
           inputs:
-            containerRegistry: '$(containerRegistry)'
-            repository: '$(imageRepository)'
-            command: 'buildAndPush'
-            Dockerfile: '**/Dockerfile'
-            tags: |
-              $(Build.BuildId)
-              latest
+            containerRegistry: $(containerRegistry)
+            command: 'login'
