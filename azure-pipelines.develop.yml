@@ -47,7 +47,4 @@ jobs:
           npm run build
         condition:  or(eq(variables.SERVER_BUILD_CACHE_HIT, 'false'), eq(variables.BROWSER_BUILD_CACHE_HIT, 'false'))
         displayName: "Lint and build"
-        
-      - script: |
-          rm -rf node_modules
-        displayName: "Lint and build"
+      
