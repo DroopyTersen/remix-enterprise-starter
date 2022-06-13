@@ -27,6 +27,7 @@ jobs:
         displayName: Install dependencies and cache
 
   - job: build
+    dependsOn: dependencies
     displayName: build
     pool:
       vmImage: ubuntu-latest
