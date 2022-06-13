@@ -69,12 +69,6 @@ jobs:
           path: public/build
           cacheHitVar: BROWSER_BUILD_CACHE_HIT
       
-      - script: |
-          ls
-          npm install @remix-run/serve
-          ls
-        displayName: Install @remix-run/serve
-      
       - task: ArchiveFiles@2
         displayName: Archive
         inputs:
