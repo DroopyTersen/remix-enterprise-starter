@@ -73,6 +73,8 @@ jobs:
           mv package.json package.json2
           npm init -y
           npm install @remix-run/serve
+          rm package.json
+          mv package.json2 package.json
         displayName: Install @remix-run/serve
       
       - task: ArchiveFiles@2
