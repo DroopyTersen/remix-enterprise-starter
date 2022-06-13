@@ -5,8 +5,8 @@ variables:
   npmCacheDir: "/home/vsts/.npm"
 
 jobs:
-  - job:
-    displayName: Build and Archive and Publish Artifacts
+  - job: dependencies
+    displayName: Cache npm dependencies
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -17,36 +17,32 @@ jobs:
 
       - task: Cache@2
         inputs:
-          key: '"npm" | "$(Agent.OS)" | package.json'
-          path: $(npmCacheDir)
-        displayName: Cache NPM packages
-
+          key: '"node_modules" | "$(Agent.OS)" | package.json'
+          path: node_modules
+          cacheHitVar: NODE_MODULES_CACHE_HIT
+      
       - script: |
           npm install
-        displayName: Install dependencies
+        condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
+        displayName: Install dependencies and cache
 
+  - job: build
+    displayName: build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - task: NodeTool@0
+        displayName: Install Node 16
+        inputs:
+          versionSpec: "16.x"
+      
+      - script: |
+          npm install
+        condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
+        displayName: Install dependencies
+      
       - script: |
           npm run lint
           npm run build
           npm run build:ladle
         displayName: "Lint and build"
-
-      - script: |
-          npm prune --production
-        displayName: Prune to production only dependencies
-
-      - task: ArchiveFiles@2
-        displayName: Archive
-        inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)"
-          includeRootFolder: false
-          archiveType: "zip"
-          archiveFile: "$(Build.ArtifactStagingDirectory)/web-$(Build.BuildNumber).zip"
-          replaceExistingArchive: true
-
-      - task: PublishBuildArtifacts@1
-        displayName: Publish Artifacts
-        inputs:
-          PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-          ArtifactName: "drop"
-          publishLocation: "Container"
