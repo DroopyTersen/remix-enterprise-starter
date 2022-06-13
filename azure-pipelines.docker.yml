@@ -9,16 +9,8 @@ resources:
   - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: "b65fed88-5f25-4ab6-9242-0a6e22864dab"
   imageRepository: "remixenterprisestarter"
   containerRegistry: "droopycontainers"
-  latestImage: $(containerRegistry).azurecr.io/$(imageRepository):latest
-  dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
-  tag: "$(Build.BuildId)"
-
-  # Agent VM image name
-  vmImageName: "ubuntu-latest"
 
 stages:
   - stage: Build
@@ -28,13 +20,13 @@ stages:
       - job: build_and_push
         displayName: Build and push custom docker image
         pool:
-          vmImage: $(vmImageName)
+          vmImage: ubuntu-latest
         steps:
 
         - task: Docker@2
           inputs:
-            containerRegistry: 'droopycontainers'
-            repository: 'remixenterprisestarter'
+            containerRegistry: '$(containerRegistry)'
+            repository: '$(imageRepository)'
             command: 'buildAndPush'
             Dockerfile: '**/Dockerfile'
             tags: |
