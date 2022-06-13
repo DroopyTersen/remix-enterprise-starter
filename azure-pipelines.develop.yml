@@ -1,9 +1,9 @@
 trigger:
-  - manual
+  - devops
 
 variables:
   npmCacheDir: "/home/vsts/.npm"
-  buildFiles: "app/**, env/**, styles/**, public/**, !public/build/**, !public/ui-toolkit/**, package.json"
+  buildFiles: "app/**, !app/global.css, !app/global.css.map, env/**, styles/**, public/**, !public/build/**, !public/ui-toolkit/**, package.json"
 
 jobs:
   - job: buildandcache
