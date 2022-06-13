@@ -3,30 +3,10 @@ trigger:
 
 variables:
   npmCacheDir: "/home/vsts/.npm"
+  buildFiles: "app/**, env/**, styles/**, public/**, package.json"
 
 jobs:
-  - job: dependencies
-    displayName: Cache npm dependencies
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - task: NodeTool@0
-        displayName: Install Node 16
-        inputs:
-          versionSpec: "16.x"
-
-      - task: Cache@2
-        inputs:
-          key: '"node_modules2" | "$(Agent.OS)" | package.json'
-          path: node_modules
-          cacheHitVar: NODE_MODULES_CACHE_HIT
-      
-      - script: |
-          npm install
-        condition: eq(variables.NODE_MODULES_CACHE_HIT, 'false')
-        displayName: Install dependencies and cache
-
-  - job: build
+  - job: buildandcache
     dependsOn: dependencies
     displayName: build
     pool:
@@ -38,10 +18,25 @@ jobs:
           versionSpec: "16.x"
       
       - task: Cache@2
+        displayName: Cache node_modules
         inputs:
-          key: '"node_modules2" | "$(Agent.OS)" | package.json'
+          key: '"dependencies" | "$(Agent.OS)" | package.json'
           path: node_modules
           cacheHitVar: NODE_MODULES_CACHE_HIT
+          
+      - task: Cache@2
+        displayName: "Cache server build"
+        inputs:
+          key: '"server-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: build
+          cacheHitVar: SERVER_BUILD_CACHE_HIT
+
+      - task: Cache@2
+        displayName: "Cache browser build"
+        inputs:
+          key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
+          path: public/build
+          cacheHitVar: BROWSER_BUILD_CACHE_HIT
 
       - script: |
           npm install
@@ -51,5 +46,9 @@ jobs:
       - script: |
           npm run lint
           npm run build
-          npm run build:ladle
+        condition:  or(eq(variables.SERVER_BUILD_CACHE_HIT, 'false'), eq(variables.BROWSER_BUILD_CACHE_HIT, 'false'))
+        displayName: "Lint and build"
+        
+      - script: |
+          rm -rf node_modules
         displayName: "Lint and build"
