@@ -68,10 +68,12 @@ jobs:
           key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
           path: public/build
           cacheHitVar: BROWSER_BUILD_CACHE_HIT
+
       - script: |
           mv package.json package.json2
-          npm install @remix-run/serve --no-save
-          mv package.json2 package.json
+          npm init -y
+          npm install @remix-run/serve
+        displayName: Install @remix-run/serve
       
       - task: ArchiveFiles@2
         displayName: Archive
