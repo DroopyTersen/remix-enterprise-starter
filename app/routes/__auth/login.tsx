@@ -28,13 +28,15 @@ export default function LoginRoute() {
   let form = useValidatedForm<LoginFormValues>();
   let [returnTo] = useQueryParam("returnTo");
   let transition = useTransition();
+  const isProcessing = !!transition.submission;
+
   return (
     <div className="p-5 bg-light h-100">
       <Surface className="w-100 mx-auto" style={{ maxWidth: "500px" }}>
         {/* <h1 className="text-primary text-center">Login</h1> */}
         <h1 className="text-primary fs-3 mb-4">Welcome to App Logo!</h1>
         <form.Form method="post">
-          <fieldset disabled={transition.state !== "idle"}>
+          <fieldset disabled={isProcessing}>
             <input type="hidden" name="returnTo" value={returnTo} />
             <InputField
               autoFocus
@@ -50,7 +52,7 @@ export default function LoginRoute() {
               {...form.register("password", loginValidators.password)}
             />
             <button className="btn btn-primary btn-lg w-100" type="submit">
-              {transition.state !== "idle" ? "On it..." : "Login"}
+              {isProcessing ? "On it..." : "Login"}
             </button>
           </fieldset>
         </form.Form>
