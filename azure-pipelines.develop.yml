@@ -70,9 +70,9 @@ jobs:
           cacheHitVar: BROWSER_BUILD_CACHE_HIT
       
       - script: |
-          mv package.json package.json2
+          ls
           npm install @remix-run/serve
-          mv package.json2 package.json
+          ls
         displayName: Install @remix-run/serve
       
       - task: ArchiveFiles@2
