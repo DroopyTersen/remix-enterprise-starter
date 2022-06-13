@@ -11,6 +11,7 @@ resources:
 variables:
   imageRepository: "remixenterprisestarter"
   containerRegistry: "droopycontainers"
+  latestImage: $(containerRegistry).azurecr.io/$(imageRepository):latest
 
 stages:
   - stage: Build
@@ -28,3 +29,8 @@ stages:
           inputs:
             containerRegistry: $(containerRegistry)
             command: 'login'
+        
+        - script: |
+            docker pull $(latestImage) || true
+            docker build . --cache-from $(latestImage) -t $(imageRepository):$(Build.BuildNumber)
+          displayName: "Docker build"
