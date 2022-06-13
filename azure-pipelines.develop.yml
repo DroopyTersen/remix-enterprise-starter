@@ -3,11 +3,11 @@ trigger:
 
 variables:
   npmCacheDir: "/home/vsts/.npm"
-  buildFiles: "app/**, env/**, styles/**, public/**, package.json"
+  buildFiles: "app/**, env/**, styles/**, public/**, !public/build/**, !public/ui-toolkit/**, package.json"
 
 jobs:
   - job: buildandcache
-    displayName: build
+    displayName: Build and Cache
     pool:
       vmImage: ubuntu-latest
     steps:
