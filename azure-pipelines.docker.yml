@@ -32,5 +32,15 @@ stages:
         
         - script: |
             docker pull $(latestImage) || true
-            docker build . --cache-from $(latestImage) -t $(imageRepository):$(Build.BuildNumber)
+            docker build . --cache-from $(latestImage) -t $(imageRepository):$(Build.BuildId) -t $(imageRepository):latest
           displayName: "Docker build"
+
+        - task: Docker@2
+          displayName: "Push docker images"
+          inputs:
+            containerRegistry: $(containerRegistry)
+            repository: '$(imageRepository)'
+            command: 'push'
+            tags: |
+              $(Build.BuildId)
+              latest
