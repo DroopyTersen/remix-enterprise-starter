@@ -17,7 +17,7 @@
     "ladle": "ladle serve",
     "storybook": "ladle serve",
     "prebuild": "npm run lint",
-    "start": "remix-serve build",
+    "start": "npm_config_yes=true npx --package=@remix-run/serve -- remix-serve build",
     "test": "vitest --reporter verbose --environment jsdom"
   },
   "dependencies": {
