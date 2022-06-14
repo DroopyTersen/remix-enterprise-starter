@@ -54,6 +54,8 @@ jobs:
           Contents: |
             **/**
             !**/node_modules/**
+            !Dockerfile
+            !**/.git/**
           TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
       - task: ArchiveFiles@2
         displayName: Archive
