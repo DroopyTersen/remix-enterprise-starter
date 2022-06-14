@@ -47,58 +47,27 @@ jobs:
           npm run build
         condition:  or(eq(variables.SERVER_BUILD_CACHE_HIT, 'false'), eq(variables.BROWSER_BUILD_CACHE_HIT, 'false'))
         displayName: "Lint and build"
-
-  - job: createartifact
-    dependsOn: buildandcache
-    displayName: Create artifact
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-
-      - task: Cache@2
-        displayName: "Cache server build"
+    
+      - task: CopyFiles@2
         inputs:
-          key: '"server-build" | "$(Agent.OS)" | $(buildFiles)'
-          path: build
-          cacheHitVar: SERVER_BUILD_CACHE_HIT
-
-      - task: Cache@2
-        displayName: "Cache browser build"
-        inputs:
-          key: '"browser-build" | "$(Agent.OS)" | $(buildFiles)'
-          path: public/build
-          cacheHitVar: BROWSER_BUILD_CACHE_HIT
-      - task: Cache@2
-        displayName: Cache node_modules
-        inputs:
-          key: '"dependencies" | "$(Agent.OS)" | package.json'
-          path: node_modules
-          cacheHitVar: NODE_MODULES_CACHE_HIT
-
-      # - script: |
-      #     mv package.json package.json2
-      #     npm init -y
-      #     npm install @remix-run/serve
-      #     rm package.json
-      #     mv package.json2 package.json
-      #   displayName: Install @remix-run/serve
-      
-      # - script: |
-      #     npm prune --production
-      #   displayName: Prune dependencies
-      
+          SourceFolder: '$(Build.SourcesDirectory)'
+          Contents: |
+            **/**
+            !**/node_modules/**
+          TargetFolder: '$(Build.ArtifactsStagingDirectory)/src'
       - task: ArchiveFiles@2
         displayName: Archive
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)"
+          rootFolderOrFile: "$(Build.ArtifactStagingDirectory)/src"
           includeRootFolder: false
           archiveType: "zip"
-          archiveFile: "$(Build.ArtifactStagingDirectory)/web-$(Build.BuildNumber).zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/archived/web-$(Build.BuildNumber).zip"
           replaceExistingArchive: true
 
       - task: PublishBuildArtifacts@1
         displayName: Publish Artifacts
         inputs:
-          PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+          PathtoPublish: "$(Build.ArtifactStagingDirectory)/archived"
           ArtifactName: "drop"
           publishLocation: "Container"
+           
