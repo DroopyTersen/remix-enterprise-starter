@@ -13,10 +13,9 @@
     "dev:css": "npm run build:css -- --watch",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx}'",
     "dev:remix": "cross-env PUBLIC_ENV=local remix dev",
-    "lint": "npx eslint '*/**/*.{js,ts,jsx,tsx}' --fix",
+    "lint": "npx eslint \"*/**/*.{js,ts,jsx,tsx}\" --fix",
     "ladle": "ladle serve",
     "storybook": "ladle serve",
-    "prebuild": "npm run lint",
     "start": "remix-serve build",
     "test": "vitest --reporter verbose --environment jsdom"
   },
