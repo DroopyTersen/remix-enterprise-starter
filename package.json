@@ -11,7 +11,7 @@
     "predev": "npm run build:css",
     "dev": "run-p dev:*",
     "dev:css": "npm run build:css -- --watch",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "dev:remix": "cross-env PUBLIC_ENV=local remix dev",
     "lint": "npx eslint \"*/**/*.{js,ts,jsx,tsx}\" --fix",
     "ladle": "ladle serve",
