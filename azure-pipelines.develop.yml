@@ -54,7 +54,7 @@ jobs:
           Contents: |
             **/**
             !**/node_modules/**
-          TargetFolder: '$(Build.ArtifactsStagingDirectory)/src'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)/src'
       - task: ArchiveFiles@2
         displayName: Archive
         inputs:
