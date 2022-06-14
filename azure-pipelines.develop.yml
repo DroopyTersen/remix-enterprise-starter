@@ -1,13 +1,13 @@
 trigger:
-  - devops
+  - develop
 
 variables:
   npmCacheDir: "/home/vsts/.npm"
   buildFiles: "app/**, !app/global.css, !app/global.css.map, env/**, styles/**, public/**, !public/build/**, !public/ui-toolkit/**, package.json"
 
 jobs:
-  - job: buildandcache
-    displayName: Build and Cache
+  - job: build
+    displayName: Install dependencies and build
     pool:
       vmImage: ubuntu-latest
     steps:
