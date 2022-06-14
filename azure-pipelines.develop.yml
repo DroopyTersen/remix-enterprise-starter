@@ -82,9 +82,10 @@ jobs:
       #     rm package.json
       #     mv package.json2 package.json
       #   displayName: Install @remix-run/serve
-      - script: |
-          npm prune --production
-        displayName: Prune dependencies
+      
+      # - script: |
+      #     npm prune --production
+      #   displayName: Prune dependencies
       
       - task: ArchiveFiles@2
         displayName: Archive
