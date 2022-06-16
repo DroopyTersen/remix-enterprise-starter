@@ -2,7 +2,7 @@ import type { FieldError, FieldErrors, FieldValues, RegisterOptions } from "reac
 
 export type ValidationRules = Pick<
   RegisterOptions,
-  "required" | "min" | "minLength" | "max" | "maxLength" | "validate"
+  "required" | "min" | "minLength" | "max" | "maxLength" | "validate" | "pattern"
 >;
 
 export type FormValidators<TFieldValues = FieldValues> = Partial<{
