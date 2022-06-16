@@ -7,6 +7,7 @@ export const DEFAULT_ERROR_MESSAGES = {
   maxLength: (ruleValue) => `Please enter fewer than ${ruleValue + 1} characters`,
   max: (ruleValue) => `Please enter a value less than ${ruleValue}`,
   min: (ruleValue) => `Please enter a value greater than ${ruleValue}`,
+  pattern: (ruleValue) => `Please enter a valid pattern ${ruleValue}`,
   validate: (inputValue) => `${inputValue} is invalid`,
 };
 export const coreValidators: CoreValidators = {
@@ -106,7 +107,7 @@ export const coreValidators: CoreValidators = {
       : null;
   },
   // { min: 1 }
-  // { max: { message: "Amount is too low", value: 1 }}
+  // { min: { message: "Amount is too low", value: 1 }}
   min: (inputVal, rule: ValidationRules["min"]) => {
     if (!inputVal) return null;
 
@@ -129,6 +130,26 @@ export const coreValidators: CoreValidators = {
     return parseInt(inputVal, 10) < ruleValue
       ? {
           type: "min",
+          message,
+        }
+      : null;
+  },
+  // { pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*) }/
+  // { pattern: { message: "Invalid URL", value: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*) }/ }}
+  pattern: (inputVal, rule: ValidationRules["pattern"]) => {
+    if (!inputVal) return null;
+
+    let ruleValue: RegExp =
+      rule instanceof RegExp ? rule : typeof rule === "object" ? rule.value : null;
+
+    if (ruleValue === null) return null;
+    let message = rule instanceof RegExp ? DEFAULT_ERROR_MESSAGES.pattern(ruleValue) : rule.message;
+
+    if (typeof inputVal !== "string") return null;
+
+    return !ruleValue.test(inputVal)
+      ? {
+          type: "pattern",
           message,
         }
       : null;

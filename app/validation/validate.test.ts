@@ -228,6 +228,47 @@ describe("validate", () => {
     });
   });
 
+  describe("pattern", () => {
+    let formData = new FormData();
+    let validators: FormValidators<BookmarkFormValues>;
+    test("{ pattern: /ABC/ } should error if not ABC", async () => {
+      formData.set("title", "XYZ");
+      validators = {
+        title: { pattern: /ABC/ },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.title?.message).toBe(DEFAULT_ERROR_MESSAGES.pattern("/ABC/"));
+    });
+    test("{ pattern: /ABC/ } should not error if ABC", async () => {
+      formData.set("title", "ABC");
+      validators = {
+        title: { pattern: /ABC/ },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+    test("{ pattern: { message, value: /ABC/ } } should error with custom message if XYZ", async () => {
+      formData.set("title", "XYZ");
+      let message = "Title is not valid";
+      validators = {
+        title: { pattern: { message, value: /ABC/ } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.title?.message).toBe(message);
+    });
+    test("{ pattern: { message, value: /ABC/ } } should not error if ABC", async () => {
+      formData.set("title", "ABC");
+      let message = "Title is not valid";
+      validators = {
+        title: { pattern: { message, value: /ABC/ } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+  });
+
   describe("validate", () => {
     let validators: FormValidators<BookmarkFormValues>;
     let formData = new FormData();
