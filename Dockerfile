@@ -9,14 +9,16 @@ ENV NODE_ENV production
 FROM base as deps
 WORKDIR /myapp
 ADD package.json ./
+# !!! Uncomment this package-lock line for your project
+# ADD package-lock.json ./
 RUN npm install --production=false
 
 # Setup production node_modules
 FROM base as production-deps
 WORKDIR /myapp
-# COPY --from=deps /myapp/node_modules /myapp/node_modules
-# ADD package.json ./
-RUN npm install @remix-run/serve 
+COPY --from=deps /myapp/node_modules /myapp/node_modules
+ADD package.json ./
+RUN npm prune --production
 
 # Build the app
 FROM base as build
