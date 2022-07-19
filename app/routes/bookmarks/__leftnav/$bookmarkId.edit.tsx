@@ -45,7 +45,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   const { formData, access_token } = await requireAuthenticatedAction(request);
   const bookmarkService = createBookmarkService(access_token);
   const errors = await validate(formData, bookmarkValidators);
-  if (errors) return { errors };
+  if (errors) return { errors, formData: Object.fromEntries(formData) };
 
   await bookmarkService.save(Object.fromEntries(formData) as any);
 

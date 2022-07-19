@@ -64,7 +64,7 @@ export default function LoginRoute() {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const errors = await validate(formData, loginValidators);
-  if (errors) return { errors };
+  if (errors) return { errors, formData: Object.fromEntries(formData) };
 
   let returnTo = formData.get("returnTo") || "/";
 

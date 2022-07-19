@@ -1,6 +1,11 @@
-import type { FieldError, FieldValues } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
 import { coreValidators } from "./coreValidators";
-import type { CoreValidator, FormValidators, ValidationRules } from "./validation.types";
+import type {
+  CoreValidator,
+  FormValidators,
+  ValidationErrors,
+  ValidationRules,
+} from "./validation.types";
 
 /**
  * Validates a form and returns an error object with
@@ -9,19 +14,17 @@ import type { CoreValidator, FormValidators, ValidationRules } from "./validatio
 export const validate = async <TFieldValues = FieldValues>(
   formData: FormData,
   validators: FormValidators<TFieldValues>
-) => {
+): Promise<ValidationErrors<TFieldValues>> => {
   let fieldErrors = await Promise.all(
     (Object.keys(validators) as Array<keyof typeof validators>).map(async (field) => {
       return validateField(formData, field, validators[field]);
     })
   );
 
-  let errors: {
-    [key in keyof FormValidators<TFieldValues>]: FieldError;
-  } = fieldErrors.reduce((acc, fieldError) => {
+  let errors: ValidationErrors<TFieldValues> = fieldErrors.reduce((acc, fieldError) => {
     acc[fieldError.field as keyof FormValidators<TFieldValues>] = fieldError.error;
     return acc;
-  }, {} as { [key in keyof typeof validators]: FieldError });
+  }, {} as ValidationErrors<TFieldValues>);
 
   let hasErrors = fieldErrors.some((fieldError) => fieldError.error);
   return hasErrors ? errors : null;
