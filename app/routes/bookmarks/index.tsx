@@ -1,14 +1,13 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import type { Bookmark } from "~/features/bookmarks/bookmark.types";
+import { FILTER_KEYS } from "~/features/bookmarks/bookmark.utils";
 import { BookmarkCard } from "~/features/bookmarks/BookmarkCard";
 import Card from "~/ui-toolkit/components/Card/Card";
 import { Input } from "~/ui-toolkit/components/forms";
 import { Grid } from "~/ui-toolkit/components/Grid/Grid";
 import { useFilteredItemsByText } from "~/ui-toolkit/hooks/useFilteredItems";
 import { useRouteData } from "~/ui-toolkit/hooks/useRouteData";
-
-const FILTER_KEYS = ["title", "url", "description"];
 
 export const meta: MetaFunction = () => ({
   title: "Remix Enterprise Starter - Bookmarks",
@@ -17,9 +16,11 @@ export const meta: MetaFunction = () => ({
 
 export default function BookmarksIndexRoute() {
   const bookmarks = (useRouteData((r) => r?.data?.bookmarks) || []) as Bookmark[];
+  let initialFiterText = useRouteData((r) => r?.data?.filter) as string;
   const { filterText, setFilterText, filteredItems } = useFilteredItemsByText(
     bookmarks,
-    FILTER_KEYS
+    FILTER_KEYS,
+    initialFiterText
   );
 
   if (!bookmarks.length) {
@@ -43,13 +44,17 @@ export default function BookmarksIndexRoute() {
           </Link>
         </div>
         <div style={{ flexGrow: "1", maxWidth: "500px" }}>
-          <Input
-            placeholder="Search bookmarks..."
-            type="search"
-            className="rounded-pill"
-            value={filterText}
-            onChange={(e) => setFilterText(e.currentTarget.value)}
-          />
+          <form onSubmit={(e) => e.preventDefault()} method="GET">
+            <Input
+              autoFocus
+              placeholder="Search bookmarks..."
+              type="search"
+              name="filter"
+              className="rounded-pill"
+              value={filterText}
+              onChange={(e) => setFilterText(e.currentTarget.value)}
+            />
+          </form>
         </div>
       </div>
       <Grid width="400px" gap="2rem">

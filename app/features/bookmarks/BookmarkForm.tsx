@@ -27,7 +27,6 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
             required
             label="Title"
             {...form.register("title", { ...bookmarkValidators.title })}
-            defaultValue={initial?.title || ""}
           />
           <TextAreaField
             error={form.errors.url}
@@ -35,13 +34,12 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
             name="url"
             {...form.register("url", { ...bookmarkValidators.url })}
             required
-            defaultValue={initial?.url || ""}
           />
           <TextAreaField
             label="Description"
             name="description"
             rows={4}
-            defaultValue={initial?.description || ""}
+            {...form.register("description", { ...bookmarkValidators.description })}
           />
           <TextAreaField
             rows={2}
@@ -50,7 +48,7 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
             }}
             label="Image"
             name="image"
-            defaultValue={initial?.image || ""}
+            {...form.register("image", { ...bookmarkValidators.image })}
           />
           <div className="d-flex justify-content-end gap-4">
             <button

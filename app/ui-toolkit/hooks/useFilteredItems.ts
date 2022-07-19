@@ -8,18 +8,7 @@ export const useFilteredItemsByText = (allItems, properties, initialFilterText =
   const debouncedFilterText = useDebouncedValue(filterText, 250);
 
   const filteredItems = useMemo(() => {
-    if (allItems && allItems.length) {
-      if (!properties.length || !debouncedFilterText) {
-        return allItems;
-      }
-      const items = matchSorter(allItems, debouncedFilterText, {
-        keys: properties,
-        threshold: matchSorter.rankings.CONTAINS,
-      });
-      return items;
-    }
-
-    return [];
+    return filterItems(allItems, debouncedFilterText, properties);
   }, [allItems, debouncedFilterText, properties]);
 
   return {
@@ -27,4 +16,19 @@ export const useFilteredItemsByText = (allItems, properties, initialFilterText =
     setFilterText,
     filterText,
   };
+};
+
+export const filterItems = (allItems: any[], filterText: string, filterKeys: string[]) => {
+  if (allItems && allItems.length) {
+    if (!filterKeys.length || !filterText) {
+      return allItems;
+    }
+    const items = matchSorter(allItems, filterText, {
+      keys: filterKeys,
+      threshold: matchSorter.rankings.CONTAINS,
+    });
+    return items;
+  }
+
+  return [];
 };

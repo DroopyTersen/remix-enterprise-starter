@@ -26,7 +26,7 @@ export const action: ActionFunction = async ({ request }) => {
   let bookmarkService = createBookmarkService(access_token);
 
   let errors = await validate(formData, bookmarkValidators);
-  if (errors) return { errors };
+  if (errors) return { errors, formData: Object.fromEntries(formData) };
 
   const bookmark = await bookmarkService.save(Object.fromEntries(formData) as any);
   return redirect(`/bookmarks/${bookmark.id}`);

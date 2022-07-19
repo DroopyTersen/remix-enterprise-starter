@@ -22,3 +22,7 @@ export type CoreValidator = (
 export type CoreValidators = {
   [key in keyof ValidationRules]: CoreValidator;
 };
+
+export type ValidationErrors<TFieldValues = FieldValues> = {
+  [key in keyof FormValidators<TFieldValues>]: FieldError;
+};

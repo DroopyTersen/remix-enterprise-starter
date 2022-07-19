@@ -1,6 +1,6 @@
 import type { ActionFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { useLoaderData, useNavigate, useTransition } from "@remix-run/react";
+import { Link, useLoaderData, useTransition } from "@remix-run/react";
 import {
   requireAuthenticatedAction,
   requireAuthenticatedLoader,
@@ -29,7 +29,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export default function BookmarkDetailsRoute() {
   const { bookmark } = useLoaderData() as LoaderData;
-  const navigate = useNavigate();
   const transition = useTransition();
   const isProcessing = !!transition.submission;
 
@@ -51,15 +50,13 @@ export default function BookmarkDetailsRoute() {
         >
           {isProcessing ? "Deleting..." : "Delete"}
         </FormButton>
-        <button
-          type="button"
+        <Link
           className="btn btn-secondary"
           style={{ width: "100px" }}
-          disabled={isProcessing}
-          onClick={() => navigate("edit")}
+          to={`/bookmarks/${bookmark.id}/edit`}
         >
           Edit
-        </button>
+        </Link>
       </div>
     </Card>
   );
