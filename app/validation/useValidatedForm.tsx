@@ -33,15 +33,16 @@ export function useValidatedForm<TFormValues = any>(
   initial?: TFormValues
 ): UseValidateFormReturn<TFormValues> {
   let submit = useSubmit();
+  // Pull any errors or previously submitted data from ActionData
   let actionData = useActionData();
-  console.log("🚀 | actionData", actionData);
   let erroredFormData = actionData?.formData as TFormValues;
-  console.log("🚀 | erroredFormData", erroredFormData);
   let serverErrors = (actionData?.errors || {}) as ValidationErrors<TFormValues>;
+
   let defaultValues = {
     ...initial,
     ...(erroredFormData as any),
   };
+
   let form = useForm<TFormValues>({
     defaultValues,
   });
@@ -53,6 +54,7 @@ export function useValidatedForm<TFormValues = any>(
     ...serverErrors,
   };
 
+  // Add `defaultValue` to the list of props the form.register returns
   const register = (field, ...rest) => {
     let props: any = form.register(field, ...rest);
     if (defaultValues[field]) {
