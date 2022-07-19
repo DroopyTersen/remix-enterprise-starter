@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-  - devops2
+  - main
 
 resources:
   - repo: self
@@ -16,19 +16,17 @@ stages:
   - stage: Build
     displayName: Build and push
     jobs:
-      
       - job: build_and_push
         displayName: Build and push custom docker image
         pool:
           vmImage: ubuntu-latest
         steps:
-
-        - task: Docker@2
-          inputs:
-            containerRegistry: '$(containerRegistry)'
-            repository: '$(imageRepository)'
-            command: 'buildAndPush'
-            Dockerfile: '**/Dockerfile'
-            tags: |
-              $(Build.BuildId)
-              latest
+          - task: Docker@2
+            inputs:
+              containerRegistry: "$(containerRegistry)"
+              repository: "$(imageRepository)"
+              command: "buildAndPush"
+              Dockerfile: "**/Dockerfile"
+              tags: |
+                $(Build.BuildId)
+                latest
