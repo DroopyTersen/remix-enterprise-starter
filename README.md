@@ -20,28 +20,26 @@ When you create a Remix app with this template you will get:
   - [x] Sass build process
   - [x] Bootstrap with ability to provide custom theme
 - [x] Setup for environment variables / config
-- [ ] UI Toolkit
+- [x] UI Toolkit
   - Themable React components (Buttons, form inputs, modals etc...)
   - Helpful React hooks (useDebounce, usePersistedState, useUpdateEffect etc...)
-- [ ] Example CRUD screens for a single entity
+- [x] Example CRUD screens for a single entity
   - [x] Shows the patterns for using querying data with a `loader`
   - [x] Shows the patterns for writing data with an `action`
   - [x] Pattern for reusing validation on the client and server
-  - [ ] Shows the patterns for routing/navigation
+  - [x] Shows the patterns for routing/navigation
     - [x] Relative links
-    - [ ] Form Cancel buttons and `returnTo` pattern
-  - [ ] Add UI progessive enhancement to indicate form submissions
-    - [ ] Show a "Deleting..." text on delete
-    - [ ] Disable inputs while submitting
-- [ ] Document title & meta tags example
-- [ ] Storybook setup
-  - [ ] Look into Ladle
-  - Work on your components in isolation with Storybook
+    - [x] Form Cancel buttons and `returnTo` pattern
+  - [x] Add UI progessive enhancement to indicate form submissions
+    - [x] Show a "Deleting..." text on delete
+    - [x] Disable inputs while submitting
+- [x] Document title & meta tags example
+- [x] Ladle setup
+  - Work on your components in isolation with Ladle
   - Document the app's reusable components to encourage more reuse
-- [ ] Auth utilities
+- [x] Auth utilities
   - Theoretically you just plug in your own auth provider
-- [ ] App Insights Logging
-- [ ] Documentation templates
+- [x] Documentation templates
   - [x] Project level README
   - [x] App Settings, Secrets and Configurations
   - [x] Hosted envrionments and CI/CD

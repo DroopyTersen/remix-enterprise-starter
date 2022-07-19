@@ -6,6 +6,7 @@ import type { FormValidators } from "./validation.types";
 interface BookmarkFormValues {
   title: string;
   url: string;
+  priority: number;
 }
 describe("validate", () => {
   describe("required", () => {
@@ -139,6 +140,129 @@ describe("validate", () => {
       let message = "Title is too long";
       validators = {
         title: { maxLength: { message, value: 10 } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+  });
+
+  describe("max", () => {
+    let formData = new FormData();
+    let validators: FormValidators<BookmarkFormValues>;
+    test("{ max: 10 } should error if greater than 10", async () => {
+      formData.set("priority", "11");
+      validators = {
+        priority: { max: 10 },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.priority?.message).toBe(DEFAULT_ERROR_MESSAGES.max(10));
+    });
+    test("{ max: 10 } should not error if 10", async () => {
+      formData.set("priority", "10");
+      validators = {
+        priority: { max: 10 },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+    test("{ max: { message, value: 10 } } should error with custom message if 11 =", async () => {
+      formData.set("priority", "11");
+      let message = "Priority is too high";
+      validators = {
+        priority: { max: { message, value: 10 } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.priority?.message).toBe(message);
+    });
+    test("{ max: { message, value: 10 } } should not error if 10", async () => {
+      formData.set("priority", "10");
+      let message = "Priority is too high";
+      validators = {
+        priority: { maxLength: { message, value: 10 } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+  });
+
+  describe("min", () => {
+    let formData = new FormData();
+    let validators: FormValidators<BookmarkFormValues>;
+    test("{ min: 10 } should error if less than 10", async () => {
+      formData.set("priority", "1");
+      validators = {
+        priority: { min: 10 },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.priority?.message).toBe(DEFAULT_ERROR_MESSAGES.min(10));
+    });
+    test("{ min: 10 } should not error if 10", async () => {
+      formData.set("priority", "10");
+      validators = {
+        priority: { min: 10 },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+    test("{ min: { message, value: 10 } } should error with custom message if 1 =", async () => {
+      formData.set("priority", "1");
+      let message = "Priority is too low";
+      validators = {
+        priority: { min: { message, value: 10 } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.priority?.message).toBe(message);
+    });
+    test("{ min: { message, value: 10 } } should not error if 10", async () => {
+      formData.set("priority", "10");
+      let message = "Priority is too low";
+      validators = {
+        priority: { min: { message, value: 10 } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+  });
+
+  describe("pattern", () => {
+    let formData = new FormData();
+    let validators: FormValidators<BookmarkFormValues>;
+    test("{ pattern: /ABC/ } should error if not ABC", async () => {
+      formData.set("title", "XYZ");
+      validators = {
+        title: { pattern: /ABC/ },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.title?.message).toBe(DEFAULT_ERROR_MESSAGES.pattern("/ABC/"));
+    });
+    test("{ pattern: /ABC/ } should not error if ABC", async () => {
+      formData.set("title", "ABC");
+      validators = {
+        title: { pattern: /ABC/ },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors).toBeNull();
+    });
+    test("{ pattern: { message, value: /ABC/ } } should error with custom message if XYZ", async () => {
+      formData.set("title", "XYZ");
+      let message = "Title is not valid";
+      validators = {
+        title: { pattern: { message, value: /ABC/ } },
+      };
+      let errors = await validate(formData, validators);
+      expect(errors.url).toBeUndefined();
+      expect(errors?.title?.message).toBe(message);
+    });
+    test("{ pattern: { message, value: /ABC/ } } should not error if ABC", async () => {
+      formData.set("title", "ABC");
+      let message = "Title is not valid";
+      validators = {
+        title: { pattern: { message, value: /ABC/ } },
       };
       let errors = await validate(formData, validators);
       expect(errors).toBeNull();

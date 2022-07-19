@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { useNavigate, useTransition } from "@remix-run/react";
 import { FormButton } from "~/ui-toolkit/components/Button/FormButton";
 import Card from "~/ui-toolkit/components/Card/Card";
 import type { Bookmark } from "./bookmark.types";
@@ -8,6 +8,10 @@ interface BookmarkCardProps {
 }
 
 export function BookmarkCard({ bookmark }: BookmarkCardProps) {
+  const navigate = useNavigate();
+  const transition = useTransition();
+  const isProcessing = !!transition.submission;
+
   return (
     <Card title={bookmark.title} url={bookmark.url} image={bookmark?.image}>
       <p>{bookmark.description}</p>
@@ -18,16 +22,19 @@ export function BookmarkCard({ bookmark }: BookmarkCardProps) {
           value="delete"
           color="danger"
           style={{ width: "100px" }}
+          disabled={isProcessing}
         >
-          Delete
+          {isProcessing ? "Deleting..." : "Delete"}
         </FormButton>
-        <Link
-          to={`/bookmarks/${bookmark.id}/edit?`}
+        <button
+          type="button"
           className="btn btn-secondary"
           style={{ width: "100px" }}
+          disabled={isProcessing}
+          onClick={() => navigate(`/bookmarks/${bookmark.id}/edit`)}
         >
           Edit
-        </Link>
+        </button>
       </div>
     </Card>
   );

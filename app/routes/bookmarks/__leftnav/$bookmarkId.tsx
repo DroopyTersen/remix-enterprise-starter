@@ -1,6 +1,6 @@
 import type { ActionFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigate, useTransition } from "@remix-run/react";
 import {
   requireAuthenticatedAction,
   requireAuthenticatedLoader,
@@ -29,6 +29,9 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export default function BookmarkDetailsRoute() {
   const { bookmark } = useLoaderData() as LoaderData;
+  const navigate = useNavigate();
+  const transition = useTransition();
+  const isProcessing = !!transition.submission;
 
   return (
     <Card
@@ -39,12 +42,24 @@ export default function BookmarkDetailsRoute() {
     >
       <p>{bookmark.description}</p>
       <div className="d-flex justify-content-center gap-2">
-        <FormButton name="intent" value="delete" color="danger" style={{ width: "100px" }}>
-          Delete
+        <FormButton
+          name="intent"
+          value="delete"
+          color="danger"
+          style={{ width: "100px" }}
+          disabled={isProcessing}
+        >
+          {isProcessing ? "Deleting..." : "Delete"}
         </FormButton>
-        <Link to="edit" className="btn btn-secondary" style={{ width: "100px" }}>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          style={{ width: "100px" }}
+          disabled={isProcessing}
+          onClick={() => navigate("edit")}
+        >
           Edit
-        </Link>
+        </button>
       </div>
     </Card>
   );

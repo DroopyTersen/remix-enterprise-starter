@@ -4,8 +4,10 @@ import type { CoreValidators, ValidationRules } from "./validation.types";
 export const DEFAULT_ERROR_MESSAGES = {
   required: () => "This field is required",
   minLength: (ruleValue) => `Please enter at least ${ruleValue} characters`,
-  maxLength: (ruleValue) =>
-    `Please enter fewer than ${ruleValue + 1} characters`,
+  maxLength: (ruleValue) => `Please enter fewer than ${ruleValue + 1} characters`,
+  max: (ruleValue) => `Please enter a value less than ${ruleValue}`,
+  min: (ruleValue) => `Please enter a value greater than ${ruleValue}`,
+  pattern: (ruleValue) => `Please enter a valid pattern ${ruleValue}`,
   validate: (inputValue) => `${inputValue} is invalid`,
 };
 export const coreValidators: CoreValidators = {
@@ -14,11 +16,7 @@ export const coreValidators: CoreValidators = {
   // { require: { message: "Url is required", value: true}}
   required: (inputVal, rule: ValidationRules["required"]) => {
     let ruleValue: boolean =
-      typeof rule === "boolean"
-        ? rule
-        : typeof rule === "string"
-        ? true
-        : rule.value;
+      typeof rule === "boolean" ? rule : typeof rule === "string" ? true : rule.value;
 
     // It's not required
     if (!ruleValue) return null;
@@ -44,17 +42,11 @@ export const coreValidators: CoreValidators = {
     if (!inputVal) return null;
 
     let ruleValue: number =
-      typeof rule === "number"
-        ? rule
-        : typeof rule === "object"
-        ? rule.value
-        : null;
+      typeof rule === "number" ? rule : typeof rule === "object" ? rule.value : null;
 
     if (ruleValue === null) return null;
     let message =
-      typeof rule === "object"
-        ? rule.message
-        : DEFAULT_ERROR_MESSAGES.minLength(ruleValue);
+      typeof rule === "object" ? rule.message : DEFAULT_ERROR_MESSAGES.minLength(ruleValue);
 
     if (typeof inputVal !== "string") return null;
 
@@ -71,23 +63,93 @@ export const coreValidators: CoreValidators = {
     if (!inputVal) return null;
 
     let ruleValue: number =
-      typeof rule === "number"
-        ? rule
-        : typeof rule === "object"
-        ? rule.value
-        : null;
+      typeof rule === "number" ? rule : typeof rule === "object" ? rule.value : null;
 
     if (ruleValue === null) return null;
     let message =
-      typeof rule === "object"
-        ? rule.message
-        : DEFAULT_ERROR_MESSAGES.maxLength(ruleValue);
+      typeof rule === "object" ? rule.message : DEFAULT_ERROR_MESSAGES.maxLength(ruleValue);
 
     if (typeof inputVal !== "string") return null;
 
     return inputVal.length > ruleValue
       ? {
           type: "minLength",
+          message,
+        }
+      : null;
+  },
+  // { max: 1000 }
+  // { max: { message: "Amount is too high", value: 1000 }}
+  max: (inputVal, rule: ValidationRules["max"]) => {
+    if (!inputVal) return null;
+
+    let ruleValue: number =
+      typeof rule === "number"
+        ? rule
+        : rule === "string"
+        ? parseInt(rule, 10)
+        : typeof rule === "object" && typeof rule.value === "number"
+        ? rule.value
+        : typeof rule === "object" && typeof rule.value === "string"
+        ? parseInt(rule.value, 10)
+        : null;
+
+    if (ruleValue === null) return null;
+    let message = typeof rule === "object" ? rule.message : DEFAULT_ERROR_MESSAGES.max(ruleValue);
+
+    if (typeof inputVal !== "string") return null;
+
+    return parseInt(inputVal, 10) > ruleValue
+      ? {
+          type: "max",
+          message,
+        }
+      : null;
+  },
+  // { min: 1 }
+  // { min: { message: "Amount is too low", value: 1 }}
+  min: (inputVal, rule: ValidationRules["min"]) => {
+    if (!inputVal) return null;
+
+    let ruleValue: number =
+      typeof rule === "number"
+        ? rule
+        : rule === "string"
+        ? parseInt(rule, 10)
+        : typeof rule === "object" && typeof rule.value === "number"
+        ? rule.value
+        : typeof rule === "object" && typeof rule.value === "string"
+        ? parseInt(rule.value, 10)
+        : null;
+
+    if (ruleValue === null) return null;
+    let message = typeof rule === "object" ? rule.message : DEFAULT_ERROR_MESSAGES.min(ruleValue);
+
+    if (typeof inputVal !== "string") return null;
+
+    return parseInt(inputVal, 10) < ruleValue
+      ? {
+          type: "min",
+          message,
+        }
+      : null;
+  },
+  // { pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*) }/
+  // { pattern: { message: "Invalid URL", value: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*) }/ }}
+  pattern: (inputVal, rule: ValidationRules["pattern"]) => {
+    if (!inputVal) return null;
+
+    let ruleValue: RegExp =
+      rule instanceof RegExp ? rule : typeof rule === "object" ? rule.value : null;
+
+    if (ruleValue === null) return null;
+    let message = rule instanceof RegExp ? DEFAULT_ERROR_MESSAGES.pattern(ruleValue) : rule.message;
+
+    if (typeof inputVal !== "string") return null;
+
+    return !ruleValue.test(inputVal)
+      ? {
+          type: "pattern",
           message,
         }
       : null;
@@ -114,25 +176,17 @@ export const coreValidators: CoreValidators = {
   },
 };
 
-const validateCustomFn = async (
-  inputVal,
-  rule: Validate<any>,
-  type = "validate"
-) => {
+const validateCustomFn = async (inputVal, rule: Validate<any>, type = "validate") => {
   let validateResult = await rule(inputVal);
   // If it's a boolean, true means valid, false means invalid
   if (typeof validateResult === "boolean") {
-    return validateResult
-      ? null
-      : { type, message: DEFAULT_ERROR_MESSAGES.validate(inputVal) };
+    return validateResult ? null : { type, message: DEFAULT_ERROR_MESSAGES.validate(inputVal) };
   }
   // Otherwise if it's falsy, no error
   if (!validateResult) return null;
 
   // It' could be multiple errors so join them together
-  let message = Array.isArray(validateResult)
-    ? validateResult.join(", ")
-    : validateResult;
+  let message = Array.isArray(validateResult) ? validateResult.join(", ") : validateResult;
   return {
     type,
     message,

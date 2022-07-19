@@ -11,13 +11,13 @@
     "predev": "npm run build:css",
     "dev": "run-p dev:*",
     "dev:css": "npm run build:css -- --watch",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "dev:remix": "cross-env PUBLIC_ENV=local remix dev",
-    "lint": "npx eslint '*/**/*.{js,ts,jsx,tsx}' --fix",
+    "lint": "npx eslint \"*/**/*.{js,ts,jsx,tsx}\" --fix",
     "ladle": "ladle serve",
     "storybook": "ladle serve",
     "prebuild": "npm run lint",
-    "start": "npm_config_yes=true npx --package=@remix-run/serve -- remix-serve build",
+    "start": "remix-serve build",
     "test": "vitest --reporter verbose --environment jsdom"
   },
   "dependencies": {
