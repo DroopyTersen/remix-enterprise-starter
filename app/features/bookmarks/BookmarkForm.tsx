@@ -31,13 +31,11 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
           <TextAreaField
             error={form.errors.url}
             label="URL"
-            name="url"
             {...form.register("url", { ...bookmarkValidators.url })}
             required
           />
           <TextAreaField
             label="Description"
-            name="description"
             rows={4}
             {...form.register("description", { ...bookmarkValidators.description })}
           />
@@ -47,7 +45,6 @@ export function BookmarkForm({ initial }: BookmarkFormProps) {
               setImage(e.target.value);
             }}
             label="Image"
-            name="image"
             {...form.register("image", { ...bookmarkValidators.image })}
           />
           <div className="d-flex justify-content-end gap-4">
