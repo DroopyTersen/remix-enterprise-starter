@@ -16,6 +16,7 @@
     "lint": "npx eslint \"*/**/*.{js,ts,jsx,tsx}\" --fix",
     "ladle": "ladle serve",
     "storybook": "ladle serve",
+    "prebuild": "npm run lint",
     "start": "remix-serve build",
     "test": "vitest --reporter verbose --environment jsdom"
   },
@@ -35,7 +36,7 @@
     "unfurl.js": "^5.7.0"
   },
   "devDependencies": {
-    "@ladle/react": "^0.16.0",
+    "@ladle/react": "^2.0.0",
     "@remix-run/dev": "*",
     "@remix-run/eslint-config": "*",
     "@types/react": "^17.0.45",
