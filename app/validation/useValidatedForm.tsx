@@ -23,7 +23,6 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
             (event?.nativeEvent as any).submitter || document.activeElement;
           if (submitter && submitter?.name && submitter?.value) {
             formData.set(submitter?.name, submitter.value);
-            console.log(Object.fromEntries(formData));
           }
           // use the submit function from the closure
           submit(formData, {
