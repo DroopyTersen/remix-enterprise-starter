@@ -19,7 +19,8 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
           // eventually tacks it on so it is in formData in your action. not sure when/how
           // that happens though.
 
-          let submitter: HTMLInputElement = (event?.nativeEvent as any).submitter;
+          let submitter: HTMLInputElement =
+            (event?.nativeEvent as any).submitter || document.activeElement;
           if (submitter && submitter?.name && submitter?.value) {
             formData.set(submitter?.name, submitter.value);
             console.log(Object.fromEntries(formData));
