@@ -16,10 +16,14 @@ npx create-remix@latest --template droopytersen/remix-enterprise-starter
 When you create a Remix app with this template you will get:
 
 - [x] A Remix/React application
-- [x] Styling setup
+- [x] Code Style setup
+    - A lax Typescript configuration
+    - Linting(ESLint)
+    - Auto-formatting(Prettier) 
+- [x] CSS/Styling setup
   - [x] Sass build process
   - [x] Bootstrap with ability to provide custom theme
-- [x] Setup for environment variables / config
+- [x] Setup for environment variables / config / secrets
 - [x] UI Toolkit
   - Themable React components (Buttons, form inputs, modals etc...)
   - Helpful React hooks (useDebounce, usePersistedState, useUpdateEffect etc...)
