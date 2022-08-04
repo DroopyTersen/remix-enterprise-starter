@@ -11,8 +11,21 @@ function createForm(form: UseFormReturn, submit: SubmitFunction) {
       <Form
         // use the form from the closure
         onSubmit={form.handleSubmit((_, event) => {
+          let formData = new FormData(event?.target);
+          // Because react-hook-form internally does a event.preventDefault(), we need to
+          // tack the 'intent' on manually.
+          // The input type='submit' (or <button>) name,value doesn't seem to be available
+          // in the `onSubmit` event. As long as you don't preventDefault, the browser
+          // eventually tacks it on so it is in formData in your action. not sure when/how
+          // that happens though.
+
+          let submitter: HTMLInputElement =
+            (event?.nativeEvent as any).submitter || document.activeElement;
+          if (submitter && submitter?.name && submitter?.value) {
+            formData.set(submitter?.name, submitter.value);
+          }
           // use the submit function from the closure
-          submit(event?.target, {
+          submit(formData, {
             // use instance props for the submit options
             action: props?.action,
             method: props?.method,
